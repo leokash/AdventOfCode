@@ -1,20 +1,25 @@
 
-plugins {
-    kotlin("jvm") version "1.6.0"
-}
-
-repositories {
-    mavenCentral()
-}
-
-tasks {
-    sourceSets {
-        main {
-            java.srcDirs("src")
-        }
+buildscript {
+    repositories {
+        google()
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
     }
 
-    wrapper {
-        gradleVersion = "7.3"
+    dependencies {
+        classpath(Build.Plugins.kotlinGradle)
+    }
+}
+
+allprojects {
+
+    group = Configurations.App.group
+    version = Configurations.App.version
+
+    repositories {
+        google()
+        mavenLocal()
+        mavenCentral()
     }
 }
