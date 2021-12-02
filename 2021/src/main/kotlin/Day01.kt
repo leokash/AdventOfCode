@@ -8,8 +8,8 @@ fun main() {
     fun part1(input: List<String>): Int = input.map { it.toInt() }.count()
     fun part2(input: List<String>): Int = input.map { it.toInt() }.windowed(3, 1) { it.sum() }.count()
 
-    val input = readInput("Day01")
-    val testInput = readInput("Day01-Test")
+    val input = readLines("Day01")
+    val testInput = readLines("Day01-Test")
 
     check(part1(testInput) == 7)
     check(part2(testInput) == 5)
