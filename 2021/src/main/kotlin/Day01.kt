@@ -1,15 +1,11 @@
 
 fun main() {
 
-    fun List<Int>.count(): Int {
-        return this.comparableFold(0) { acc, lhs, rhs -> if (lhs < rhs) acc + 1 else acc }
-    }
+    fun part1(input: List<Int>): Int = input.windowed(2).count { it[0] < it[1] }
+    fun part2(input: List<Int>): Int = input.windowed(4).count { it[0] < it[3] }
 
-    fun part1(input: List<String>): Int = input.map { it.toInt() }.count()
-    fun part2(input: List<String>): Int = input.map { it.toInt() }.windowed(3, 1) { it.sum() }.count()
-
-    val input = readLines("Day01")
-    val testInput = readLines("Day01-Test")
+    val input = readLines("Day01").map { it.toInt() }
+    val testInput = readLines("Day01-Test").map { it.toInt() }
 
     check(part1(testInput) == 7)
     check(part2(testInput) == 5)
