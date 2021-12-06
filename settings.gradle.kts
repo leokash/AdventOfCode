@@ -9,12 +9,3 @@ include(":2019")
 include(":2020")
 include(":2021")
 include(":utils")
-
-pluginManagement {
-    repositories {
-        google()
-        mavenLocal()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
