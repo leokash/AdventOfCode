@@ -4,13 +4,6 @@ package matrix
 import kotlin.math.abs
 import kotlin.math.max
 
-private fun String.padLeft( max: Int = 0) : String {
-    if (max == 0 || this.length >= max)
-        return this
-
-    return "".padStart(abs(this.length - max)) + this
-}
-
 class MatrixStringifier {
     private class Spacer(var max: Int) {
         fun update(s: Int) {
@@ -37,4 +30,11 @@ class MatrixStringifier {
             list.joinToString (prefix = "$indent|", postfix = "|\n", separator = " ") { it.toString() }
         }
     }
+}
+
+private fun String.padLeft( max: Int = 0) : String {
+    if (max == 0 || this.length >= max)
+        return this
+
+    return "".padStart(abs(this.length - max)) + this
 }

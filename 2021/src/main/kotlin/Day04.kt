@@ -1,4 +1,5 @@
 
+import matrix.fold
 import matrix.Matrix
 
 private val rgx = """\s+""".toRegex()
@@ -9,7 +10,7 @@ private class Game(val input: List<String>) {
     private val bingoBoards = mutableListOf<BingoBoard>()
 
     init {
-        input[0].split(',').forEach { numbers += it.trim().toInt() }
+        input[0].trim().split(',').forEach { numbers += it.toInt() }
         input.drop(1).asSequence().filter { it.isNotEmpty() }.chunked(5).forEach {
             val values = it.map { s -> s.trim().split(rgx) }
             bingoBoards += BingoBoard { x, y -> Square(values[x][y].trim().toInt()) }
@@ -67,16 +68,15 @@ private class BingoBoard(init: (Int, Int) -> Square): Matrix<Square>(5, 5) {
     override lateinit var store: Array<Array<Square>>
 
     init {
-        init(init)
-    }
-    override fun init(f: (Int, Int) -> Square) {
-        store = Array(rows) { x -> Array(columns) { y -> f(x, y) } }
+        store = Array(rows) { x -> Array(columns) { y -> init(x, y) } }
     }
 
     fun add(number: Int): Boolean {
-        forEachIndexed { x, y, sq ->
-            if (sq.number == number) {
-                sq.selected = true
+        for (x in (0 until rows)) {
+            for (y in (0 until columns)) {
+                if (this[x, y].number != number)
+                    continue
+                this[x, y].selected = true
                 return row(x).count { it.selected } == rows ||
                         column(y).count { it.selected } == columns
             }

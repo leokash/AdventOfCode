@@ -1,24 +1,14 @@
 
+import matrix.fold
 import kotlin.math.*
-import matrix.Matrix
+import matrix.IntMatrix
 
-private class IntMatrix(x: Int, y: Int): Matrix<Int>(x,y) {
-    override lateinit var store: Array<Array<Int>>
-
-    init {
-        init { _, _ -> 0 }
-    }
-    override fun init(f: (Int, Int) -> Int) {
-        store = Array(rows) { x -> Array(columns) { y -> f(x, y) } }
-    }
-
-    fun add(vector: Vec4, diagonal: ((Vec4) -> List<Point>)? = null) {
-        val (x1,y1,x2,y2) = vector
-        when {
-            x1 == x2 -> (min(y1,y2)..(max(y1,y2))).forEach { store[it][x1]++ }
-            y1 == y2 -> (min(x1,x2)..(max(x1,x2))).forEach { store[y1][it]++ }
-            diagonal != null -> diagonal(vector).forEach { (x, y) -> store[y][x]++ }
-        }
+private fun IntMatrix.add(vector: Vec4, diagonal: ((Vec4) -> List<Point>)? = null) {
+    val (x1,y1,x2,y2) = vector
+    when {
+        x1 == x2 -> (min(y1,y2)..(max(y1,y2))).forEach { this[it, x1]++ }
+        y1 == y2 -> (min(x1,x2)..(max(x1,x2))).forEach { this[y1, it]++ }
+        diagonal != null -> diagonal(vector).forEach { (x, y) -> this[y, x]++ }
     }
 }
 
@@ -54,19 +44,16 @@ fun main() {
     }
 
     fun part1(input: List<Vec4>): Int {
-        return with(size(input)) {
-            IntMatrix(x, y).also {
-                for (vec in input) { it.add(vec) }
-                //println(MatrixStringifier().stringify(it) { n -> if (n == 0) "." else n.toString() })
-            }.fold(0) { acc, n -> acc + if (n >= 2) 1 else 0 }
-        }
+        val (rows, columns) = size(input)
+        return IntMatrix(rows, columns).also {
+            for (vec in input) { it.add(vec) }
+        }.fold(0) { acc, n -> acc + if (n >= 2) 1 else 0 }
     }
     fun part2(input: List<Vec4>): Int {
-        return with(size(input)) {
-            IntMatrix(x, y).also {
-                for (vec in input) { it.add(vec, diagonal) }
-            }.fold(0) { acc, n -> acc + if (n >= 2) 1 else 0 }
-        }
+        val (rows, columns) = size(input)
+        return IntMatrix(rows, columns).also {
+            for (vec in input) { it.add(vec, diagonal) }
+        }.fold(0) { acc, n -> acc + if (n >= 2) 1 else 0 }
     }
 
     val input = parse(readLines("Day05"))
