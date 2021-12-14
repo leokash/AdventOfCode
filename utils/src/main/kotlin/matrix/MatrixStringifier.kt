@@ -19,15 +19,18 @@ class MatrixStringifier {
         }
     }
 
-    fun <T> stringify(array: Matrix<T>, indent: String = "", stringify: (T) -> String = { it.toString() }): String {
+    fun <T> stringify(array: Matrix<T>,
+                      indent: String = "",
+                      separator: String = "",
+                      transform: (T) -> String = { it.toString() }): String {
         val spacers = mutableMapOf<Int, Spacer>()
         val stringsArr = mutableListOf<List<Padded>>()
         for (i in (0 until array.rows))
             stringsArr += array.row(i)
-                .mapIndexed { j, t -> Padded(stringify(t), spacers.getOrPut(j) { Spacer(0) }) }
+                .mapIndexed { j, t -> Padded(transform(t), spacers.getOrPut(j) { Spacer(0) }) }
 
         return stringsArr.joinToString (separator = "") { list ->
-            list.joinToString (prefix = "$indent|", postfix = "|\n", separator = " ") { it.toString() }
+            list.joinToString (prefix = "$indent|", postfix = "|\n", separator = separator) { it.toString() }
         }
     }
 }

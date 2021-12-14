@@ -14,3 +14,7 @@ fun <T, R> Matrix<T>.foldIndexed(initial: R, f: (Int, Int, R, T) -> R): R {
 
     return acc
 }
+
+fun <T> Matrix<T>.count(predicate: (T) -> Boolean): Int {
+    return fold(0) { acc, value -> if (predicate(value)) acc + 1 else acc }
+}

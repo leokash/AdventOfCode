@@ -10,7 +10,7 @@ abstract class Matrix<T> constructor(val rows: Int, val columns: Int) {
         forEachIndexed { _, _, v -> f(v) }
     }
     fun forEachIndexed(f: (Int, Int, T) -> Unit) {
-        `access$store`.forEachIndexed { x, arr ->
+        store.forEachIndexed { x, arr ->
             arr.forEachIndexed { y, v ->
                 f(x, y, v)
             }
@@ -34,8 +34,4 @@ abstract class Matrix<T> constructor(val rows: Int, val columns: Int) {
     operator fun set(x: Int, y: Int, value: T) {
         store[x][y] = value
     }
-
-    @PublishedApi
-    internal val `access$store`: Array<Array<T>>
-        get() = store
 }
