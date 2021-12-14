@@ -42,7 +42,7 @@ fun main() {
 
     fun part1(input: List<String>): Int {
         val (cmd, coordinates) = parse(input)
-        return coordinates.map { fold(it, cmd.first()) }.toSet().size.also { println("points = $it") }
+        return coordinates.map { fold(it, cmd.first()) }.toSet().size
     }
     fun part2(input: List<String>): Int {
         val (commands, coordinates) = parse(input)
