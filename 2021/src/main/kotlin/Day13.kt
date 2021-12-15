@@ -1,55 +1,74 @@
 
-private data class Instruction(val axis: String, val position: Int)
+import matrix.count
+import matrix.IntMatrix
+import matrix.MatrixStringifier
 
-private fun Set<Point>.print() {
-    for (y in (0 .. maxOf { it.y })) {
-        for (x in (0 .. maxOf { it.x })) {
-            print(if (contains(x, y)) "#" else " ")
-        }
-        println()
-    }
-}
-private fun Set<Point>.contains(x: Int, y: Int): Boolean {
-    return any { it.x == x && it.y == y }
-}
-private fun fold(point: Point, instruction: Instruction): Point {
-    val (axis, index) = instruction
-    val pos = if (axis == "x") point.x else point.y
-    if (pos < index) return point.copy()
-    return if (axis == "x") point.copy(x = 2 * index - pos) else point.copy(y = 2 * index - pos)
+private fun IntMatrix.print() {
+    println(MatrixStringifier().stringify(this) { if (it > 0) "#" else "." })
 }
 
-fun main() {
-
-    fun parse(input: List<String>): Pair<List<Instruction>, Set<Point>> {
-        val commands = mutableListOf<Instruction>()
-        val coordinates = mutableSetOf<Point>()
-        for (line in input) {
-            if (line.isEmpty())
-                continue
-            if (line.startsWith("fold")) {
-                val (axis, pos) = line.trim().replace("fold along", "").trim().split('=')
-                commands += Instruction(axis, pos.toInt())
-            } else {
-                val (x, y) = line.trim().split(',')
-                coordinates += Point(x.toInt(), y.toInt())
+private fun IntMatrix.fold(cmd: Fold): IntMatrix {
+    val (axis, idx) = cmd
+    return if (axis == "x") foldHorizontally(idx) else foldVertically(idx)
+}
+private fun IntMatrix.foldVertically(idx: Int): IntMatrix {
+    val mat = IntMatrix(idx, columns) { x, y -> this[x, y] }
+    for (x in (idx+1 until rows)) {
+        for (y in (0 until columns)) {
+            this[x, y].let { num ->
+                if (num > 0) {
+                    mat[2*idx - x, y] += num
+                }
             }
         }
-
-
-        return commands to coordinates
     }
+    return mat
+}
+private fun IntMatrix.foldHorizontally(idx: Int): IntMatrix {
+    val mat = IntMatrix(rows, idx) { x, y -> this[x, y] }
+    for (x in (0 until rows)) {
+        for (y in (idx+1 until columns)) {
+            this[x, y].let { num ->
+                if (num > 0) {
+                    mat[x, 2*idx - y] += num
+                }
+            }
+        }
+    }
+    return mat
+}
 
+private data class Fold(val axis: String, val index: Int)
+
+fun main() {
+    fun parse(input: List<String>): Pair<List<Fold>, IntMatrix> {
+        val folds = input
+            .takeLastWhile { it.startsWith("fold") }
+            .map { it.replace("fold along ", "").trim().split("=") }
+            .map { (lhs, rhs) -> Fold(lhs, rhs.toInt()) }
+        val coordinates = input
+            .asSequence()
+            .filter { it.contains(",") }.map { it.trim().split(",") }
+            .map { (y, x) -> Point(x.toInt(), y.toInt()) }
+
+        val maxX = coordinates.maxOf { it.x }
+        val maxY = coordinates.maxOf { it.y }
+        return folds to IntMatrix(maxX + 1, maxY + 1) { _, _ -> 0 }.also { mat ->
+            for ((x, y) in coordinates) {
+                mat[x, y] += 1
+            }
+        }
+    }
     fun part1(input: List<String>): Int {
-        val (cmd, coordinates) = parse(input)
-        return coordinates.map { fold(it, cmd.first()) }.toSet().size
+        val (cmd, mat) = parse(input)
+        return mat.fold(cmd.first()).count { it > 0 }
     }
     fun part2(input: List<String>): Int {
-        val (commands, coordinates) = parse(input)
-        var result = coordinates
+        val (commands, matrix) = parse(input)
+        var folded = matrix
         for (cmd in commands)
-            result = result.map { fold(it, cmd) }.toSet()
-        result.print()
+            folded = folded.fold(cmd)
+        folded.print()
         return 0
     }
 
