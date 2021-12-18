@@ -15,7 +15,7 @@ private fun simulate2(mat: IntMatrix, steps: Int = 500): Int {
             mat[x, y] = n + 1
         }
         mat.forEachIndexed { x, y, _ -> mat.computeFlashes(x, y) }
-        if (mat.fold(0) { acc, num -> acc + if (num == 0) 1 else 0 } == mat.size)
+        if (mat.fold(0) { acc, num -> acc + if (num == 0) 1 else 0 } == mat.size())
             return it + 1
     }
 

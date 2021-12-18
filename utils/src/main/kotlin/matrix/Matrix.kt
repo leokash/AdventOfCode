@@ -1,10 +1,13 @@
 
 package matrix
 
-abstract class Matrix<T> constructor(val rows: Int, val columns: Int) {
+abstract class Matrix<T> {
 
-    val size: Int = rows * columns
+    abstract val rows: Int
+    abstract val columns: Int
     protected abstract val store: Array<Array<T>>
+
+    fun size(): Int = rows * columns
 
     fun forEach(f: (T) -> Unit) {
         forEachIndexed { _, _, v -> f(v) }

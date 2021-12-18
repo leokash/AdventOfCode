@@ -2,12 +2,17 @@ package matrix
 
 import Point
 
-fun <T> Matrix<T>.neighbors(
-    x: Int,
-    y: Int,
-    allowDiagonal: Boolean = false,
-    predicate: (Int, Int, T) -> Boolean = {_,_,_ -> true}
-): List<Pair<Point, T>> {
+fun Matrix<*>.contains(point: Point): Boolean {
+    return contains(point.x, point.y)
+}
+fun Matrix<*>.contains(x: Int, y: Int): Boolean {
+    return x in (0 until rows) && y in (0 until columns)
+}
+
+fun <T> Matrix<T>.neighbors(x: Int,
+                            y: Int,
+                            allowDiagonal: Boolean = false,
+                            predicate: (Int, Int, T) -> Boolean = {_,_,_ -> true}): List<Pair<Point, T>> {
     val rowRange = 0 until rows
     val columnRange = 0 until columns
     fun attemptNeighborAddition(r: Int, c: Int, list: MutableList<Pair<Point, T>>) {
