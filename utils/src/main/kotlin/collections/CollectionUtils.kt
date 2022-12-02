@@ -1,8 +1,8 @@
 package collections
 
-fun <T> Collection<T>.splitBy(predicate: (T) -> Boolean): List<List<T>> = buildList {
+fun <T> Collection<T>.chunkBy(predicate: (T) -> Boolean): List<List<T>> = buildList {
     var container: MutableList<T>? = null
-    this@splitBy.forEach { value ->
+    this@chunkBy.forEach { value ->
         container = if (predicate(value)) {
             mutableListOf<T>().also { add(it) }
         } else {
