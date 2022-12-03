@@ -26,26 +26,21 @@ private val Char.priority get() = when(isLowerCase()) {
 }
 
 private fun computeOne(input: List<String>): Int {
-    fun findCommon(lhs: CharArray, rhs: CharArray): Char {
-        for (lc in lhs)
-            for (rc in rhs)
-                if (lc == rc) return lc
-        error("!!")
+    fun findCommon(lhs: String, rhs: String): Char {
+        return lhs.toSet().intersect(rhs.toSet()).first()
     }
 
     return input
-        .map { it.chunked(it.length / 2) }
-        .map { findCommon(it[0].toCharArray(), it[1].toCharArray()) }
+        .map { it.chunked(it.length / 2).let { list -> findCommon(list[0], list[1]) } }
         .sumOf { it.priority }
 }
 
 private fun computeTwo(input: List<String>, chunks: Int = 3): Int {
-    fun findCommon(set1: String, set2: String, set3: String): Char {
-        for (c1 in set1.toSet())
-            for (c2 in set2.toSet())
-                for (c3 in set3.toSet())
-                    if (c1 == c2 && c1 == c3) return c1
-        error("!!")
+    fun findCommon(string1: String, string2: String, string3: String): Char {
+        return string1.toSet()
+            .intersect(string2.toSet())
+            .intersect(string3.toSet())
+            .first()
     }
 
     return input
