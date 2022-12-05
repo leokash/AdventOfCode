@@ -1,5 +1,5 @@
 
-import collections.chunkBy
+import collections.chunkedBy
 
 private const val PART_ONE_EXPECTED = 24000
 private const val PART_TWO_EXPECTED = 45000
@@ -7,7 +7,7 @@ private const val PART_TWO_EXPECTED = 45000
 fun main() {
     fun compute(input: List<String>, take: Int = 1): List<Int> = input
         .map { it.toIntOrNull() }
-        .chunkBy { it == null }
+        .chunkedBy { it == null }
         .map { it.sumOf { num -> num ?: 0 } }
         .sortedDescending()
         .take(take)
