@@ -7,7 +7,7 @@ buildscript {
     }
 
     dependencies {
-        classpath(Build.Plugins.kotlinGradle)
+        classpath(Build.Plugins.ClassPaths.kotlinGradle)
     }
 }
 
