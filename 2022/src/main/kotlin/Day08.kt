@@ -1,11 +1,19 @@
 
-import collections.chunkedByIndexed
-import matrix.*
+import collections.product
+import matrix.countBy
+import matrix.getOrNull
+import matrix.IntMatrix
+import matrix.lastColumnIndex
+import matrix.lastRowIndex
+import matrix.maxBy
+import matrix.Matrix
 
 private const val PART_ONE_EXPECTED = 21
 private const val PART_TWO_EXPECTED = 8
 
 private typealias Tree = Int
+
+private val directions = listOf(Direction.East, Direction.West, Direction.North, Direction.South)
 
 fun main() {
     fun part1(input: List<String>): Int {
@@ -42,25 +50,22 @@ private fun parse(input: List<String>): IntMatrix {
 private fun Matrix<*>.isEdge(x: Int, y: Int): Boolean {
     return x == 0 || y == 0 || x == lastRowIndex || y == lastColumnIndex
 }
-private fun <T> Matrix<T>.chunked(x: Int, y: Int): Pair<List<List<T>>, List<List<T>>> {
-    return row(x).chunkedByIndexed { i, _ -> i == y } to column(y).chunkedByIndexed { i, _ -> i == x }
-}
 
 private fun Tree.isVisible(x: Int, y: Int, mat: Matrix<Tree>): Boolean {
-    return mat.chunked(x, y).let { (rows, columns) ->
-        rows.any { it.all { num -> num < this } } || columns.any { it.all { num -> num < this } }
-    }
-}
-private fun Tree.calcScenicScore(x: Int, y: Int, mat: Matrix<Tree>): Int {
-    tailrec fun score(count: Int = 0, point: Point?, dir: Direction): Int {
-        val tmp = point ?: return count
-        val tree = mat.getOrNull(tmp) ?: return count
-        return if (tree >= this) count + 1 else score(count + 1, tmp.next(dir), dir)
+    tailrec fun isVisible(i: Int, j: Int, dir: Direction): Boolean {
+        val next = Point(i, j).next(dir)
+        val value = next?.let { mat.getOrNull(it)?.let { tree -> tree to it } } ?: return true
+        return if (value.first >= this) false else isVisible(value.second.x, value.second.y, dir)
     }
 
-    val p = Point(x, y)
-    return score(point = p.next(Direction.East), dir = Direction.East) *
-           score(point = p.next(Direction.West), dir = Direction.West) *
-           score(point = p.next(Direction.North), dir = Direction.North) *
-           score(point = p.next(Direction.South), dir = Direction.South)
+    return directions.any { isVisible(x, y, it) }
+}
+private fun Tree.calcScenicScore(x: Int, y: Int, mat: Matrix<Tree>): Int {
+    tailrec fun score(i: Int, j: Int, count: Int, dir: Direction): Int {
+        val point = Point(i, j).next(dir)
+        val tree = point?.let { mat.getOrNull(it) } ?: return count
+        return if (tree >= this) count + 1 else score(point.x, point.y, count + 1, dir)
+    }
+
+    return directions.product { dir -> score(x, y, 0, dir) }
 }

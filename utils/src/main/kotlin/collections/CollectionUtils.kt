@@ -15,3 +15,10 @@ fun <T> Collection<T>.chunkedByIndexed(predicate: (Int, T) -> Boolean): List<Lis
         }
     }
 }
+
+fun <T> Collection<T>.product(selector: (T) -> Int): Int {
+    return productIndexed { _, num -> selector(num) }
+}
+fun <T> Collection<T>.productIndexed(selector: (Int, T) -> Int): Int {
+    return foldIndexed(1) { idx, acc, num -> acc * selector(idx, num) }
+}
