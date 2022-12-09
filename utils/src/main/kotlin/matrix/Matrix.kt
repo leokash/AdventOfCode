@@ -25,12 +25,12 @@ abstract class Matrix<T> {
     fun row(index: Int, range: IntRange? = null): List<T> {
         if (index < 0 || index >= rows)
             throw IllegalAccessException("Out of bounds! $index not in 0..$rows")
-        return store[index].slice(range ?: rowIndices)
+        return store[index].slice(range ?: columnIndices)
     }
     fun column(index: Int, range: IntRange? = null): List<T> {
         if (index < 0 || index >= columns)
             throw IllegalAccessException("Out of bounds! $index not in 0..$columns")
-        return store.map { it[index] }.slice(range ?: columnIndices)
+        return store.map { it[index] }.slice(range ?: rowIndices)
     }
 
     operator fun get(point: Point): T {

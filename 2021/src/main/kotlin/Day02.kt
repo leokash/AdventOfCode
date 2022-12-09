@@ -1,9 +1,9 @@
 
 private val String.asDirection: Direction get() {
     return when (this) {
-        "up" -> Direction.North
-        "down" -> Direction.South
-        "forward" -> Direction.East
+        "up" -> Direction.NORTH
+        "down" -> Direction.SOUTH
+        "forward" -> Direction.EAST
         else -> throw RuntimeException("Invalid direction given: $this")
     }
 }
@@ -16,18 +16,18 @@ private fun List<String>.parse(): List<Pair<Direction, Int>> {
 }
 private fun Point.update(moves: Int, direction: Direction) {
     when(direction) {
-        Direction.East -> x += moves
-        Direction.North -> y -= moves
-        Direction.South -> y += moves
+        Direction.EAST -> x += moves
+        Direction.NORTH -> y -= moves
+        Direction.SOUTH -> y += moves
         else -> Unit
     }
 }
 private data class Vector3(var aim: Int, var x: Int, var y: Int) {
     fun update(moves: Int, direction: Direction) {
         when(direction) {
-            Direction.East -> { x += moves; y += (aim * moves) }
-            Direction.North -> aim -= moves
-            Direction.South -> aim += moves
+            Direction.EAST -> { x += moves; y += (aim * moves) }
+            Direction.NORTH -> aim -= moves
+            Direction.SOUTH -> aim += moves
             else -> Unit
         }
     }

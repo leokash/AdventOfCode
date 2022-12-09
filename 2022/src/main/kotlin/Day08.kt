@@ -13,7 +13,7 @@ private const val PART_TWO_EXPECTED = 8
 
 private typealias Tree = Int
 
-private val directions = listOf(Direction.East, Direction.West, Direction.North, Direction.South)
+private val directions = listOf(Direction.EAST, Direction.WEST, Direction.NORTH, Direction.SOUTH)
 
 fun main() {
     fun part1(input: List<String>): Int {
