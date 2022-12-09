@@ -1,6 +1,8 @@
 
 package matrix
 
+import Point
+
 abstract class Matrix<T> {
 
     abstract val rows: Int
@@ -20,17 +22,20 @@ abstract class Matrix<T> {
         }
     }
 
-    fun row(index: Int): List<T> {
+    fun row(index: Int, range: IntRange? = null): List<T> {
         if (index < 0 || index >= rows)
             throw IllegalAccessException("Out of bounds! $index not in 0..$rows")
-        return store[index].toList()
+        return store[index].slice(range ?: rowIndices)
     }
-    fun column(index: Int): List<T> {
+    fun column(index: Int, range: IntRange? = null): List<T> {
         if (index < 0 || index >= columns)
             throw IllegalAccessException("Out of bounds! $index not in 0..$columns")
-        return store.map { it[index] }.toList()
+        return store.map { it[index] }.slice(range ?: columnIndices)
     }
 
+    operator fun get(point: Point): T {
+        return get(point.x, point.y)
+    }
     operator fun get(x: Int, y: Int): T {
         return store[x][y]
     }

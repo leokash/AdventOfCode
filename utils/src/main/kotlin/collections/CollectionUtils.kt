@@ -1,12 +1,17 @@
 package collections
 
-fun <T> Collection<T>.chunkedBy(predicate: (T) -> Boolean): List<List<T>> = buildList {
-    var container: MutableList<T>? = null
-    this@chunkedBy.forEach { value ->
-        container = if (predicate(value)) {
-            mutableListOf<T>().also { add(it) }
-        } else {
-            (container ?: mutableListOf<T>().also { add(it) }).also { it.add(value) }
+fun <T> Collection<T>.chunkedBy(predicate: (T) -> Boolean): List<List<T>> {
+    return chunkedByIndexed { _, value -> predicate(value) }
+}
+fun <T> Collection<T>.chunkedByIndexed(predicate: (Int, T) -> Boolean): List<List<T>> {
+    return buildList {
+        var container: MutableList<T>? = null
+        this@chunkedByIndexed.forEachIndexed { idx, value ->
+            container = if (predicate(idx, value)) {
+                mutableListOf<T>().also { add(it) }
+            } else {
+                (container ?: mutableListOf<T>().also { add(it) }).also { it.add(value) }
+            }
         }
     }
 }

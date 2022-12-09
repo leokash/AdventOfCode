@@ -1,7 +1,10 @@
 
 package matrix
 
+import int
 import Point
+import kotlin.math.min
+import kotlin.math.max
 
 fun <T, R> Matrix<T>.fold(initial: R, f: (R, T) -> R): R {
     return foldIndexed(initial) { _, _, acc, value ->
@@ -18,13 +21,22 @@ fun <T, R> Matrix<T>.foldIndexed(initial: R, f: (Int, Int, R, T) -> R): R {
 }
 
 fun <T> Matrix<T>.count(predicate: (T) -> Boolean): Int {
-    return fold(0) { acc, value -> if (predicate(value)) acc + 1 else acc }
+    return fold(0) { acc, value -> acc + predicate(value).int }
+}
+fun <T> Matrix<T>.minBy(selector: (Int, Int, T) -> Int): Int {
+    return foldIndexed(0) { x, y, acc, value -> min(acc, selector(x, y, value)) }
+}
+fun <T> Matrix<T>.maxBy(selector: (Int, Int, T) -> Int): Int {
+    return foldIndexed(0) { x, y, acc, value -> max(acc, selector(x, y, value)) }
+}
+fun <T> Matrix<T>.countBy(predicate: (Int, Int, T) -> Boolean): Int {
+    return foldIndexed(0) { x, y, acc, value -> acc + predicate(x, y, value).int }
 }
 fun <T> Matrix<T>.filter(predicate: (Int, Int, T) -> Boolean): List<Pair<Point, T>> {
-    return foldIndexed(mutableListOf()) { x, y, list, value ->
-        list.also {
+    return buildList {
+        this@filter.forEachIndexed { x, y, value ->
             if (predicate(x, y, value))
-                it.add(Point(x, y) to value)
+                add(Point(x, y) to value)
         }
     }
 }
