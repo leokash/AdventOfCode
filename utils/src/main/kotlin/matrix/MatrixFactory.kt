@@ -21,7 +21,7 @@ class CharMatrix(
 class LongMatrix(
     override val rows: Int,
     override val columns: Int,
-    init: (Int, Int) -> Long = { _, _ -> 0L}
+    init: (Int, Int) -> Long = { _, _ -> 0L }
 ): Matrix<Long>() {
     override var store = Array(rows) { x -> Array(columns) { y -> init(x, y) } }
 }

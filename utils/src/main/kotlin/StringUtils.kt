@@ -1,6 +1,11 @@
 
+@file:Suppress("Unused", "MagicNumber")
+
 import java.math.BigInteger
 import java.security.MessageDigest
+
+const val SPRITE_ON = '\u2593'
+const val SPRITE_OFF = '\u2591'
 
 operator fun String.component1(): Char = this[0]
 operator fun String.component2(): Char = this[1]

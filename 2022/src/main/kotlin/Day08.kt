@@ -13,8 +13,6 @@ private const val PART_TWO_EXPECTED = 8
 
 private typealias Tree = Int
 
-private val directions = listOf(Direction.EAST, Direction.WEST, Direction.NORTH, Direction.SOUTH)
-
 fun main() {
     fun part1(input: List<String>): Int {
         return with(parse(input)) {
@@ -58,7 +56,7 @@ private fun Tree.isVisible(x: Int, y: Int, mat: Matrix<Tree>): Boolean {
         return if (value.first >= this) false else isVisible(value.second.x, value.second.y, dir)
     }
 
-    return directions.any { isVisible(x, y, it) }
+    return Direction.cardinals.any { isVisible(x, y, it) }
 }
 private fun Tree.calcScenicScore(x: Int, y: Int, mat: Matrix<Tree>): Int {
     tailrec fun score(i: Int, j: Int, count: Int, dir: Direction): Int {
@@ -67,5 +65,5 @@ private fun Tree.calcScenicScore(x: Int, y: Int, mat: Matrix<Tree>): Int {
         return if (tree >= this) count + 1 else score(point.x, point.y, count + 1, dir)
     }
 
-    return directions.product { dir -> score(x, y, 0, dir) }
+    return Direction.cardinals.product { dir -> score(x, y, 0, dir) }
 }

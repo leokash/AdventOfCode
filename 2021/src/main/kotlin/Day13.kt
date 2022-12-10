@@ -4,7 +4,7 @@ import matrix.IntMatrix
 import matrix.MatrixStringifier
 
 private fun IntMatrix.print() {
-    println(MatrixStringifier().stringify(this) { if (it > 0) "#" else "." })
+    println(MatrixStringifier().stringify(this) { if (it > 0) "$SPRITE_ON" else "$SPRITE_OFF" })
 }
 
 private fun IntMatrix.fold(cmd: Fold): IntMatrix {
