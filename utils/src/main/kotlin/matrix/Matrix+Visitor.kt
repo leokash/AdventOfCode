@@ -28,7 +28,8 @@ fun <T> Matrix<T>.neighbors(
     predicate: (Int, Int, T) -> Boolean = { _,_,_ -> true }
 ): List<Pair<Point, T>> {
     fun attemptNeighborAddition(r: Int, c: Int, list: MutableList<Pair<Point, T>>) {
-        getOrNull(r, c)?.also { value -> if (predicate(r, c, value)) list.add(Point(r, c) to value) }
+        if (r !in rowIndices || c !in columnIndices) return
+        get(r, c).also { value -> if (predicate(r, c, value)) list.add(Point(r, c) to value) }
     }
 
     return buildList {

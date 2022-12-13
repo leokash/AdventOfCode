@@ -1,5 +1,6 @@
 
 import kotlin.math.abs
+import collections.plus
 
 private const val PART_ONE_EXPECTED = 13
 private const val PART_TWO_EXPECTED = 36
@@ -67,7 +68,4 @@ private fun List<String>.parse(): List<CMD> {
             else -> error("invalid direction provided: ")
         }
     }
-}
-private operator fun Char.plus(chars: List<Char>): List<Char> {
-    return buildList { add(this@plus); addAll(chars) }
 }

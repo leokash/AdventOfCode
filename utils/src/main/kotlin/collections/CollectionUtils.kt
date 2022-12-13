@@ -22,3 +22,7 @@ fun <T> Collection<T>.product(selector: (T) -> Int): Int {
 fun <T> Collection<T>.productIndexed(selector: (Int, T) -> Int): Int {
     return foldIndexed(1) { idx, acc, num -> acc * selector(idx, num) }
 }
+
+operator fun Char.plus(chars: List<Char>): List<Char> {
+    return buildList { add(this@plus); addAll(chars) }
+}

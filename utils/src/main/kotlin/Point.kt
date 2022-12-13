@@ -13,6 +13,12 @@ data class Point(var x: Int = 0, var y: Int = 0) {
             }
         }
     }
+    fun neighbors(bounds: Rect? = null): List<Pair<Direction, Point>> {
+        return Direction.all.mapNotNull { dir ->
+            val next = this.next(dir, bounds)
+            if (next != null) dir to next else null
+        }
+    }
     fun next(direction: Direction, bounds: Rect? = null): Point? {
         fun take(point: Point): Boolean {
             return bounds == null || point in bounds
@@ -36,5 +42,22 @@ data class Point(var x: Int = 0, var y: Int = 0) {
         }
 
         return start
+    }
+
+    operator fun div(rhs: Point): Point {
+        return Point(x / rhs.x, y / rhs.y)
+    }
+    operator fun plus(rhs: Point): Point {
+        return Point(x + rhs.x, y + rhs.y)
+    }
+    operator fun minus(rhs: Point): Point {
+        return Point(x - rhs.x, y - rhs.y)
+    }
+    operator fun times(rhs: Point): Point {
+        return Point(x * rhs.x, y * rhs.y)
+    }
+
+    companion object {
+        val ZERO = Point()
     }
 }
