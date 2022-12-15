@@ -26,13 +26,13 @@ data class Point(var x: Int = 0, var y: Int = 0) {
 
         return when (direction) {
             Direction.NORTH -> Point(x - 1, y).let { if (take(it)) it else null }
-            Direction.NORTH_EAST -> Point(x - 1, y - 1).let { if (take(it)) it else null }
-            Direction.EAST -> Point(x, y - 1).let { if (take(it)) it else null }
-            Direction.SOUTH_EAST -> Point(x + 1, y - 1).let { if (take(it)) it else null }
+            Direction.NORTH_EAST -> Point(x - 1, y + 1).let { if (take(it)) it else null }
+            Direction.EAST -> Point(x, y + 1).let { if (take(it)) it else null }
+            Direction.SOUTH_EAST -> Point(x + 1, y + 1).let { if (take(it)) it else null }
             Direction.SOUTH -> Point(x + 1, y).let { if (take(it)) it else null }
-            Direction.SOUTH_WEST -> Point(x + 1, y + 1).let { if (take(it)) it else null }
-            Direction.WEST -> Point(x, y + 1).let { if (take(it)) it else null }
-            Direction.NORTH_WEST -> Point(x - 1, y + 1).let { if (take(it)) it else null }
+            Direction.SOUTH_WEST -> Point(x + 1, y - 1).let { if (take(it)) it else null }
+            Direction.WEST -> Point(x, y - 1).let { if (take(it)) it else null }
+            Direction.NORTH_WEST -> Point(x - 1, y - 1).let { if (take(it)) it else null }
         }
     }
     fun move(steps: Int = 1, direction: Direction, bounds: Rect? = null): Point {

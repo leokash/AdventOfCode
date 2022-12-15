@@ -22,6 +22,14 @@ operator fun Matrix<*>.contains(point: Point): Boolean {
 }
 
 fun <T> Matrix<T>.neighbors(
+    point: Point,
+    allowDiagonal: Boolean = false,
+    predicate: (Int, Int, T) -> Boolean = { _,_,_ -> true }
+): List<Pair<Point, T>> {
+    return neighbors(point.x, point.y, allowDiagonal, predicate)
+}
+
+fun <T> Matrix<T>.neighbors(
     x: Int,
     y: Int,
     allowDiagonal: Boolean = false,

@@ -39,6 +39,9 @@ abstract class Matrix<T> {
     operator fun get(x: Int, y: Int): T {
         return store[x][y]
     }
+    operator fun set(point: Point, value: T) {
+        set(point.x, point.y, value)
+    }
     operator fun set(x: Int, y: Int, value: T) {
         store[x][y] = value
     }
