@@ -1,6 +1,10 @@
 
 @file:Suppress("unused", "LoopWithTooManyJumpStatements")
 
+package graphs
+
+import log
+
 /*
 https://en.wikipedia.org/wiki/A*_search_algorithm
 https://en.wikipedia.org/wiki/Breadth-first_search
@@ -22,7 +26,7 @@ class PathFinding {
 
         data class GREEDY<T>(
             override val cost: (lhs: T, rhs: T) -> Int,
-            override val neighbors: (node: T) -> List<T>
+            override val neighbors: (node: T) -> List<T>,
         ): Mode<T>() {
             override val heuristic: (node: T) -> Int get() = { 0 }
         }
@@ -30,7 +34,7 @@ class PathFinding {
         data class ASTAR<T>(
             override val cost: (lhs: T, rhs: T) -> Int,
             override val neighbors: (node: T) -> List<T>,
-            override val heuristic: (node: T) -> Int
+            override val heuristic: (node: T) -> Int,
         ): Mode<T>()
     }
 
@@ -81,12 +85,19 @@ class PathFinding {
         }
 
         fun <T> findShortestPath(start: T, finish: T, mode: Mode<T>): Result<T>? {
+            return findShortestPath(start, mode) { it == finish }
+        }
+        fun <T> findShortestPath(start: T, mode: Mode<T>, predicate: (T) -> Boolean): Result<T>? {
+            var finish: T? = null
             val queue = Queue(ScoredNode(start, 0, 0))
             val visited = mutableMapOf<T, VisitedNode<T>>(start to VisitedNode(0, null))
 
             while (!queue.isEmpty) {
-                val tmp = queue.pop() ?: break
-                if (tmp.element == finish) break
+                val tmp = queue.pop()
+                if (tmp == null || predicate(tmp.element)) {
+                    tmp?.also { n -> finish = n.element }
+                    break
+                }
 
                 val (node, score) = tmp
                 val neighbors = mode.neighbors(node)
@@ -97,8 +108,7 @@ class PathFinding {
                 visited.putAll(neighbors.associate { it.element to VisitedNode(it.score, node) })
             }
 
-            log { "Search result: ${finish in visited}" }
-            return if (finish in visited) Result(start, finish, visited) else null
+            return finish?.let { f -> Result(start, f, visited) }
         }
     }
 }

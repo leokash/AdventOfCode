@@ -1,10 +1,11 @@
 
 @file:Suppress("MagicNumber")
 
+import graphs.PathFinding
+import graphs.PathFinding.Mode.BFS as BFS
+import java.util.*
 import matrix.IntMatrix
 import matrix.neighbors
-import java.util.*
-import PathFinding.Mode.BFS as BFS
 
 private const val PART_ONE_EXPECTED = 31
 private const val PART_TWO_EXPECTED = 29

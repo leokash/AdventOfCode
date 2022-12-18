@@ -1,4 +1,6 @@
+import kotlin.math.abs
 
+val Int.abs: Int get() = abs(this)
 
 fun Int.makeEven(roundUp: Boolean = true): Int {
     return when (this % 2 == 0) {

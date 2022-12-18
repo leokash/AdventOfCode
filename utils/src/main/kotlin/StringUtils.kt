@@ -16,6 +16,9 @@ operator fun String.component5(): Char = this[4]
 fun String.md5(): String {
     return BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray())).toString(16)
 }
+fun String.matchingGroups(rgx: Regex): List<String> {
+    return rgx.find(this)?.groupValues?.drop(1) ?: emptyList()
+}
 fun String.replace(data: Map<String, String>): String {
     var res = this
     data.forEach { (old, new) ->  res = res.replace(old, new) }

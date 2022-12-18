@@ -1,6 +1,13 @@
 
-@Suppress("ComplexMethod")
+@file:Suppress("all")
+
+import kotlin.math.max
+import kotlin.math.pow
+import kotlin.math.sqrt
+
 data class Point(var x: Int = 0, var y: Int = 0) {
+    val abs: Int get() = x.abs + y.abs
+
     fun direction(to: Point): Direction? {
         return if (this == to) null else when {
             x == to.x -> if (y < to.y) Direction.WEST else Direction.EAST
@@ -55,6 +62,17 @@ data class Point(var x: Int = 0, var y: Int = 0) {
     }
     operator fun times(rhs: Point): Point {
         return Point(x * rhs.x, y * rhs.y)
+    }
+    
+    // https://iq.opengenus.org/euclidean-vs-manhattan-vs-chebyshev-distance/
+    fun euclideanDistance(rhs: Point): Int {
+        return sqrt((x.toDouble() - rhs.x).pow(2) + (y.toDouble() - rhs.y).pow(2)).toInt()
+    }
+    fun manhattanDistance(rhs: Point): Int {
+        return (x - rhs.x) + (y - rhs.y)
+    }
+    fun chebyshevDistance(rhs: Point): Int {
+        return max(x - rhs.x, y - rhs.y)
     }
 
     companion object {
