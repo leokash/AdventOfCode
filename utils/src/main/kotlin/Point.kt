@@ -3,6 +3,7 @@
 
 import kotlin.math.max
 import kotlin.math.pow
+import kotlin.math.sign
 import kotlin.math.sqrt
 
 data class Point(var x: Int = 0, var y: Int = 0) {
@@ -51,6 +52,13 @@ data class Point(var x: Int = 0, var y: Int = 0) {
         return start
     }
 
+    fun lineTo(rhs: Point): List<Point> {
+        val xd = (rhs.x - x).sign
+        val yd = (rhs.y - y).sign
+        val steps = chebyshevDistance(rhs)
+        return (1..steps).scan(this) { p, _ -> Point(p.x + xd, p.y + yd) }
+    }
+
     operator fun div(rhs: Point): Point {
         return Point(x / rhs.x, y / rhs.y)
     }
@@ -69,10 +77,10 @@ data class Point(var x: Int = 0, var y: Int = 0) {
         return sqrt((x.toDouble() - rhs.x).pow(2) + (y.toDouble() - rhs.y).pow(2)).toInt()
     }
     fun manhattanDistance(rhs: Point): Int {
-        return (x - rhs.x) + (y - rhs.y)
+        return (this - rhs).abs
     }
     fun chebyshevDistance(rhs: Point): Int {
-        return max(x - rhs.x, y - rhs.y)
+        return (this - rhs).let { (x, y) -> max(x, y) }.abs
     }
 
     companion object {

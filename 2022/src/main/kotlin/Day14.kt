@@ -54,7 +54,7 @@ private sealed class Tile {
     }
 }
 
-private class Cave private constructor(
+private class Cave (
     rows: Int,
     offset: Int,
     columns: Int,

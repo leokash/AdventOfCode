@@ -12,3 +12,7 @@ infix fun IntRange.intersects(rhs: IntRange): Boolean {
 operator fun <T: Comparable<T>> ClosedRange<T>.contains(rhs: ClosedRange<T>): Boolean {
     return start <= rhs.start && endInclusive >= rhs.endInclusive
 }
+
+operator fun IntRange.contains(point: Point): Boolean {
+    return point.x in this && point.y in this
+}
