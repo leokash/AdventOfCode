@@ -1,7 +1,11 @@
 
 @file:Suppress("all")
 
-import matrix.*
+import com.github.leokash.adventofcode.utils.*
+import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.matrix.Matrix
+import com.github.leokash.adventofcode.utils.matrix.MatrixStringifier
+import com.github.leokash.adventofcode.utils.matrix.contains
 import kotlin.math.abs
 import kotlin.math.min
 import kotlin.math.max
@@ -10,7 +14,7 @@ private const val PART_ONE_EXPECTED = 24
 private const val PART_TWO_EXPECTED = 93
 
 fun main() {
-    Logger.debug = true
+    Logger.debug = false
     fun compute(input: List<String>, blockSource: Boolean = false): Int {
         var sand = 0
         val cave = Cave.from(input, blockSource)
@@ -67,7 +71,6 @@ private class Cave (
     private val down: Direction = Direction.SOUTH
     private val downLeft: Direction = Direction.SOUTH_WEST
     private val downRight: Direction = Direction.SOUTH_EAST
-    private val directions: List<Direction> = listOf(down, downLeft, downRight)
 
     init {
         for ((x, y) in rocksList)
@@ -85,10 +88,11 @@ private class Cave (
                 return false
 
             val tiles = pos.let { sp ->
-                layout
-                    .neighbors(sp, true)
-                    .mapNotNull { (p, t) -> val d = sp.direction(p); if (d != null) Triple(d, p, t) else null }
-                    .filter { (d, _, _) -> d in directions }
+                buildList {
+                    (sp + down.point).let { s -> if (layout.contains(s)) add(Triple(down, s, layout[s])) }
+                    (sp + downLeft.point).let { sw -> if (layout.contains(sw)) add(Triple(downLeft, sw, layout[sw])) }
+                    (sp + downRight.point).let { se -> if (layout.contains(se)) add(Triple(downRight, se, layout[se])) }
+                }
             }
 
             if (tiles.all { (_, _, t) -> t.isOccupied } && tiles.size == 3) {
@@ -99,11 +103,11 @@ private class Cave (
             val south = tiles.firstOrNull { (d, _, _) -> d == down }
             if (south != null && !south.third.isOccupied) { pos = south.second; continue }
 
-            val southEast = tiles.firstOrNull { (d, _, _) -> d == downRight }
-            if (southEast != null && !southEast.third.isOccupied) { pos = southEast.second; continue }
-
             val southWest = tiles.firstOrNull { (d, _, _) -> d == downLeft }
             if (southWest != null && !southWest.third.isOccupied) { pos = southWest.second; continue }
+
+            val southEast = tiles.firstOrNull { (d, _, _) -> d == downRight }
+            if (southEast != null && !southEast.third.isOccupied) { pos = southEast.second; continue }
             pos = south?.second
         }
     }

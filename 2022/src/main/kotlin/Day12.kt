@@ -1,11 +1,13 @@
 
 @file:Suppress("MagicNumber")
 
-import graphs.PathFinding
-import graphs.PathFinding.Mode.BFS as BFS
+import com.github.leokash.adventofcode.utils.*
+import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.graphs.PathFinding
+import com.github.leokash.adventofcode.utils.graphs.PathFinding.Mode.BFS as BFS
+import com.github.leokash.adventofcode.utils.matrix.IntMatrix
+import com.github.leokash.adventofcode.utils.matrix.neighbors
 import java.util.*
-import matrix.IntMatrix
-import matrix.neighbors
 
 private const val PART_ONE_EXPECTED = 31
 private const val PART_TWO_EXPECTED = 29
@@ -52,9 +54,7 @@ fun main() {
         }
         fun neighbors(from: Point, mat: IntMatrix): List<Point> {
             val lhs = mat[from]
-            return mat
-                .neighbors(from.x, from.y) { _, _, rhs -> rhs - lhs <= 1 }
-                    .map { (p, _) -> p }
+            return mat.neighbors(from.x, from.y) { _, _, rhs -> rhs - lhs <= 1 }.map { (p, _) -> p }
         }
 
         val end = input.indexOf(finish) ?: error("Finish '$finish' not found")

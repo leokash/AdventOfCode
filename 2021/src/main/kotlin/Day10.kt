@@ -1,3 +1,4 @@
+import com.github.leokash.adventofcode.utils.readLines
 
 private val errorPoints = mapOf(')' to 3, ']' to 57, '}' to 1197, '>' to 25137)
 private val autoCompletePoints = mapOf(')' to 1, ']' to 2, '}' to 3, '>' to 4)

@@ -1,4 +1,6 @@
 
+import com.github.leokash.adventofcode.utils.readLines
+
 private const val PART_ONE_EXPECTED = 157
 private const val PART_TWO_EXPECTED = 70
 private const val LOWERCASE_CHAR_START = 97

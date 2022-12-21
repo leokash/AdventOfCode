@@ -3,6 +3,7 @@
 
 import Monkey.Companion.parse
 import Operation.Companion.toOperation
+import com.github.leokash.adventofcode.utils.readLines
 
 private const val PART_ONE_EXPECTED = 10605L
 private const val PART_TWO_EXPECTED = 2713310158L

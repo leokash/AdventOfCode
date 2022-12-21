@@ -1,3 +1,4 @@
+import com.github.leokash.adventofcode.utils.readLines
 
 private fun List<Char>.parse(): Char {
     return when (size) {
@@ -90,7 +91,7 @@ fun main() {
 
     val input = readLines("Day08")
     val inputTest1 = readLines("Day08-Test")
-    val inputTest2 = listOf("acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf")//readLines("Day08-Test")
+    val inputTest2 = listOf("acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf")//com.github.leokash.adventofcode.utils.readLines("Day08-Test")
 
     check(part1(inputTest1) == 26)
     check(part2(inputTest2) == 5353)

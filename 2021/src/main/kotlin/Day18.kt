@@ -1,3 +1,5 @@
+import com.github.leokash.adventofcode.utils.permutations
+import com.github.leokash.adventofcode.utils.readLines
 
 private sealed interface SnailfishNumber {
     fun magnitude(): Int

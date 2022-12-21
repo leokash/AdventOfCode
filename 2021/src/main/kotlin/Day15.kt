@@ -1,4 +1,6 @@
 
+import com.github.leokash.adventofcode.utils.readLines
+import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
 import java.util.*
 
 private fun <T> Array<Array<T>>.contains(x: Int, y: Int): Boolean {
@@ -46,16 +48,6 @@ private fun compute(costs: Array<Array<Int>>): Int {
     return map[end] ?: -1
 }
 
-private fun printWorld(arr: Array<Array<Int>>) {
-    for (x in arr.indices) {
-        print("|")
-        for (y in arr[x].indices) {
-            print(arr[x][y])
-        }
-        print("|\n")
-    }
-}
-
 fun main() {
     fun parse(input:List<String>): Array<Array<Int>> {
         return Array(input.size) { x ->
@@ -76,15 +68,14 @@ fun main() {
             }
         }
 
-        printWorld(extendedMap)
         return compute(extendedMap)
     }
 
     val input = readLines("Day15")
     val inputTest = readLines("Day15-Test")
 
-    check(part1(inputTest).also { println(it) } == 40)
-    check(part2(inputTest).also { println(it) } == 315)
+    check(part1(inputTest) == 40)
+    check(part2(inputTest) == 315)
 
     println(part1(input))
     println(part2(input))

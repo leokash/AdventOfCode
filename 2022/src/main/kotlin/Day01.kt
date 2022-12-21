@@ -1,5 +1,6 @@
 
-import collections.chunkedBy
+import com.github.leokash.adventofcode.utils.collections.chunkedBy
+import com.github.leokash.adventofcode.utils.readLines
 
 private const val PART_ONE_EXPECTED = 24000
 private const val PART_TWO_EXPECTED = 45000

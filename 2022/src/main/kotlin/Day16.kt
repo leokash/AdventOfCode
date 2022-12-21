@@ -1,8 +1,10 @@
 
 @file:Suppress("all")
 
-import graphs.PathFinding
-import graphs.PathFinding.Mode.BFS as BFS
+import com.github.leokash.adventofcode.utils.Logger
+import com.github.leokash.adventofcode.utils.readLines
+import com.github.leokash.adventofcode.utils.graphs.PathFinding
+import com.github.leokash.adventofcode.utils.graphs.PathFinding.Mode.BFS as BFS
 import kotlin.math.max
 
 private const val PART_ONE_EXPECTED = 1651

@@ -1,4 +1,5 @@
 
+import com.github.leokash.adventofcode.utils.*
 import java.util.*
 
 private const val CHUNK_SIZES = 4

@@ -1,3 +1,4 @@
+import com.github.leokash.adventofcode.utils.readLines
 
 data class Counter(var data: Int)
 private val String.allLowercase: Boolean get() {

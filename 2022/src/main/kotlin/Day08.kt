@@ -1,12 +1,9 @@
 
-import collections.product
-import matrix.countBy
-import matrix.getOrNull
-import matrix.IntMatrix
-import matrix.lastColumnIndex
-import matrix.lastRowIndex
-import matrix.maxBy
-import matrix.Matrix
+import com.github.leokash.adventofcode.utils.Direction
+import com.github.leokash.adventofcode.utils.collections.product
+import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.readLines
+import com.github.leokash.adventofcode.utils.matrix.*
 
 private const val PART_ONE_EXPECTED = 21
 private const val PART_TWO_EXPECTED = 8

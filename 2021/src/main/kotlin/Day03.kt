@@ -1,3 +1,4 @@
+import com.github.leokash.adventofcode.utils.readLines
 
 private fun List<String>.count(col: Int, transform:(Pair<Int, Int>) -> Char): Char {
     return map { it[col] }

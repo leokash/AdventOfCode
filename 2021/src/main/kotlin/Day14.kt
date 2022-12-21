@@ -1,4 +1,4 @@
-
+import com.github.leokash.adventofcode.utils.readLines
 
 private fun countChars(last: Char, groups: Map<String, Long>): Map<Char, Long> {
     return mutableMapOf(last to 1L).apply {

@@ -1,4 +1,0 @@
-package tree
-
-class TreeNodeStringifier {
-}

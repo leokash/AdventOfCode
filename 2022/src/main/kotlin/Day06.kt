@@ -1,4 +1,6 @@
 
+import com.github.leokash.adventofcode.utils.*
+
 private const val PART_ONE_CHUNK_SIZE = 4
 private const val PART_TWO_CHUNK_SIZE = 14
 private val expectedStartsForPartOne = listOf(7, 5, 6, 10, 11)

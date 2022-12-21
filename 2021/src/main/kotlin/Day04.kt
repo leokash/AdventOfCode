@@ -1,11 +1,12 @@
 
-import matrix.fold
-import matrix.Matrix
+import com.github.leokash.adventofcode.utils.readLines
+import com.github.leokash.adventofcode.utils.matrix.fold
+import com.github.leokash.adventofcode.utils.matrix.Matrix
 
 private val rgx = """\s+""".toRegex()
 private data class Square(val number: Int, var selected: Boolean = false)
 
-private class Game(val input: List<String>) {
+private class Game(input: List<String>) {
     private val numbers = mutableListOf<Int>()
     private val bingoBoards = mutableListOf<BingoBoard>()
 

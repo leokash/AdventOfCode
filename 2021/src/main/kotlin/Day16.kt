@@ -1,3 +1,4 @@
+import com.github.leokash.adventofcode.utils.readText
 
 private val map = mapOf(
     '0' to "0000",

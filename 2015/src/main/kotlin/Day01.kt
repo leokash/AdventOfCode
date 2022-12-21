@@ -1,4 +1,4 @@
-
+import com.github.leokash.adventofcode.utils.readText
 
 private fun compute(c: Char, num: Int) = if (c == '(') num + 1 else num - 1
 

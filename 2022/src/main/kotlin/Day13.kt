@@ -1,6 +1,7 @@
 
 @file:Suppress("all")
 
+import com.github.leokash.adventofcode.utils.*
 import kotlin.math.min
 
 private const val PART_ONE_EXPECTED = 13

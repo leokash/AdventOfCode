@@ -1,5 +1,9 @@
 
-import matrix.*
+import com.github.leokash.adventofcode.utils.matrix.IntMatrix
+import com.github.leokash.adventofcode.utils.matrix.fold
+import com.github.leokash.adventofcode.utils.matrix.foldIndexed
+import com.github.leokash.adventofcode.utils.matrix.neighbors
+import com.github.leokash.adventofcode.utils.readLines
 
 private fun simulate1(mat: IntMatrix, steps: Int = 100): Int {
     return (1..steps).fold(0) { acc, _ ->

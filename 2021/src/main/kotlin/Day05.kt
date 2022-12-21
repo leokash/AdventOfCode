@@ -1,7 +1,9 @@
 
-import matrix.fold
+import com.github.leokash.adventofcode.utils.readLines
+import com.github.leokash.adventofcode.utils.matrix.fold
+import com.github.leokash.adventofcode.utils.matrix.IntMatrix
+import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
 import kotlin.math.*
-import matrix.IntMatrix
 
 private fun IntMatrix.add(vector: Vec4, diagonal: ((Vec4) -> List<Point>)? = null) {
     val (x1,y1,x2,y2) = vector

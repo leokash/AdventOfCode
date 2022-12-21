@@ -1,4 +1,5 @@
 
+import com.github.leokash.adventofcode.utils.readText
 import kotlin.math.abs
 
 private fun computeSteps(input: List<Int>, f: (Int, Int) -> Int): Int {

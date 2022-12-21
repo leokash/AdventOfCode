@@ -1,4 +1,4 @@
-
+import com.github.leokash.adventofcode.utils.readLines
 
 fun main() {
 

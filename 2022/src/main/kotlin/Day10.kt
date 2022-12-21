@@ -1,6 +1,8 @@
 
 @file:Suppress("MagicNumber")
 
+import com.github.leokash.adventofcode.utils.*
+
 private const val PART_ONE_EXPECTED = 13140
 
 private sealed class Instruction(val cycles: Int) {

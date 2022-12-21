@@ -1,7 +1,9 @@
 
-import matrix.IntMatrix
-import matrix.neighbors
-import matrix.foldIndexed
+import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.readLines
+import com.github.leokash.adventofcode.utils.matrix.IntMatrix
+import com.github.leokash.adventofcode.utils.matrix.neighbors
+import com.github.leokash.adventofcode.utils.matrix.foldIndexed
 
 private fun IntMatrix.basin(x: Int, y: Int, visited: MutableList<Point>): Int {
     visited.add(Point(x, y))

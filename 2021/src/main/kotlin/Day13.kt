@@ -1,7 +1,11 @@
 
-import matrix.count
-import matrix.IntMatrix
-import matrix.MatrixStringifier
+import com.github.leokash.adventofcode.utils.SPRITE_OFF
+import com.github.leokash.adventofcode.utils.SPRITE_ON
+import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.readLines
+import com.github.leokash.adventofcode.utils.matrix.count
+import com.github.leokash.adventofcode.utils.matrix.IntMatrix
+import com.github.leokash.adventofcode.utils.matrix.MatrixStringifier
 
 private fun IntMatrix.print() {
     println(MatrixStringifier().stringify(this) { if (it > 0) "$SPRITE_ON" else "$SPRITE_OFF" })

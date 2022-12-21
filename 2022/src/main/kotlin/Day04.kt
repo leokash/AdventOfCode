@@ -1,4 +1,6 @@
 
+import com.github.leokash.adventofcode.utils.*
+
 private const val PART_ONE_EXPECTED = 2
 private const val PART_TWO_EXPECTED = 4
 

@@ -1,5 +1,10 @@
 
-private val String.asDirection: Direction get() {
+import com.github.leokash.adventofcode.utils.Direction
+import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.readLines
+
+private val String.asDirection: Direction
+    get() {
     return when (this) {
         "up" -> Direction.NORTH
         "down" -> Direction.SOUTH

@@ -1,4 +1,6 @@
 
+import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.readText
 import kotlin.math.max
 
 private data class Vec3(val x: Int, val y: Int, val velocity: Int)

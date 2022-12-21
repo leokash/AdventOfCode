@@ -1,4 +1,6 @@
 
+import com.github.leokash.adventofcode.utils.readLines
+
 private const val WIN = 6
 private const val DRAW = 3
 private const val ROCK_SCORE = 1

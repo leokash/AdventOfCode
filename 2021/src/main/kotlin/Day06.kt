@@ -1,3 +1,4 @@
+import com.github.leokash.adventofcode.utils.readText
 
 private val Long.decremented: Long get() {
     return if (this == 0L) 6 else this - 1

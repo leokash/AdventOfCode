@@ -1,6 +1,7 @@
 
-import kotlin.math.abs
-import collections.plus
+import com.github.leokash.adventofcode.utils.*
+import com.github.leokash.adventofcode.utils.Direction
+import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
 
 private const val PART_ONE_EXPECTED = 13
 private const val PART_TWO_EXPECTED = 36
@@ -8,9 +9,9 @@ private const val PART_TWO_EXPECTED = 36
 private typealias CMD = Pair<Direction, Int>
 
 private class Knot(val name: Char, var position: Point) {
-    fun move(head: Point) {
+    fun follow(head: Point) {
         val dir = position.direction(head) ?: return
-        position = when (position.distance(head)) {
+        position = when (position mDist head) {
             in 0..1 -> position
             2 -> if (dir in Direction.cardinals) position.move(direction = dir) else position
             else -> if (dir in Direction.ordinals) position.move(direction = dir) else position
@@ -19,12 +20,10 @@ private class Knot(val name: Char, var position: Point) {
     fun move(direction: Direction) {
         position = position.move(direction = direction)
     }
-    private fun Point.distance(to: Point): Int {
-        return abs(x - to.x) + abs(y - to.y)
-    }
 }
 
 fun main() {
+    Logger.debug = false
     fun compute(input: List<CMD>, track: Char, tails: List<Char>): Int {
         val start = Point(0, 0)
         val links = ('H' + tails).map { Knot(it, start) }
@@ -35,7 +34,7 @@ fun main() {
                 links[0].move(direction = cmd.first)
                 for (i in (1 until links.size))
                     with(links[i]) {
-                        move(links[i -1].position)
+                        follow(links[i - 1].position)
                         if (track == name) visited.add(position)
                     }
             }
@@ -62,8 +61,8 @@ private fun List<String>.parse(): List<CMD> {
         val (dir, moves) = string.split(" ")
         when (dir) {
             "D" -> Direction.SOUTH to moves.toInt()
-            "L" -> Direction.EAST to moves.toInt()
-            "R" -> Direction.WEST to moves.toInt()
+            "L" -> Direction.WEST to moves.toInt()
+            "R" -> Direction.EAST to moves.toInt()
             "U" -> Direction.NORTH to moves.toInt()
             else -> error("invalid direction provided: ")
         }

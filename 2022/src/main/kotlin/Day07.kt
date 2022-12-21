@@ -1,4 +1,6 @@
 
+import com.github.leokash.adventofcode.utils.readLines
+
 private const val PART_ONE_SIZE = 100_000
 private const val PART_ONE_EXPECTED = 95437
 private const val PART_TWO_EXPECTED = 24_933_642
