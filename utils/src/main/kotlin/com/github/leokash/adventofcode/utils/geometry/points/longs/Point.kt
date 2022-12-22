@@ -7,7 +7,7 @@ import com.github.leokash.adventofcode.utils.geometry.Rect
 import com.github.leokash.adventofcode.utils.geometry.points.Points
 import kotlin.math.*
 
-data class Point(override var x: Long, override var y: Long): Points.Interface<Long>, Points.Provider<Point> {
+data class Point(override var x: Long = 0, override var y: Long = 0): Points.Interface<Long>, Points.Provider<Point> {
     operator fun div(rhs: Point): Point {
         return Point(x / rhs.x, y / rhs.y)
     }
