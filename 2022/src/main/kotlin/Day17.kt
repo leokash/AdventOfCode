@@ -2,6 +2,7 @@
 @file:Suppress("all")
 
 import com.github.leokash.adventofcode.utils.*
+import com.github.leokash.adventofcode.utils.collections.CircularList
 import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
 import com.github.leokash.adventofcode.utils.matrix.CharMatrix
 import com.github.leokash.adventofcode.utils.matrix.lastRowIndex

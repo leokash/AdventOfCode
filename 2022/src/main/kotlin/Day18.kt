@@ -6,25 +6,13 @@ private const val PART_TWO_EXPECTED = 58
 
 private data class Vec3(val x: Int, val y: Int, val z: Int) {
     fun neighbors(): List<Vec3> {
-        return buildList { // only need cardinals for now...
-            add(Vec3(x - 1, y, z)) // (0, 2, 3),
-            add(Vec3(x + 1, y, z)) // (2, 2, 3),
-            add(Vec3(x, y - 1, z)) // (1, 1, 3),
-            add(Vec3(x, y + 1, z)) // (1, 3, 3),
-            add(Vec3(x, y, z - 1)) // (1, 2, 2),
-            add(Vec3(x, y, z + 1)) // (1, 2, 4),
-            // add(Vec3(-1,  0,  1)) // (0, 2, 4),
-            // add(Vec3(-1,  1, -1)) // (0, 3, 2),
-            // add(Vec3(-1,  1,  0)) // (0, 3, 3),
-            // add(Vec3(-1,  1,  1)) // (0, 3, 4),
-            // add(Vec3( 0, -1, -1)) // (1, 1, 2),
-            // add(Vec3( 0, -1,  1)) // (1, 1, 4),
-            // add(Vec3( 0,  1, -1)) // (1, 3, 2),
-            // add(Vec3( 0,  1,  1)) // (1, 3, 4),
-            // add(Vec3( 1, -1, -1)) // (2, 1, 2),
-            // add(Vec3( 1, -1,  0)) // (2, 1, 3),
-            // add(Vec3( 1, -1,  1)) // (2, 1, 4),
-            // add(Vec3( 1,  0, -1)) // (2, 2, 2),
+        return buildList {
+            add(Vec3(x - 1, y, z))
+            add(Vec3(x + 1, y, z))
+            add(Vec3(x, y - 1, z))
+            add(Vec3(x, y + 1, z))
+            add(Vec3(x, y, z - 1))
+            add(Vec3(x, y, z + 1))
         }
     }
 

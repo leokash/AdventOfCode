@@ -4,7 +4,9 @@
 package com.github.leokash.adventofcode.utils
 
 data class CircularCounter(private val min: Int = 0, private val max: Int, private val start: Int = 0) {
-    private var idx = start
+    private var idx: Int = 0
+
+    init { set(start) }
 
     private fun increment() {
         idx = (idx + 1) % (max + 1)
@@ -17,7 +19,11 @@ data class CircularCounter(private val min: Int = 0, private val max: Int, priva
         return idx
     }
     fun set(num: Int) {
-        idx = num.coerceIn(min..max)
+        idx = when {
+            num < min -> ((max - -num) + 1) % (max + 1)
+            num > max -> (num - 1) % max
+            else -> num
+        }
     }
     fun getAndIncrement(): Int {
         return idx.also { increment() }
@@ -30,5 +36,12 @@ data class CircularCounter(private val min: Int = 0, private val max: Int, priva
     }
     fun decrementAndGet(): Int {
         return decrement().let { idx }
+    }
+}
+
+fun main() {
+    val c = CircularCounter(0, 6, -1)
+    repeat(5) {
+        println("idx: ${c.getAndIncrement()}")
     }
 }

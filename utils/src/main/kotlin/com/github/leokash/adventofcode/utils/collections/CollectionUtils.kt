@@ -1,6 +1,12 @@
 
 package com.github.leokash.adventofcode.utils.collections
 
+operator fun <E> List<E>.component6(): E = this[5]
+operator fun <E> List<E>.component7(): E = this[6]
+operator fun <E> List<E>.component8(): E = this[7]
+operator fun <E> List<E>.component9(): E = this[8]
+operator fun <E> List<E>.component10(): E = this[9]
+
 fun <T> Collection<T>.product(selector: (T) -> Int): Int {
     return productIndexed { _, num -> selector(num) }
 }
