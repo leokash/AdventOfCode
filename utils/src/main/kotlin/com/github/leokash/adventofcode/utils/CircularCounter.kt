@@ -38,10 +38,3 @@ data class CircularCounter(private val min: Int = 0, private val max: Int, priva
         return decrement().let { idx }
     }
 }
-
-fun main() {
-    val c = CircularCounter(0, 6, -1)
-    repeat(5) {
-        println("idx: ${c.getAndIncrement()}")
-    }
-}
