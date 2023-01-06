@@ -5,6 +5,7 @@ package com.github.leokash.adventofcode.utils.matrix
 
 import com.github.leokash.adventofcode.utils.Direction
 import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.isEdge
 
 val Matrix<*>.lastRowIndex: Int get() = rows - 1
 val Matrix<*>.lastColumnIndex: Int get() = columns - 1
@@ -18,6 +19,9 @@ fun <T> Matrix<T>.getOrNull(x: Int, y: Int): T? {
     return if (x !in rowIndices || y !in columnIndices) null else get(x, y)
 }
 
+fun Matrix<*>.isEdge(x: Int, y: Int): Boolean {
+    return x isEdge rowIndices || y isEdge columnIndices
+}
 fun Matrix<*>.contains(x: Int, y: Int): Boolean {
     return x in rowIndices && y in columnIndices
 }

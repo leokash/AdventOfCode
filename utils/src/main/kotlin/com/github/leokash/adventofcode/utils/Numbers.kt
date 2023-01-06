@@ -11,6 +11,10 @@ val Int.abs: Int get() = abs(this)
 val Long.abs: Long get() = abs(this)
 val Double.abs: Double get() = abs(this)
 
+infix fun Int.isEdge(range: IntRange): Boolean {
+    return this == range.first || this == range.last
+}
+
 fun Int.makeEven(roundUp: Boolean = true): Int {
     return when (this % 2 == 0) {
         true -> this

@@ -42,10 +42,6 @@ private fun parse(input: List<String>): IntMatrix {
     }
 }
 
-private fun Matrix<*>.isEdge(x: Int, y: Int): Boolean {
-    return x == 0 || y == 0 || x == lastRowIndex || y == lastColumnIndex
-}
-
 private fun Tree.isVisible(x: Int, y: Int, mat: Matrix<Tree>): Boolean {
     tailrec fun isVisible(i: Int, j: Int, dir: Direction): Boolean {
         val next = Point(i, j).next(dir)
