@@ -1,6 +1,4 @@
 
-@file:Suppress("UNCHECKED_CAST")
-
 import com.github.leokash.adventofcode.utils.*
 
 private const val PART_ONE_EXPECTED = 152L

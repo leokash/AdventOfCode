@@ -2,10 +2,10 @@
 import com.github.leokash.adventofcode.utils.readLines
 import com.github.leokash.adventofcode.utils.matrix.fold
 import com.github.leokash.adventofcode.utils.matrix.IntMatrix
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.geometry.*
 import kotlin.math.*
 
-private fun IntMatrix.add(vector: Vec4, diagonal: ((Vec4) -> List<Point>)? = null) {
+private fun IntMatrix.add(vector: Vec4, diagonal: ((Vec4) -> List<Point<Int>>)? = null) {
     val (x1,y1,x2,y2) = vector
     when {
         x1 == x2 -> (min(y1,y2)..(max(y1,y2))).forEach { this[it, x1]++ }
@@ -17,8 +17,8 @@ private fun IntMatrix.add(vector: Vec4, diagonal: ((Vec4) -> List<Point>)? = nul
 private data class Vec4(val x1: Int, val y1: Int, val x2: Int, val y2: Int)
 
 fun main() {
-    fun size(input: List<Vec4>): Point {
-        return input.fold(Point()) { (px, py), (x1,y1,x2,y2) ->
+    fun size(input: List<Vec4>): Point<Int> {
+        return input.fold(Point(0, 0)) { (px, py), (x1,y1,x2,y2) ->
             Point(max(max(x1, x2), px), max(max(y1, y2), py))
         }.let { (x,y) -> Point(x+1, y+1) }
     }
@@ -38,7 +38,7 @@ fun main() {
         }
     }
 
-    val diagonal: (Vec4) -> List<Point> = { vec ->
+    val diagonal: (Vec4) -> List<Point<Int>> = { vec ->
         val (x1, y1, x2, y2) = vec
         (0..abs(x1 - x2)).fold(listOf()) { arr, i ->
             arr + Point(x1 + if (x1 < x2) i else -i, y1 + if (y1 < y2) i else -i)

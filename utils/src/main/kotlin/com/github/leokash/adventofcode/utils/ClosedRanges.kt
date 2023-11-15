@@ -1,8 +1,7 @@
 
 package com.github.leokash.adventofcode.utils
 
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point as IPoint
-import com.github.leokash.adventofcode.utils.geometry.points.longs.Point as LPoint
+import com.github.leokash.adventofcode.utils.math.geometry.Point
 import kotlin.math.min
 import kotlin.math.max
 
@@ -17,9 +16,9 @@ operator fun <T: Comparable<T>> ClosedRange<T>.contains(rhs: ClosedRange<T>): Bo
     return start <= rhs.start && endInclusive >= rhs.endInclusive
 }
 
-operator fun IntRange.contains(point: IPoint): Boolean {
+operator fun IntRange.contains(point: Point<Int>): Boolean {
     return point.x in this && point.y in this
 }
-operator fun LongRange.contains(point: LPoint): Boolean {
+operator fun LongRange.contains(point: Point<Long>): Boolean {
     return point.x in this && point.y in this
 }

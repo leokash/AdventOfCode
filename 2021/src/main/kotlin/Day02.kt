@@ -1,6 +1,6 @@
 
 import com.github.leokash.adventofcode.utils.Direction
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.geometry.*
 import com.github.leokash.adventofcode.utils.readLines
 
 private val String.asDirection: Direction
@@ -19,7 +19,7 @@ private fun List<String>.parse(): List<Pair<Direction, Int>> {
         }
     }
 }
-private fun Point.update(moves: Int, direction: Direction) {
+private fun Point<Int>.update(moves: Int, direction: Direction) {
     when(direction) {
         Direction.EAST -> x += moves
         Direction.NORTH -> y -= moves
@@ -42,7 +42,7 @@ fun main() {
     fun part1(input: List<String>): Int {
         return input
             .parse()
-            .fold(Point()) { point, (dir, moves) -> point.apply { update(moves, dir) } }
+            .fold(Point(0, 0)) { point, (dir, moves) -> point.apply { update(moves, dir) } }
             .let { it.x * it.y }
     }
     fun part2(input: List<String>): Int {

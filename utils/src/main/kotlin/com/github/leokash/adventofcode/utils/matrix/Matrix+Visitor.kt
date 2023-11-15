@@ -4,15 +4,15 @@
 package com.github.leokash.adventofcode.utils.matrix
 
 import com.github.leokash.adventofcode.utils.Direction
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
-import com.github.leokash.adventofcode.utils.isEdge
+import com.github.leokash.adventofcode.utils.math.geometry.Point
+import com.github.leokash.adventofcode.utils.math.isEdge
 
 val Matrix<*>.lastRowIndex: Int get() = rows - 1
 val Matrix<*>.lastColumnIndex: Int get() = columns - 1
 val Matrix<*>.rowIndices: IntRange get() = 0..lastRowIndex
 val Matrix<*>.columnIndices: IntRange get() = 0..lastColumnIndex
 
-fun <T> Matrix<T>.getOrNull(point: Point): T? {
+fun <T> Matrix<T>.getOrNull(point: Point<Int>): T? {
     return getOrNull(point.x, point.y)
 }
 fun <T> Matrix<T>.getOrNull(x: Int, y: Int): T? {
@@ -25,15 +25,15 @@ fun Matrix<*>.isEdge(x: Int, y: Int): Boolean {
 fun Matrix<*>.contains(x: Int, y: Int): Boolean {
     return x in rowIndices && y in columnIndices
 }
-operator fun Matrix<*>.contains(point: Point): Boolean {
+operator fun Matrix<*>.contains(point: Point<Int>): Boolean {
     return contains(point.x, point.y)
 }
 
 fun <T> Matrix<T>.neighbors(
-    point: Point,
+    point: Point<Int>,
     allowDiagonal: Boolean = false,
     predicate: (Int, Int, T) -> Boolean = { _,_,_ -> true }
-): List<Pair<Point, T>> {
+): List<Pair<Point<Int>, T>> {
     return neighbors(point.x, point.y, allowDiagonal, predicate)
 }
 
@@ -42,8 +42,8 @@ fun <T> Matrix<T>.neighbors(
     y: Int,
     allowDiagonal: Boolean = false,
     predicate: (Int, Int, T) -> Boolean = { _,_,_ -> true }
-): List<Pair<Point, T>> {
-    fun attemptNeighborAddition(r: Int, c: Int, list: MutableList<Pair<Point, T>>) {
+): List<Pair<Point<Int>, T>> {
+    fun attemptNeighborAddition(r: Int, c: Int, list: MutableList<Pair<Point<Int>, T>>) {
         if (r !in rowIndices || c !in columnIndices) return
         get(r, c).also { value -> if (predicate(r, c, value)) list.add(Point(r, c) to value) }
     }

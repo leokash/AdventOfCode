@@ -1,9 +1,9 @@
 
 package com.github.leokash.adventofcode.utils
 
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.geometry.Point
 
-enum class Direction(val point: Point) {
+enum class Direction(val point: Point<Int>) {
     NORTH(Point(-1, 0)),
     NORTH_EAST(Point(-1, 1)),
     EAST(Point(0, 1)),

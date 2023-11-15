@@ -2,12 +2,11 @@
 @file:Suppress("MagicNumber")
 
 import com.github.leokash.adventofcode.utils.*
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.geometry.*
 import com.github.leokash.adventofcode.utils.graphs.PathFinding
 import com.github.leokash.adventofcode.utils.graphs.PathFinding.Mode.BFS as BFS
 import com.github.leokash.adventofcode.utils.matrix.IntMatrix
 import com.github.leokash.adventofcode.utils.matrix.neighbors
-import java.util.*
 
 private const val PART_ONE_EXPECTED = 31
 private const val PART_TWO_EXPECTED = 29
@@ -30,13 +29,13 @@ private val Int.elevationToChar: Char get() {
         else -> error("Invalid cost provided: $this")
     }
 }
-private fun List<String>.indexOf(char: Char): Point? {
+private fun List<String>.indexOf(char: Char): Point<Int>? {
     for (x in indices)
         for (y in this[x].indices)
             if (this[x][y] == char) return Point(x, y)
     return null
 }
-private fun List<String>.allIndicesOf(char: Char): List<Point> {
+private fun List<String>.allIndicesOf(char: Char): List<Point<Int>> {
     return buildList {
         for (x in this@allIndicesOf.indices)
             for (y in this@allIndicesOf[x].indices)
@@ -46,13 +45,13 @@ private fun List<String>.allIndicesOf(char: Char): List<Point> {
 
 fun main() {
     fun compute(input: List<String>, start: Char, finish: Char, singleStart: Boolean): Int {
-        fun log(path: List<Point>, mat: IntMatrix) {
+        fun log(path: List<Point<Int>>, mat: IntMatrix) {
             log {
                 val size = path.size - 1
                 "steps: $size, path: ${ path.joinToString { c -> "${ mat[c].elevationToChar }" } }"
             }
         }
-        fun neighbors(from: Point, mat: IntMatrix): List<Point> {
+        fun neighbors(from: Point<Int>, mat: IntMatrix): List<Point<Int>> {
             val lhs = mat[from]
             return mat.neighbors(from.x, from.y) { _, _, rhs -> rhs - lhs <= 1 }.map { (p, _) -> p }
         }

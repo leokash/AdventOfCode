@@ -30,8 +30,8 @@ private fun parseSegments(input: List<String>): Map<Char, Char> {
             groups[3]?.first()?.let { acf ->
                 array[0] = acf.first { it !in cf }
             }
-            groups[4]?.first()?.let { _bd ->
-                bd = _bd.filter { it !in cf }
+            groups[4]?.first()?.let { tmp ->
+                bd = tmp.filter { it !in cf }
             }
         } ?: "  "
         groups[6]?.find { cf[0] in it != cf[1] in it }?.let { string ->

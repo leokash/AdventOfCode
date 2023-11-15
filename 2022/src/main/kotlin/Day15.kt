@@ -2,27 +2,28 @@
 @file:Suppress("all")
 
 import com.github.leokash.adventofcode.utils.*
-import com.github.leokash.adventofcode.utils.geometry.points.longs.Point
+import com.github.leokash.adventofcode.utils.math.geometry.*
+import kotlin.math.abs
 
 private const val PART_ONE_EXPECTED = 26
 private const val PART_TWO_EXPECTED = 56_000_011L
 private const val PART_TWO_MULTIPLIER = 4_000_000L
 
-private fun neighbors(sensor: Point, distance: Long, yTarget: Long): List<Point> {
-    val newDist = distance - (yTarget - sensor.y).abs
+private fun neighbors(sensor: Point<Long>, distance: Long, yTarget: Long): List<Point<Long>> {
+    val newDist = distance - abs(yTarget - sensor.y)
     return if (newDist < 0) emptyList() else buildList {
         for (x in (sensor.x - newDist)..(sensor.x + newDist)) {
             add(Point(x, yTarget))
         }
     }
 }
-private fun neighborsOutsideRadius(sensor: Point, distance: Int, bounds: LongRange): List<Point> {
+private fun neighborsOutsideRadius(sensor: Point<Long>, distance: Int, bounds: LongRange): List<Point<Long>> {
     val north = sensor.move(distance + 1, Direction.NORTH)
     val east = sensor.move(distance + 1, Direction.EAST)
     val west = sensor.move(distance + 1, Direction.WEST)
     val south = sensor.move(distance + 1, Direction.SOUTH)
     return (north.lineTo(east) + east.lineTo(south) + south.lineTo(west) + west.lineTo(north)).filter { p ->
-        p in bounds && (sensor mDist  p) > distance
+        p in bounds && (sensor.manhattanDistance(p)) > distance
     }
 }
 
@@ -44,7 +45,7 @@ fun main() {
             .firstNotNullOfOrNull { (sensor, dist) ->
             neighborsOutsideRadius(sensor, dist.toInt(), range)
                 .toSet()
-                .firstOrNull { p -> sensors.none { (s, d) -> (s mDist p) <= d } }
+                .firstOrNull { p -> sensors.none { (s, d) -> (s.manhattanDistance(p)) <= d } }
             }
             ?.let { (x, y) -> x * PART_TWO_MULTIPLIER + y }
             ?: 0
@@ -65,13 +66,13 @@ fun main() {
 
 private val rgx = Regex(""".*=(-?\d+).*=(-?\d+).*=(-?\d+).*=(-?\d+)""")
 
-private data class Entry(val sensor: Point, val beacon: Point, val distance: Long)
+private data class Entry(val sensor: Point<Long>, val beacon: Point<Long>, val distance: Long)
 
 private fun parse(input: List<String>): List<Entry> {
     return input.map { string ->
         string
             .matchingGroups(rgx)
             .map { it.toLong() }
-            .let { (sx, sy, bx, by) -> Entry(Point(sx, sy), Point(bx, by), (sx - bx).abs + (sy - by).abs) }
+            .let { (sx, sy, bx, by) -> Entry(Point(sx, sy), Point(bx, by), abs(sx - bx) + abs(sy - by)) }
     }
 }

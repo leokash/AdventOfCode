@@ -10,6 +10,6 @@ version = Configurations.App.version
 
 tasks {
     sourceSets {
-        val main by getting {}
+        val main by getting { }
     }
 }

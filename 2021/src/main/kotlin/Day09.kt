@@ -1,11 +1,11 @@
 
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.geometry.*
 import com.github.leokash.adventofcode.utils.readLines
 import com.github.leokash.adventofcode.utils.matrix.IntMatrix
 import com.github.leokash.adventofcode.utils.matrix.neighbors
 import com.github.leokash.adventofcode.utils.matrix.foldIndexed
 
-private fun IntMatrix.basin(x: Int, y: Int, visited: MutableList<Point>): Int {
+private fun IntMatrix.basin(x: Int, y: Int, visited: MutableList<Point<Int>>): Int {
     visited.add(Point(x, y))
     val predicate = { i: Int, j: Int, num: Int ->
         num < 9 && visited.find { (px, py) -> px == i && py == j } == null

@@ -1,6 +1,6 @@
 
 import com.github.leokash.adventofcode.utils.Logger
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.geometry.*
 import com.github.leokash.adventofcode.utils.readLines
 import kotlin.math.max
 import kotlin.math.min
@@ -44,16 +44,16 @@ fun main() {
 }
 
 private sealed class MoveRule {
-    abstract val offset: Point
+    abstract val offset: Point<Int>
     abstract val directions: List<Dirs>
 
-    fun validate(neighbors: List<Pair<Dirs, Point>>, provider: TileStateProvider): Boolean {
+    fun validate(neighbors: List<Pair<Dirs, Point<Int>>>, provider: TileStateProvider): Boolean {
         return neighbors
             .filter { (d, _) -> d in directions }
             .none { (_, p) -> provider.tileOccupied(p) }
     }
 }
-private sealed class Dirs(val point: Point) {
+private sealed class Dirs(val point: Point<Int>) {
     object East: Dirs(Point(1, 0))
     object West: Dirs(Point(-1, 0))
     object North: Dirs(Point(0, -1))
@@ -69,40 +69,40 @@ private sealed class Dirs(val point: Point) {
 }
 
 private object East: MoveRule() {
-    override val offset: Point = Dirs.East.point
+    override val offset: Point<Int> = Dirs.East.point
     override val directions = listOf(Dirs.East, Dirs.NorthEast, Dirs.SouthEast)
 }
 private object West: MoveRule() {
-    override val offset: Point = Dirs.West.point
+    override val offset: Point<Int> = Dirs.West.point
     override val directions = listOf(Dirs.West, Dirs.NorthWest, Dirs.SouthWest)
 }
 private object North: MoveRule() {
-    override val offset: Point = Dirs.North.point
+    override val offset: Point<Int> = Dirs.North.point
     override val directions = listOf(Dirs.North, Dirs.NorthEast, Dirs.NorthWest)
 }
 private object South: MoveRule() {
-    override val offset: Point = Dirs.South.point
+    override val offset: Point<Int> = Dirs.South.point
     override val directions = listOf(Dirs.South, Dirs.SouthEast, Dirs.SouthWest)
 }
 
-private fun Point.tiles(): List<Pair<Dirs, Point>> {
+private fun Point<Int>.tiles(): List<Pair<Dirs, Point<Int>>> {
     return Dirs.all.map { it to (this + it.point) }
 }
 
 private interface Candidate {
-    fun attemptProposedMove(location: Point)
-    fun stateChangedInLocation(location: Point, approved: Boolean)
+    fun attemptProposedMove(location: Point<Int>)
+    fun stateChangedInLocation(location: Point<Int>, approved: Boolean)
 }
 private interface TileStateProvider {
-    fun tileOccupied(location: Point): Boolean
+    fun tileOccupied(location: Point<Int>): Boolean
 }
 
 private class Elf(
-    private var current: Point,
+    private var current: Point<Int>,
     private val broker: ElfBroker,
     rules: List<MoveRule> = listOf(North, South, West, East)
 ): Candidate {
-    private var proposed: Point? = null
+    private var proposed: Point<Int>? = null
     private val destinationRules = rules.toMutableList()
 
     init {
@@ -120,14 +120,14 @@ private class Elf(
         proposed = (current + rule.offset).also { broker.processProposedLocation(it, this) }
     }
 
-    override fun attemptProposedMove(location: Point) {
+    override fun attemptProposedMove(location: Point<Int>) {
         proposed?.let {
             proposed = null
             broker.acknowledgeMove(current, location)
             current = location
         }
     }
-    override fun stateChangedInLocation(location: Point, approved: Boolean) {
+    override fun stateChangedInLocation(location: Point<Int>, approved: Boolean) {
         proposed?.let {
             proposed = if (approved) location else null
         }
@@ -140,7 +140,7 @@ private class ElfBroker: TileStateProvider {
         var candidates: MutableList<Candidate> = mutableListOf()
     )
 
-    private val locations = mutableMapOf<Point, Tile>()
+    private val locations = mutableMapOf<Point<Int>, Tile>()
 
     fun score(): Int {
         var count = 0
@@ -178,14 +178,14 @@ private class ElfBroker: TileStateProvider {
 
         return moved
     }
-    fun register(location: Point) {
+    fun register(location: Point<Int>) {
         locations[location] = Tile(true)
     }
-    fun acknowledgeMove(src: Point, dest: Point) {
+    fun acknowledgeMove(src: Point<Int>, dest: Point<Int>) {
         locations[src] = Tile()
         locations[dest] = Tile(true)
     }
-    fun processProposedLocation(location: Point, candidate: Candidate) {
+    fun processProposedLocation(location: Point<Int>, candidate: Candidate) {
         with (locations.getOrPut(location) { Tile() }) {
             if (!occupied) { candidates.add(candidate) }
             val valid = !occupied && candidates.size == 1
@@ -193,7 +193,7 @@ private class ElfBroker: TileStateProvider {
         }
     }
 
-    override fun tileOccupied(location: Point): Boolean {
+    override fun tileOccupied(location: Point<Int>): Boolean {
         return locations.getOrPut(location) { Tile() }.occupied
     }
 }

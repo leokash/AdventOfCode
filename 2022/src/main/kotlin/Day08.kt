@@ -1,7 +1,7 @@
 
 import com.github.leokash.adventofcode.utils.Direction
 import com.github.leokash.adventofcode.utils.collections.product
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.geometry.*
 import com.github.leokash.adventofcode.utils.readLines
 import com.github.leokash.adventofcode.utils.matrix.*
 

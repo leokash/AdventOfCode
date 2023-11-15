@@ -2,7 +2,8 @@
 @file:Suppress("all")
 
 import com.github.leokash.adventofcode.utils.*
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.geometry.*
+import com.github.leokash.adventofcode.utils.math.makeEven
 import com.github.leokash.adventofcode.utils.matrix.Matrix
 import com.github.leokash.adventofcode.utils.matrix.MatrixStringifier
 import com.github.leokash.adventofcode.utils.matrix.contains
@@ -62,10 +63,10 @@ private class Cave (
     rows: Int,
     offset: Int,
     columns: Int,
-    sourcePoint: Point,
-    rocksList: Iterable<Point>
+    sourcePoint: Point<Int>,
+    rocksList: Iterable<Point<Int>>
 ) {
-    private val source: Point = sourcePoint
+    private val source: Point<Int> = sourcePoint
     private val layout: CaveMatrix = CaveMatrix(rows, columns)
 
     private val down: Direction = Direction.SOUTH
@@ -82,7 +83,7 @@ private class Cave (
         log { MatrixStringifier().stringify(layout) }
     }
     fun simulate(): Boolean {
-        var pos: Point? = source
+        var pos: Point<Int>? = source
         while (true) {
             if (pos == null || layout[source] == Tile.Sand)
                 return false
@@ -113,11 +114,11 @@ private class Cave (
     }
 
     companion object {
-        private const val sourceY = 500
+        private const val SOURCE_Y = 500
         fun from(input: List<String>, blockSource: Boolean): Cave {
             var r = 0
             val c = Point(Int.MAX_VALUE, 0)
-            val list = mutableSetOf<Point>()
+            val list = mutableSetOf<Point<Int>>()
             for (string in input) {
                 val parts = string
                     .split(" -> ")
@@ -131,20 +132,20 @@ private class Cave (
             if (blockSource) {
                 return caveWithBottomFloor(r, list)
             }
-            return Cave(r + 1, c.x, (c.y - c.x) + 1, Point(0, sourceY - c.x), list)
+            return Cave(r + 1, c.x, (c.y - c.x) + 1, Point(0, SOURCE_Y - c.x), list)
         }
 
-        private fun caveWithBottomFloor(rows: Int, points: Set<Point>): Cave {
+        private fun caveWithBottomFloor(rows: Int, points: Set<Point<Int>>): Cave {
             val nRows = rows + 3
             val columns = (0 until nRows).fold(1) { acc, _ -> acc + 2 }.makeEven() + 2
             val tilesWithFloor = points + (0 until (columns + 1)).map { i ->
-                Point(nRows - 1, (sourceY - (columns / 2)) + i)
+                Point(nRows - 1, (SOURCE_Y - (columns / 2)) + i)
             }
 
-            return Cave(nRows, sourceY - (columns / 2), columns + 1, Point(0, (columns / 2)), tilesWithFloor)
+            return Cave(nRows, SOURCE_Y - (columns / 2), columns + 1, Point(0, (columns / 2)), tilesWithFloor)
         }
 
-        private fun computeLine(lhs: Point, rhs: Point): List<Point> {
+        private fun computeLine(lhs: Point<Int>, rhs: Point<Int>): List<Point<Int>> {
             return buildList {
                 for (x in (min(lhs.x, rhs.x)..(max(lhs.x, rhs.x))))
                     for (y in (min(lhs.y, rhs.y)..(max(lhs.y, rhs.y))))

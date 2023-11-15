@@ -1,17 +1,17 @@
 
 import com.github.leokash.adventofcode.utils.*
 import com.github.leokash.adventofcode.utils.Direction
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.geometry.*
 
 private const val PART_ONE_EXPECTED = 13
 private const val PART_TWO_EXPECTED = 36
 
 private typealias CMD = Pair<Direction, Int>
 
-private class Knot(val name: Char, var position: Point) {
-    fun follow(head: Point) {
-        val dir = position.direction(head) ?: return
-        position = when (position mDist head) {
+private class Knot(val name: Char, var position: Point<Int>) {
+    fun follow(head: Point<Int>) {
+        val dir = position.directionTo(head) ?: return
+        position = when (position.manhattanDistance(head)) {
             in 0..1 -> position
             2 -> if (dir in Direction.cardinals) position.move(direction = dir) else position
             else -> if (dir in Direction.ordinals) position.move(direction = dir) else position

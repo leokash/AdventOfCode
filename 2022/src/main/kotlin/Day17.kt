@@ -3,7 +3,7 @@
 
 import com.github.leokash.adventofcode.utils.*
 import com.github.leokash.adventofcode.utils.collections.CircularList
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.geometry.*
 import com.github.leokash.adventofcode.utils.matrix.CharMatrix
 import com.github.leokash.adventofcode.utils.matrix.lastRowIndex
 import kotlin.math.min
@@ -12,24 +12,24 @@ private const val FLOOR = 5000
 private const val PART_ONE_EXPECTED = 3068
 private const val PART_TWO_EXPECTED = 1_514_285_714_288L
 
-private val List<Point>.minX: Int get() = minOf { it.x } - 1
-private fun CircularList<List<Point>>.next(xOffset: Int, yOffset: Int = 2): List<Point> {
+private val List<Point<Int>>.minX: Int get() = minOf { it.x } - 1
+private fun CircularList<List<Point<Int>>>.next(xOffset: Int, yOffset: Int = 2): List<Point<Int>> {
     return next().map { Point(it.x + (xOffset - 3), it.y + yOffset) }
 }
 
 fun main() {
     Logger.debug = false
     val bounds = 0..6L
-    fun rocks(): List<List<Point>> {
+    fun rocks(): List<List<Point<Int>>> {
         return buildList {
-            add(listOf(Point(), Point(y = 1), Point(y = 2), Point(y = 3)))
+            add(listOf(Point(0, 0), Point(0, 1), Point(0, 2), Point(0, 3)))
             add(listOf(Point(-1, 0), Point(-1, y = 1), Point(-1, y = 2), Point(0, 1), Point(-2, 1)))
-            add(listOf(Point(), Point(y = 1), Point(y = 2), Point(-1, 2), Point(-2, 2)))
-            add(listOf(Point(), Point(x = -1), Point(x = -2), Point(x = -3)))
-            add(listOf(Point(), Point(y = 1), Point(x = -1), Point(-1, 1)))
+            add(listOf(Point(0, 0), Point(0, 1), Point(0, 2), Point(-1, 2), Point(-2, 2)))
+            add(listOf(Point(0, 0), Point(-1, 0), Point(-2, 0), Point(-3, 0)))
+            add(listOf(Point(0, 0), Point(0, 1), Point(-1, 0), Point(-1, 1)))
         }
     }
-    fun simulate(rock: List<Point>, winds: CircularList<Int>, predicate: (Point) -> Boolean) {
+    fun simulate(rock: List<Point<Int>>, winds: CircularList<Int>, predicate: (Point<Int>) -> Boolean) {
         fun dropWillCauseCollision(): Boolean {
             return rock.any { val p = Point(it.x + 1, it.y); p.x > FLOOR || predicate(p) }
         }

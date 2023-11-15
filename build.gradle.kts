@@ -12,7 +12,6 @@ buildscript {
 }
 
 allprojects {
-
     group = Configurations.App.group
     version = Configurations.App.version
 

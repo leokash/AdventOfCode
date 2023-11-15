@@ -61,7 +61,7 @@ private class BingoBoard(init: (Int, Int) -> Square): Matrix<Square>() {
 
     override val rows: Int get() = 5
     override val columns: Int get() = 5
-    override lateinit var store: Array<Array<Square>>
+    override val store: Array<Array<Square>> = Array(rows) { x -> Array(columns) { y -> init(x, y) } }
 
     val hasWon: Boolean get() {
         for (x in (0 until rows))
@@ -69,10 +69,6 @@ private class BingoBoard(init: (Int, Int) -> Square): Matrix<Square>() {
         for (y in (0 until  columns))
             if (column(y).count { it.selected } == columns) return true
         return false
-    }
-
-    init {
-        store = Array(rows) { x -> Array(columns) { y -> init(x, y) } }
     }
 
     fun add(number: Int): Boolean {

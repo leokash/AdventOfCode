@@ -1,5 +1,5 @@
 
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.geometry.*
 import com.github.leokash.adventofcode.utils.readText
 import kotlin.math.max
 
@@ -12,7 +12,7 @@ private fun compute(xBounds: IntRange, yBounds: IntRange): List<Vec3> {
                 simulate(Point(x, y)) { vx, vy -> vx in xBounds && vy in yBounds}?.let { add(Vec3(x, y, it)) }
     }
 }
-private fun simulate(velocity: Point, steps: Int = 1000, rangeValidator: (Int, Int) -> Boolean): Int? {
+private fun simulate(velocity: Point<Int>, steps: Int = 1000, rangeValidator: (Int, Int) -> Boolean): Int? {
     var max = 0
     var x = 0; var vx = velocity.x
     var y = 0; var vy = velocity.y

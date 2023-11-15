@@ -1,7 +1,7 @@
 
 import com.github.leokash.adventofcode.utils.SPRITE_OFF
 import com.github.leokash.adventofcode.utils.SPRITE_ON
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.geometry.*
 import com.github.leokash.adventofcode.utils.readLines
 import com.github.leokash.adventofcode.utils.matrix.count
 import com.github.leokash.adventofcode.utils.matrix.IntMatrix

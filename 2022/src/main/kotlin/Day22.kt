@@ -1,6 +1,6 @@
 
 import com.github.leokash.adventofcode.utils.*
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.geometry.*
 import com.github.leokash.adventofcode.utils.matrix.*
 
 private const val PART_ONE_EXPECTED = 6032
@@ -47,7 +47,7 @@ private object Wall: MoveResult()
 
 private data class Cube(val size: Int, private val isHorizontal: Boolean, private val builder: Builder.() -> Unit) {
     private val faces = mutableMapOf<Int, Builder.Facing>()
-    private val facesCache = mutableMapOf<Point, Builder.Facing>()
+    private val facesCache = mutableMapOf<Point<Int>, Builder.Facing>()
     private val xBounds = IntRange(0, (if (isHorizontal) size * 3 else size * 4) - 1)
     private val yBounds = IntRange(0, (if (isHorizontal) size * 4 else size * 3) - 1)
 
@@ -56,25 +56,25 @@ private data class Cube(val size: Int, private val isHorizontal: Boolean, privat
     }
 
     inner class Builder {
-        inner class Facing (val id: Int, val position: Point, val destinations: Map<Direction, Pair<Int, Direction>>) {
+        inner class Facing (val id: Int, val position: Point<Int>, val destinations: Map<Direction, Pair<Int, Direction>>) {
             private val xBounds = IntRange(position.x, position.x + (size - 1))
             private val yBounds = IntRange(position.y, position.y + (size - 1))
 
-            operator fun contains(point: Point): Boolean {
+            operator fun contains(point: Point<Int>): Boolean {
                 return point.x in xBounds && point.y in yBounds
             }
-            fun translate(point: Point, src: Direction): Triple<Facing, Point, Direction> {
+            fun translate(point: Point<Int>, src: Direction): Triple<Facing, Point<Int>, Direction> {
                 return destinations.getValue(src).let { (i, dest) ->
                     faces.getValue(i).let { Triple(it, point.translate(src, dest, it), dest) }
                 }
             }
 
-            private fun Point.relativeX() = x - position.x
-            private fun Point.relativeY() = y - position.y
-            private fun Point.fRelativeX() = (xBounds.last - (x - position.x)) % size
-            private fun Point.fRelativeY() = (yBounds.last - (y - position.y)) % size
+            private fun Point<Int>.relativeX() = x - position.x
+            private fun Point<Int>.relativeY() = y - position.y
+            private fun Point<Int>.fRelativeX() = (xBounds.last - (x - position.x)) % size
+            private fun Point<Int>.fRelativeY() = (yBounds.last - (y - position.y)) % size
 
-            private fun Point.translate(src: Direction, dest: Direction, other: Facing): Point {
+            private fun Point<Int>.translate(src: Direction, dest: Direction, other: Facing): Point<Int> {
                 return when (src to dest) {
                     Pair(Direction.NORTH, Direction.NORTH) -> Point(other.xBounds.last, other.position.y + relativeY())
                     Pair(Direction.NORTH, Direction.EAST)  -> Point(other.position.x + relativeY(), other.position.y)
@@ -107,15 +107,15 @@ private data class Cube(val size: Int, private val isHorizontal: Boolean, privat
         }
     }
 
-    private fun findFacing(point: Point): Builder.Facing {
+    private fun findFacing(point: Point<Int>): Builder.Facing {
         return facesCache.getOrPut(point) {
             faces.values.first { point in it }
         }
     }
-    private operator fun Point.plus(dir: Direction) = this + dir.point
+    private operator fun Point<Int>.plus(dir: Direction) = this + dir.point
 
-    private fun move2d(start: Point, dir: Direction, steps: Int, predicate: (Point) -> MoveResult): Pair<Point, Direction> {
-        fun wrap(s: Point): Point {
+    private fun move2d(start: Point<Int>, dir: Direction, steps: Int, predicate: (Point<Int>) -> MoveResult): Pair<Point<Int>, Direction> {
+        fun wrap(s: Point<Int>): Point<Int> {
             var tmp = s
             while (true) {
                 tmp = when (predicate(tmp)) {
@@ -141,7 +141,7 @@ private data class Cube(val size: Int, private val isHorizontal: Boolean, privat
 
         return Pair(tp, dir)
     }
-    private fun move3d(start: Point, dir: Direction, steps: Int, predicate: (Point) -> MoveResult): Pair<Point, Direction> {
+    private fun move3d(start: Point<Int>, dir: Direction, steps: Int, predicate: (Point<Int>) -> MoveResult): Pair<Point<Int>, Direction> {
         var td = dir
         var tp = start
         var facing = findFacing(start)
@@ -163,7 +163,7 @@ private data class Cube(val size: Int, private val isHorizontal: Boolean, privat
 
         return Pair(tp, td)
     }
-    fun move(start: Point, dir: Direction, steps: Int, is3d: Boolean, predicate: (Point) -> MoveResult): Pair<Point, Direction> {
+    fun move(start: Point<Int>, dir: Direction, steps: Int, is3d: Boolean, predicate: (Point<Int>) -> MoveResult): Pair<Point<Int>, Direction> {
         return when (is3d) {
             true -> move3d(start, dir, steps, predicate)
             else -> move2d(start, dir, steps, predicate)
@@ -178,7 +178,7 @@ fun main() {
 
         var pos = start
         var dir = Direction.EAST
-        val predicate: (Point) -> MoveResult = { p: Point ->
+        val predicate: (Point<Int>) -> MoveResult = { p: Point<Int> ->
             when (world.getOrNull(p)) {
                 '.' -> Path
                 '#' -> Wall
@@ -233,7 +233,7 @@ fun main() {
     println(part2(input, iCube))
 }
 
-private fun parse(input: List<String>): Triple<Point, List<Move>, CharMatrix> {
+private fun parse(input: List<String>): Triple<Point<Int>, List<Move>, CharMatrix> {
     fun parseMoves(string: String, container: MutableList<Move>) {
         val rgx = Regex("""[LR]|\d+""")
         container.addAll(rgx.findAll(string).map { Move.from(it.groupValues[0]) })

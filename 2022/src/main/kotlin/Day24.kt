@@ -1,6 +1,7 @@
 
 import com.github.leokash.adventofcode.utils.*
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.isEdge
+import com.github.leokash.adventofcode.utils.math.geometry.*
 import kotlin.math.min
 
 private const val PART_ONE_EXPECTED = 18
@@ -8,9 +9,9 @@ private const val PART_TWO_EXPECTED = 54
 
 fun main() {
     Logger.debug = false
-    data class State(val time: Int, val location: Point)
-    fun findShortestTime(start: Point, goal: Point, valley: Valley, startTime: Int = 0): Int {
-        fun neighbors(time: Int, current: Point): List<Point> {
+    data class State(val time: Int, val location: Point<Int>)
+    fun findShortestTime(start: Point<Int>, goal: Point<Int>, valley: Valley, startTime: Int = 0): Int {
+        fun neighbors(time: Int, current: Point<Int>): List<Point<Int>> {
             return current.neighbors().mapNotNull { (_, p) ->
                 if (p == start || p == goal || valley.vacant(p, time)) p else null
             }
@@ -86,10 +87,10 @@ private class Valley(val xBounds: IntRange, val yBounds: IntRange, private val b
             Blizzard(next.x, next.y, b.direction)
         }
     }
-    fun isEdge(point: Point): Boolean {
+    fun isEdge(point: Point<Int>): Boolean {
         return point.x isEdge xBounds || point.y isEdge yBounds
     }
-    fun vacant(point: Point, time: Int): Boolean {
+    fun vacant(point: Point<Int>, time: Int): Boolean {
         val locations = cachedBlizzard.getValue(time)
         return !isEdge(point) &&
                 point.x in xBounds &&
@@ -98,7 +99,7 @@ private class Valley(val xBounds: IntRange, val yBounds: IntRange, private val b
     }
 }
 
-private fun parse(input: List<String>): Triple<Point, Point, Valley> {
+private fun parse(input: List<String>): Triple<Point<Int>, Point<Int>, Valley> {
     return Triple(
         Point(0, 1),
         Point(input.lastIndex, input[0].lastIndex - 1),

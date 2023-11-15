@@ -4,7 +4,7 @@
 package com.github.leokash.adventofcode.utils.matrix
 
 import com.github.leokash.adventofcode.utils.int
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.geometry.Point
 import kotlin.math.min
 import kotlin.math.max
 
@@ -47,7 +47,7 @@ fun <T> Matrix<T>.all(predicate: (Int, Int, T) -> Boolean): Boolean {
             if (!predicate(x, y, this[x, y])) return false
     return true
 }
-fun <T> Matrix<T>.filter(predicate: (Int, Int, T) -> Boolean): List<Pair<Point, T>> {
+fun <T> Matrix<T>.filter(predicate: (Int, Int, T) -> Boolean): List<Pair<Point<Int>, T>> {
     return buildList {
         this@filter.forEachIndexed { x, y, value ->
             if (predicate(x, y, value))

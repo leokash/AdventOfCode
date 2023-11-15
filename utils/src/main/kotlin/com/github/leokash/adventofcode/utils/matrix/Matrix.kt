@@ -1,7 +1,7 @@
 
 package com.github.leokash.adventofcode.utils.matrix
 
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.geometry.Point
 
 abstract class Matrix<T> {
 
@@ -33,13 +33,13 @@ abstract class Matrix<T> {
         return store.map { it[index] }.slice(range ?: rowIndices)
     }
 
-    operator fun get(point: Point): T {
+    operator fun get(point: Point<Int>): T {
         return get(point.x, point.y)
     }
     operator fun get(x: Int, y: Int): T {
         return store[x][y]
     }
-    operator fun set(point: Point, value: T) {
+    operator fun set(point: Point<Int>, value: T) {
         set(point.x, point.y, value)
     }
     operator fun set(x: Int, y: Int, value: T) {

@@ -1,16 +1,16 @@
 
 import com.github.leokash.adventofcode.utils.readLines
-import com.github.leokash.adventofcode.utils.geometry.points.ints.Point
+import com.github.leokash.adventofcode.utils.math.geometry.*
 import java.util.*
 
 private fun <T> Array<Array<T>>.contains(x: Int, y: Int): Boolean {
     return x in indices && y in this[x].indices
 }
-private operator fun <T> Array<Array<T>>.contains(point: Point): Boolean {
+private operator fun <T> Array<Array<T>>.contains(point: Point<Int>): Boolean {
     return contains(point.x, point.y)
 }
 
-private fun next(x: Int, y: Int, costs: Array<Array<Int>>): List<Pair<Point, Int>> {
+private fun next(x: Int, y: Int, costs: Array<Array<Int>>): List<Pair<Point<Int>, Int>> {
     return listOf(
         Point(x - 1, y),
         Point(x, y - 1),
@@ -21,7 +21,7 @@ private fun next(x: Int, y: Int, costs: Array<Array<Int>>): List<Pair<Point, Int
     }
 }
 
-private data class Cost(val value: Int, val point: Point): Comparable<Cost> {
+private data class Cost(val value: Int, val point: Point<Int>): Comparable<Cost> {
     override fun compareTo(other: Cost): Int {
         return value.compareTo(other.value)
     }
@@ -29,9 +29,9 @@ private data class Cost(val value: Int, val point: Point): Comparable<Cost> {
 
 private fun compute(costs: Array<Array<Int>>): Int {
     val end = Point(costs.size - 1, costs[0].size - 1)
-    val map = mutableMapOf<Point, Int>()
-    val visited = mutableSetOf<Point>()
-    val queue = PriorityQueue<Cost>().also { it.add(Cost(0, Point())) }
+    val map = mutableMapOf<Point<Int>, Int>()
+    val visited = mutableSetOf<Point<Int>>()
+    val queue = PriorityQueue<Cost>().also { it.add(Cost(0, Point(0, 0))) }
 
     while (queue.isNotEmpty()) {
         val (cost, point) = queue.poll()
