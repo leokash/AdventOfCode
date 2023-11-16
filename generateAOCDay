@@ -1,0 +1,44 @@
+#!/bin/bash
+
+function validate() {
+    if [[ $(echo "$1" | grep -E "$2") == "" ]]; then
+        echo "$3"; exit 1
+    fi
+}
+
+DAY=$(if [ -z "$2" ]; then echo "--"; else echo "$2"; fi)
+YEAR=$( if [ -z "$1" ]; then echo "$(date +%Y)"; else echo "$1"; fi)
+
+validate $DAY "^\d{2}$" "AOC day must have 2 digits"
+validate $YEAR '^\d{4}$' "AOC year must have 4 digits"
+
+WORKSPACE=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd -P)
+
+if ! [ -f "${WORKSPACE}/${YEAR}/build.gradle.kts" ]; then
+    echo "module for AOC $YEAR not present... Please create module and then re-run script"; exit 1
+fi
+
+CODE_DIR="${WORKSPACE}/${YEAR}/src/main/kotlin"
+RESOURCES_DIR="${WORKSPACE}/${YEAR}/src/main/resources"
+TEMPLATE_FILE="${WORKSPACE}/AOCTemplate"
+
+if ! [ -d "$CODE_DIR" ]; then
+    mkdir -p "$CODE_DIR"
+fi
+
+if ! [ -d "$RESOURCES_DIR" ]; then
+    mkdir -p "$RESOURCES_DIR"
+fi
+
+kt_file="${CODE_DIR}/Day${DAY}.kt"
+if ! [ -f "$kt_file" ]; then
+    touch "$kt_file"
+    cat "$TEMPLATE_FILE" | sed "s/{{DAY}}/$DAY/" > "$kt_file"
+fi
+
+resources=("${RESOURCES_DIR}/Day${DAY}.txt" "${RESOURCES_DIR}/Day${DAY}-Test.txt")
+for text_file in "${resources[@]}"; do
+    if ! [ -f "$text_file" ]; then
+        touch "$text_file"
+    fi
+done
