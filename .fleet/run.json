@@ -1,0 +1,13 @@
+
+{
+    "configurations": [
+        {
+            "type": "jps-run",
+            "name": "AOC:2022 Day-19",
+            "mainClass": "Day19Kt",
+            "module": "AdventOfCode.2022.main",
+            "options": ["-Dfile.encoding=UTF-8", "-Xmx10240m", "-Xms2048m", "-XX:MaxHeapSize=10240m"]
+        },
+        
+    ]
+}
