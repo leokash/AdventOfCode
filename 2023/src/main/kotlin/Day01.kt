@@ -4,12 +4,11 @@ import com.github.leokash.adventofcode.utils.*
 private const val PART_ONE_EXPECTED = 142
 private const val PART_TWO_EXPECTED = 281
 
-private val map: Map<String, Int> = mutableMapOf(
+private val map: Map<String, Int> = mapOf(
     "one" to 1, "two" to 2, "three" to 3, "four" to 4, "five" to 5, "six" to 6, "seven" to 7, "eight" to 8, "nine" to 9
 )
 
 fun main() {
-    Logger.debug = true
     fun part1(input: List<String>): Int = input.sumOf { string ->
         string
             .mapNotNull { it.digitToIntOrNull() }

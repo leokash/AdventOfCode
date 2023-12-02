@@ -16,6 +16,16 @@ fun String.md5(): String {
     return BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray())).toString(16)
 }
 
+fun String.findAll(regex: Regex): List<String> {
+    return buildList {
+        var match = regex.find(this@findAll)
+        while (match != null) {
+            add(match.value)
+            match = match.next()
+        }
+    }
+}
+
 fun String.matchingGroups(regex: Regex): List<String> {
     return regex.find(this)?.groupValues?.drop(1) ?: emptyList()
 }
