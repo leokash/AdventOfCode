@@ -67,16 +67,19 @@ interface Context<T> where T: Number, T: Comparable<T> {
             return contextOf(T::class)
         }
 
+        private val cache = mutableMapOf<KClass<*>, Context<*>>()
         fun <T> contextOf(type: KClass<T>): Context<T>  where T: Number, T: Comparable<T> {
             @Suppress("UNCHECKED_CAST")
-            return when (type) {
-                Int::class    -> IntContext()
-                Long::class   -> LongContext()
-                Float::class  -> FloatContext()
-                Short::class  -> ShortContext()
-                Double::class -> DoubleContext()
+            return cache.getOrPut(type) {
+                when (type) {
+                    Int::class -> IntContext()
+                    Long::class -> LongContext()
+                    Float::class -> FloatContext()
+                    Short::class -> ShortContext()
+                    Double::class -> DoubleContext()
 
-                else -> error("Unsupported operator for type: $type")
+                    else -> error("Unsupported operator for type: $type")
+                }
             } as Context<T>
         }
     }

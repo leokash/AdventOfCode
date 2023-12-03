@@ -47,9 +47,21 @@ fun <T> Point<T>.next(direction: Direction, bounds: Rect<T>? = null): Point<T>? 
     return if (bounds == null || tmp in bounds) tmp else null
 }
 
-fun <T> Point<T>.neighbors(acceptOrdinals: Boolean = false, bounds: Rect<T>? = null): List<Pair<Direction, Point<T>>> where T: Number, T: Comparable<T> {
-    return buildList {
-        addAll(Direction.cardinals.mapNotNull { d -> this@neighbors.next(d, bounds)?.let { d to it } })
-        if (acceptOrdinals) addAll(Direction.ordinals.mapNotNull { d -> this@neighbors.next(d, bounds)?.let { d to it } })
+fun <T> Point<T>.neighbors(acceptOrdinals: Boolean = false, bounds: Rect<T>? = null): List<Pair<Direction, Point<T>>> where T: Number, T: Comparable<T> = buildList {
+    addAll(Direction.cardinals.mapNotNull { d -> this@neighbors.next(d, bounds)?.let { d to it } })
+    if (acceptOrdinals) addAll(Direction.ordinals.mapNotNull { d -> this@neighbors.next(d, bounds)?.let { d to it } })
+}
+
+fun <T> Point<T>.neighbors(acceptOrdinals: Boolean = false, bounds: Rect<T>? = null, predicate: (Pair<Direction, Point<T>>) -> Boolean): List<Pair<Direction, Point<T>>> where T: Number, T: Comparable<T> = buildList {
+    neighborsAsSequence(acceptOrdinals, bounds).forEach { if (predicate(it)) add(it) }
+}
+
+fun <T> Point<T>.isNeighbor(other: Point<T>, acceptOrdinals: Boolean = false): Boolean where T: Number, T: Comparable<T> {
+    return neighborsAsSequence(acceptOrdinals).firstOrNull { (_, p) -> p == other } != null
+}
+
+fun <T> Point<T>.neighborsAsSequence(acceptOrdinals: Boolean = false, bounds: Rect<T>? = null): Sequence<Pair<Direction, Point<T>>> where T: Number, T: Comparable<T> = sequence {
+    (Direction.cardinals + (if (acceptOrdinals) Direction.ordinals else emptyList())).forEach { dir ->
+        this@neighborsAsSequence.next(dir, bounds)?.let { p -> yield(dir to p) }
     }
 }
