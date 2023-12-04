@@ -13,7 +13,7 @@ private const val PART_TWO_EXPECTED = 467835L
 
 private val excludeSet = (('0'..'9') + '.').toSet()
 
-private fun String.nextEngineNumber(x: Int, y: Int): Pair<Int?, EngineNumber?> {
+private fun String.nextEngineNumber(x: Int, y: Int): Pair<Int, EngineNumber?> {
     var idx = y
     val buf = StringBuffer()
     val path = mutableListOf<Point<Int>>()
@@ -38,8 +38,8 @@ fun main() {
             if (y !in input[x].indices) { x++; y = 0; continue }
             val (ny, num) = input[x].nextEngineNumber(x, y)
 
+            y = ny
             if (num != null) engineNumbers.add(num)
-            y = ny ?: -1
         }
 
         if (partOne) {
