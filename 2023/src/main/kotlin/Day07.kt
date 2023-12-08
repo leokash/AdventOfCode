@@ -35,12 +35,9 @@ private data class Hand(
         .groupBy { it }
         .values.sortedByDescending { it.size }
         .let { groups ->
-            if (!boost) groups else when (groups.size) {
-                1 -> listOf("".padEnd(5, 'J').toList())
-                else -> groups
-                    .filter { it[0] != 'J' }
-                    .mapIndexed { idx, list -> if (idx == 0) list.inflate(cards.count { it == 'J' }) else list }
-            }
+            if (groups.size == 1 || !boost) groups else groups
+                .filter { it[0] != 'J' }
+                .mapIndexed { idx, list -> if (idx == 0) list.inflate(cards.count { it == 'J' }) else list }
         }
 
     private fun List<Char>.inflate(count: Int): List<Char> {
