@@ -17,6 +17,7 @@ interface Context<T> where T: Number, T: Comparable<T> {
 
     fun min(lhs: T, rhs: T): T
     fun max(lhs: T, rhs: T): T
+    fun rem(lhs: T, rhs: T): T
 
     fun eq(lhs: T, rhs: T): Boolean
     fun neq(lhs: T, rhs: T): Boolean = !eq(lhs, rhs)

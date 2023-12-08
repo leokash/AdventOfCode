@@ -17,6 +17,7 @@ internal class FloatContext : Context<Float> {
 
     override fun min(lhs: Float, rhs: Float): Float = kotlin.math.min(lhs, rhs)
     override fun max(lhs: Float, rhs: Float): Float = kotlin.math.max(lhs, rhs)
+    override fun rem(lhs: Float, rhs: Float): Float = lhs % rhs
 
     override fun eq(lhs: Float, rhs: Float): Boolean = lhs == rhs
 

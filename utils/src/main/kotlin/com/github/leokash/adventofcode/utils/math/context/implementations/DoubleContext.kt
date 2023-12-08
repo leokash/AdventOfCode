@@ -18,6 +18,7 @@ internal class DoubleContext : Context<Double> {
 
     override fun min(lhs: Double, rhs: Double): Double = kotlin.math.min(lhs, rhs)
     override fun max(lhs: Double, rhs: Double): Double = kotlin.math.max(lhs, rhs)
+    override fun rem(lhs: Double, rhs: Double): Double = lhs % rhs
 
     override fun eq(lhs: Double, rhs: Double): Boolean = lhs == rhs
 

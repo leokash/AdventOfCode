@@ -18,6 +18,7 @@ internal class IntContext : Context<Int> {
 
     override fun min(lhs: Int, rhs: Int): Int = kotlin.math.min(lhs, rhs)
     override fun max(lhs: Int, rhs: Int): Int = kotlin.math.max(lhs, rhs)
+    override fun rem(lhs: Int, rhs: Int): Int = lhs % rhs
     
     override fun eq(lhs: Int, rhs: Int): Boolean = lhs == rhs
     

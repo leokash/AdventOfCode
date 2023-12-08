@@ -18,6 +18,7 @@ internal class ShortContext : Context<Short> {
 
     override fun min(lhs: Short, rhs: Short): Short = map(kotlin.math.min(lhs.toInt(), rhs.toInt()))
     override fun max(lhs: Short, rhs: Short): Short = map(kotlin.math.max(lhs.toInt(), rhs.toInt()))
+    override fun rem(lhs: Short, rhs: Short): Short = map(lhs % rhs)
 
     override fun eq(lhs: Short, rhs: Short): Boolean = lhs == rhs
 

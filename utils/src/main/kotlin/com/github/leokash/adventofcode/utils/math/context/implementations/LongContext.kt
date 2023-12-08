@@ -18,6 +18,7 @@ internal class LongContext : Context<Long> {
 
     override fun min(lhs: Long, rhs: Long): Long = kotlin.math.min(lhs, rhs)
     override fun max(lhs: Long, rhs: Long): Long = kotlin.math.max(lhs, rhs)
+    override fun rem(lhs: Long, rhs: Long): Long = lhs % rhs
 
     override fun eq(lhs: Long, rhs: Long): Boolean = lhs == rhs
 
