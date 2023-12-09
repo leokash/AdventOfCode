@@ -1,3 +1,4 @@
+
 package com.github.leokash.adventofcode.utils.math.context
 
 fun <T> Context<T>.lcm(lhs: T, rhs: T): T where T: Number, T: Comparable<T> {
@@ -12,4 +13,17 @@ fun <T> Context<T>.lcm(lhs: T, rhs: T): T where T: Number, T: Comparable<T> {
     }
 
     return max
+}
+
+fun <T> Context<T>.gcd(lhs: T, rhs: T): T where T: Number, T: Comparable<T> {
+    var t: T
+    var a = lhs
+    var b = rhs
+    while (b != zero) {
+        t = rem(a, b)
+        a = b
+        b = t
+    }
+
+    return abs(a)
 }
