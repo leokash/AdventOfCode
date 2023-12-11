@@ -37,4 +37,20 @@ data class CircularCounter(private val min: Int = 0, private val max: Int, priva
     fun decrementAndGet(): Int {
         return decrement().let { idx }
     }
+
+    fun repeatDecrement(times: Int): CircularCounter {
+        repeat(times) {
+            decrement()
+        }
+
+        return this
+    }
+
+    fun repeatIncrement(times: Int): CircularCounter {
+        repeat(times) {
+            increment()
+        }
+
+        return this
+    }
 }
