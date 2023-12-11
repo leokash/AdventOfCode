@@ -45,12 +45,6 @@ private fun List<String>.allIndicesOf(char: Char): List<Point<Int>> {
 
 fun main() {
     fun compute(input: List<String>, start: Char, finish: Char, singleStart: Boolean): Int {
-        fun log(path: List<Point<Int>>, mat: IntMatrix) {
-            log {
-                val size = path.size - 1
-                "steps: $size, path: ${ path.joinToString { c -> "${ mat[c].elevationToChar }" } }"
-            }
-        }
         fun neighbors(from: Point<Int>, mat: IntMatrix): List<Point<Int>> {
             val lhs = mat[from]
             return mat.neighbors(from.x, from.y) { _, _, rhs -> rhs - lhs <= 1 }.map { (p, _) -> p }
@@ -67,7 +61,6 @@ fun main() {
             PathFinding
                 .findShortestPath(s, end, BFS { p -> neighbors(p, mat) })
                 ?.getPath()
-                ?.also { log(it, mat) }
                 ?.size
                 ?.let { it - 1 }
         }.min()

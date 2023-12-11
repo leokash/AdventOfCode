@@ -65,7 +65,6 @@ fun main() {
 
         return vectors
             .sumOf { it.neighbors().count { v -> !trappedAir(v) } }
-            .also { log { "found: $it" } }
     }
 
     fun part1(input: List<String>) = computeOne(input)

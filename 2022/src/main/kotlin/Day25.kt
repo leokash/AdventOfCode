@@ -1,6 +1,5 @@
 
 import com.github.leokash.adventofcode.utils.Logger
-import com.github.leokash.adventofcode.utils.log
 import com.github.leokash.adventofcode.utils.readLines
 
 private const val PART_ONE_EXPECTED = 4890L
