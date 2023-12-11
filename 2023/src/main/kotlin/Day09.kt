@@ -8,15 +8,10 @@ private const val PART_TWO_EXPECTED = 2L
 private val space = """\s+""".toRegex()
 
 fun main() {
-    Logger.debug = true
     fun compute(input: List<String>, partOne: Boolean): Long {
-        val op: (Long, Long) -> Long = if (partOne) Long::plus else Long::minus
-        val getter: (List<Long>) -> Long = if (partOne) ({ it[it.size - 1] }) else ({ it[0] })
-
-        fun findNextValue(list: List<Long>): Long {
-            val intervals = list.windowed(2).map { it[1] - it[0] }
-            return op(getter(list), if (intervals.distinctBy { it }.size == 1) intervals[0] else findNextValue(intervals))
-        }
+        fun findNextValue(list: List<Long>) = generateSequence(if (partOne) list else list.reversed()) { arr -> arr.windowed(2) { (a, b) -> b - a } }
+                .takeWhile { arr -> !arr.all { it == 0L } }
+                .sumOf { it.last() }
 
         return input.sumOf { findNextValue(it.mapLongs(space)) }
     }
