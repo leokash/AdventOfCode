@@ -1,5 +1,6 @@
 package com.github.leokash.adventofcode.utils.collections
 
+import com.github.leokash.adventofcode.utils.Direction
 import com.github.leokash.adventofcode.utils.math.geometry.Point
 
 operator fun <E> List<E>.component6(): E = this[5]
@@ -19,4 +20,35 @@ fun List<CharSequence>.indicesOf(char: Char): List<Point<Int>> = buildList {
     for (x in this@indicesOf.indices)
         for (y in this@indicesOf[x].indices)
             if (char == this@indicesOf[x][y]) add(Point(x, y))
+}
+
+fun List<CharSequence>.indexOf(char: Char): Point<Int>? {
+    for (x in this@indexOf.indices)
+        for (y in this@indexOf[x].indices)
+            if (char == this@indexOf[x][y]) return Point(x, y)
+
+    return null
+}
+
+fun List<CharSequence>.neighbors(
+    p: Point<Int>,
+    allowDiagonal: Boolean = false,
+    predicate: (Point<Int>, Char) -> Boolean = { _,_ -> true }
+) = neighbors(p.x, p.y, allowDiagonal) { x, y, c -> predicate(Point(x, y), c) }
+
+fun List<CharSequence>.neighbors(
+x: Int,
+y: Int,
+allowDiagonal: Boolean = false,
+predicate: (Int, Int, Char) -> Boolean = { _,_,_ -> true }
+): List<Pair<Point<Int>, Char>> {
+    fun attemptNeighborAddition(r: Int, c: Int, list: MutableList<Pair<Point<Int>, Char>>) {
+        if (r !in indices || c !in this[0].indices) return
+        get(r, c).also { value -> if (predicate(r, c, value)) list.add(Point(r, c) to value) }
+    }
+
+    return buildList {
+        Direction.cardinals.map { it.point }.onEach { attemptNeighborAddition(x + it.x, y + it.y, this) }
+        if (allowDiagonal) Direction.ordinals.map { it.point }.onEach { attemptNeighborAddition(x + it.x, y + it.y, this) }
+    }
 }

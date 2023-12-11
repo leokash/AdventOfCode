@@ -27,3 +27,8 @@ class Logger private constructor() {
 fun log(message: () -> String) {
     Logger.log(message)
 }
+
+fun <T> T.log(message: T.() -> String): T {
+    Logger.log { message() }
+    return this
+}
