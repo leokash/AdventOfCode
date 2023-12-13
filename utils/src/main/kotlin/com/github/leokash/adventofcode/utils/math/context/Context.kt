@@ -42,11 +42,11 @@ interface Context<T> where T: Number, T: Comparable<T> {
     fun map(value: Double): T
     
     fun map(value: Any): T = when(value::class) {
-        Int::class -> map(value)
-        Long::class -> map(value)
-        Float::class -> map(value)
-        Short::class -> map(value)
-        Double::class -> map(value)
+        Int::class -> map(value as Int)
+        Long::class -> map(value as Long)
+        Float::class -> map(value as Float)
+        Short::class -> map(value as Short)
+        Double::class -> map(value as Double)
         
         else -> error("${value::class} not supported")
     }

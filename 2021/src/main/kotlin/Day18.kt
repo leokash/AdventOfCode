@@ -1,4 +1,5 @@
-import com.github.leokash.adventofcode.utils.permutations
+
+import com.github.leokash.adventofcode.utils.collections.permutations
 import com.github.leokash.adventofcode.utils.readLines
 
 private sealed interface SnailfishNumber {

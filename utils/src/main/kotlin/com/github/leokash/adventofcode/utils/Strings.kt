@@ -41,10 +41,3 @@ operator fun String.get(range: IntRange): String {
     if (start < 0 || start >= length) return ""
     return substring(range.first, min(length, range.last))
 }
-
-operator fun String.plus(otherStrings: List<String>): List<String> {
-    return buildList {
-        add(this@plus)
-        addAll(otherStrings)
-    }
-}
