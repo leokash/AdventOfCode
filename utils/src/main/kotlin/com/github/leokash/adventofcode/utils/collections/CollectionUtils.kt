@@ -11,6 +11,14 @@ fun <T> Collection<T>.productIndexed(selector: (Int, T) -> Int): Int {
     return productIndexed(Context<Int>(), selector)
 }
 
+fun <T, R> Collection<T>.sum(ctx: Context<R>, selector: (T) -> R): R where R: Number, R: Comparable<R> {
+    return sumIndexed(ctx) { _, obj -> selector(obj) }
+}
+
+fun <T, R> Collection<T>.sumIndexed(ctx: Context<R>, selector: (Int, T) -> R): R where R: Number, R: Comparable<R> {
+    return foldIndexed(ctx.zero) { idx, acc, num -> ctx.add(acc, selector(idx, num)) }
+}
+
 fun <T, R> Collection<T>.product(ctx: Context<R>, selector: (T) -> R): R where R: Number, R: Comparable<R> {
     return productIndexed(ctx) { _, num -> selector(num) }
 }
