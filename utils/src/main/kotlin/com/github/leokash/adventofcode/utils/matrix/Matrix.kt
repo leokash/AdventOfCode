@@ -45,4 +45,26 @@ abstract class Matrix<T> {
     operator fun set(x: Int, y: Int, value: T) {
         store[x][y] = value
     }
+
+    override fun hashCode(): Int {
+        var result = 0
+        for (x in rowIndices)
+            for (y in columnIndices)
+                result = 31 * result + this[x, y].hashCode()
+        return result
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Matrix<*>) return false
+
+        if (rows != other.rows) return false
+        if (columns != other.columns) return false
+
+        for (x in rowIndices)
+            for (y in columnIndices)
+                if (this[x, y] != other[x, y]) return false
+
+        return true
+    }
 }
