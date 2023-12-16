@@ -1,7 +1,6 @@
 
 import com.github.leokash.adventofcode.utils.*
 import com.github.leokash.adventofcode.utils.collections.get
-import com.github.leokash.adventofcode.utils.math.context.Context
 import com.github.leokash.adventofcode.utils.math.geometry.Point
 import com.github.leokash.adventofcode.utils.math.geometry.next
 import com.github.leokash.adventofcode.utils.matrix.*
