@@ -8,6 +8,8 @@ interface Context<T> where T: Number, T: Comparable<T> {
     val one: T
     val zero: T
 
+    val two: T get() = add(one, one)
+
     fun abs(value: T): T
     fun exp(value: T): T
     fun log(value: T): T
