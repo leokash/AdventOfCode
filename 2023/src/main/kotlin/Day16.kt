@@ -37,36 +37,22 @@ fun main() {
             visited += pair
             energised += beam
 
-            fun branch() {
-                with(dir.rotate(90)) { beam.next(this)?.let { simulate(it, this, energised, visited) } }
-                with(dir.rotate(-90)) { beam.next(this)?.let { simulate(it, this, energised, visited) } }
-            }
-            fun carryOn() {
-                beam.next(dir)?.let { simulate(it, dir, energised, visited) }
+            fun rotateAndMove(degrees: Int) {
+                val nDir = if (degrees == 0) dir else dir.rotate(degrees)
+                beam.next(nDir)?.let { simulate(it, nDir, energised, visited) }
             }
 
             when (input[beam]) {
-                '/' -> when (dir) {
-                    Direction.EAST, Direction.WEST -> with(dir.rotate(-90)) { beam.next(this)?.let { simulate(it, this, energised, visited) } }
-                    Direction.NORTH, Direction.SOUTH -> with(dir.rotate(90)) { beam.next(this)?.let { simulate(it, this, energised, visited) } }
-
-                    else -> error("only moving in cardinal directions")
-                }
-                '\\' -> when (dir) {
-                    Direction.EAST, Direction.WEST -> with(dir.rotate(90)) { beam.next(this)?.let { simulate(it, this, energised, visited) } }
-                    Direction.NORTH, Direction.SOUTH -> with(dir.rotate(-90)) { beam.next(this)?.let { simulate(it, this, energised, visited) } }
-                    else -> error("only moving in cardinal directions")
-                }
-                '|' -> if (dir in vsDirs) branch() else carryOn()
-                '-' -> if (dir in hsDirs) branch() else carryOn()
-                else -> carryOn()
+                '.' -> rotateAndMove(0)
+                '/' -> rotateAndMove(if (dir == Direction.EAST || dir == Direction.WEST) -90 else 90)
+                '\\' -> rotateAndMove(if (dir == Direction.EAST || dir == Direction.WEST) 90 else -90)
+                '|' -> if (dir !in vsDirs) rotateAndMove(0) else { rotateAndMove(90); rotateAndMove(-90) }
+                '-' -> if (dir !in hsDirs) rotateAndMove(0) else { rotateAndMove(90); rotateAndMove(-90) }
             }
         }
 
         return startingPoints.maxOf { (beam, dir) ->
-            mutableSetOf<Point<Int>>()
-                .apply { simulate(beam, dir, this, mutableSetOf()) }
-                .size
+            mutableSetOf<Point<Int>>().apply { simulate(beam, dir, this, mutableSetOf()) }.size
         }
     }
 
