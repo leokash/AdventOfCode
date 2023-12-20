@@ -2,7 +2,6 @@
 package com.github.leokash.adventofcode.utils.collections
 
 import com.github.leokash.adventofcode.utils.math.context.Context
-import com.github.leokash.adventofcode.utils.math.geometry.Point
 
 fun <T> Collection<T>.product(selector: (T) -> Int): Int {
     return productIndexed { _, num -> selector(num) }
