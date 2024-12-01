@@ -3,16 +3,18 @@
 
 package com.github.leokash.adventofcode.utils
 
+import kotlin.math.abs
+
 data class CircularCounter(private val min: Int = 0, private val max: Int, private val start: Int = 0) {
     private var idx: Int = 0
 
     init { set(start) }
 
     private fun increment() {
-        idx = (idx + 1) % (max + 1)
+        set(idx + 1)
     }
     private fun decrement() {
-        idx = (max - -idx) % (max + 1)
+        set(idx - 1)
     }
 
     fun get(): Int {
@@ -20,9 +22,9 @@ data class CircularCounter(private val min: Int = 0, private val max: Int, priva
     }
     fun set(num: Int) {
         idx = when {
-            num < min -> ((max - -num) + 1) % (max + 1)
-            num > max -> (num - 1) % max
-            else -> num
+            num in min..max -> num
+            num > max -> num % (max + 1)
+            else -> ((max - -(if (abs(num) >= max) num % (max + 1) else num)) + 1) % (max + 1)
         }
     }
     fun getAndIncrement(): Int {

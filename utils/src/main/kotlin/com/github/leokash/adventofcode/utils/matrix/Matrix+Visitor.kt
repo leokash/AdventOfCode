@@ -19,6 +19,9 @@ fun <T> Matrix<T>.getOrNull(x: Int, y: Int): T? {
     return if (x !in rowIndices || y !in columnIndices) null else get(x, y)
 }
 
+fun Matrix<*>.indexOf(p: Point<Int>): Int = indexOf(p.x, p.y)
+fun Matrix<*>.indexOf(x: Int, y: Int): Int = columns * x + y
+
 fun Matrix<*>.isEdge(p: Point<Int>): Boolean {
     return isEdge(p.x, p.y)
 }
