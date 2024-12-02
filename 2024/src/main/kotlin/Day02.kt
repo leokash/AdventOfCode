@@ -21,8 +21,8 @@ private fun List<Int>.validateReport(dampen: Boolean = false): Boolean {
 
 fun main() {
     fun compute(input: List<String>, dampen: Boolean = false): Int = input
-        .map { it.split("\\s+".toRegex()) }.map { it }
-        .count { it.map { list -> list.toInt() }.validateReport(dampen) }
+        .map { it.split("\\s+".toRegex()) }
+        .count { it.map { string -> string.toInt() }.validateReport(dampen) }
 
     fun part1(input: List<String>): Int = compute(input)
     fun part2(input: List<String>): Int = compute(input, true)
