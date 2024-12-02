@@ -3,7 +3,6 @@ package com.github.leokash.adventofcode.utils
 
 import java.math.BigInteger
 import java.security.MessageDigest
-import kotlin.math.max
 import kotlin.math.min
 
 operator fun String.component1(): Char = this[0]
@@ -12,6 +11,7 @@ operator fun String.component3(): Char = this[2]
 operator fun String.component4(): Char = this[3]
 operator fun String.component5(): Char = this[4]
 
+@Suppress("unused")
 fun String.md5(): String {
     return BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray())).toString(16)
 }

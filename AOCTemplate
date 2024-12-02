@@ -14,8 +14,8 @@ fun main() {
     val inputTest = readLines("Day{{DAY}}-Test")
 
     check(part1(inputTest) == PART_ONE_EXPECTED)
-    check(part2(inputTest) == PART_TWO_EXPECTED)
-
     println(part1(input))
+
+    check(part2(inputTest) == PART_TWO_EXPECTED)
     println(part2(input))
 }
