@@ -4,44 +4,23 @@ import com.github.leokash.adventofcode.utils.*
 private const val PART_ONE_EXPECTED = 161L
 private const val PART_TWO_EXPECTED = 48L
 
-private val flagRegex = """do(n't)?\(\)""".toRegex()
-private val multiRegex = """mul\(\d{1,3},\d{1,3}\)""".toRegex()
-
-private typealias Match = Pair<IntRange, String>
-
-private val Match.range: IntRange get() = first
-
-private fun String.accept(current: Int, previous: Int?, matches: List<Match>): Boolean {
-    if (previous != null) {
-        return substring(matches[previous].range.last, matches[current].range.first)
-            .findAll(flagRegex)
-            .lastOrNull()
-            ?.let { it == "do()" }
-            ?: true
-    }
-
-    return true
-}
+private val partOneRegex = """mul\(\d+,\d+\)""".toRegex()
+private val partTwoRegex = """mul\(\d+,\d+\)|(do(n't)?)\(\)""".toRegex()
 
 fun main() {
-    fun compute(input: String, filter: Boolean): Long {
-        fun String.multiply(): Long = replace(mapOf("mul(" to "", ")" to ""))
-            .split(",")
-            .let { it[0].toLong() * it[1].toLong() }
-
-        var previousIdx: Int? = null
-        return with(input.findMatches(multiRegex)) {
-            foldIndexed(0L) { idx, acc, (_, match) ->
-                acc + when (filter) {
-                    true -> if (input.accept(idx, previousIdx, this)) match.multiply().also { previousIdx = idx } else 0
-                    false -> match.multiply()
-                }
+    fun compute(input: String, regex: Regex): Long {
+        var skip = false
+        return input.findAll(regex).fold(0L) { acc, match ->
+            acc + when(match) {
+                "do()" -> 0L.also { skip = false }
+                "don't()" -> 0L.also { skip = true }
+                else -> if (skip) 0L else match.removeAll("mul(", ")").split(",").let { it[0].toLong() * it[1].toLong() }
             }
         }
     }
 
-    fun part1(input: String): Long = compute(input, false)
-    fun part2(input: String): Long = compute(input, true)
+    fun part1(input: String): Long = compute(input, partOneRegex)
+    fun part2(input: String): Long = compute(input, partTwoRegex)
 
     val input = readText("Day03")
     val inputTest = readText("Day03-Test")

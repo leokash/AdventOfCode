@@ -40,6 +40,12 @@ fun String.matchingGroups(regex: Regex): List<String> {
     return regex.find(this)?.groupValues?.drop(1) ?: emptyList()
 }
 
+fun String.removeAll(vararg list: String): String {
+    var res = this
+    list.forEach { value ->  res = res.replace(value, "") }
+    return res
+}
+
 fun String.replace(data: Map<String, String>): String {
     var res = this
     data.forEach { (old, new) ->  res = res.replace(old, new) }
