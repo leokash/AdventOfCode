@@ -26,6 +26,16 @@ fun String.findAll(regex: Regex): List<String> {
     }
 }
 
+fun String.findMatches(regex: Regex): List<Pair<IntRange,String>> {
+    return buildList {
+        var match = regex.find(this@findMatches)
+        while (match != null) {
+            add(match.range to match.value)
+            match = match.next()
+        }
+    }
+}
+
 fun String.matchingGroups(regex: Regex): List<String> {
     return regex.find(this)?.groupValues?.drop(1) ?: emptyList()
 }
