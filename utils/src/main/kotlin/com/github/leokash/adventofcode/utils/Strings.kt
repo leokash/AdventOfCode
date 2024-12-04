@@ -17,13 +17,7 @@ fun String.md5(): String {
 }
 
 fun String.findAll(regex: Regex): List<String> {
-    return buildList {
-        var match = regex.find(this@findAll)
-        while (match != null) {
-            add(match.value)
-            match = match.next()
-        }
-    }
+    return findMatches(regex).map { (_, match) -> match }
 }
 
 fun String.findMatches(regex: Regex): List<Pair<IntRange,String>> {
