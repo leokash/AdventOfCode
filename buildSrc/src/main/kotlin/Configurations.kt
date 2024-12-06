@@ -1,8 +1,8 @@
 
 object Configurations {
     object App {
-        const val name = "AdventOfCode"
-        const val group = "com.github.leokash.adventofcode"
-        const val version = "1.0.0"
+        const val NAME = "AdventOfCode"
+        const val GROUP = "com.github.leokash.adventofcode"
+        const val VERSION = "1.0.0"
     }
 }

@@ -11,29 +11,27 @@ private const val PART_TWO_EXPECTED = 6
 
 private typealias State = Pair<IntPoint, Direction>
 
-private fun CharMatrix.simulate(start: IntPoint, obstacle: IntPoint?): Pair<Boolean, Set<IntPoint>> {
-    var loop = false
-    val set = mutableSetOf<State>()
-    val path = generateSequence(start to Direction.NORTH) {
-        if (it in set)
-            return@generateSequence null.also { loop = true }
-
-        set += it
-        val (point, dir) = it
+private fun CharMatrix.simulate(start: IntPoint, obstacle: IntPoint? = null): Pair<Boolean, Set<IntPoint>> {
+    var inLoop = false
+    val visited = mutableSetOf<State>()
+    val guardPath = generateSequence(start to Direction.NORTH) { (point, dir) ->
         point.next(dir).let { tmp ->
             tmp?.let { next ->
-                when (if (next == obstacle) 'O' else getOrNull(next)) {
+                when (if (next == obstacle) '#' else getOrNull(next)) {
                     '.' -> next to dir
-                    '#', 'O' -> point to dir.rotate(90)
+                    '#' -> point to dir.rotate(90)
                     else -> null
                 }
             }
         }
     }
+        .onEach { inLoop = it in visited }
+        .takeWhile { !inLoop }
+        .onEach { visited.add(it) }
         .map { (p, _) -> p }
         .toSet()
 
-    return loop to path
+    return inLoop to guardPath
 }
 
 private fun List<String>.parse(): Pair<IntPoint, CharMatrix> {
@@ -44,8 +42,8 @@ private fun List<String>.parse(): Pair<IntPoint, CharMatrix> {
 
 fun main() {
     Logger.debug = true
-    fun part1(input: List<String>): Int = input.parse().let { (s, mat) -> mat.simulate(s, null).second.size }
-    fun part2(input: List<String>): Int = input.parse().let { (s, mat) ->  mat.simulate(s, null).second.drop(1).count {  mat.simulate(s, it).first } }
+    fun part1(input: List<String>): Int = input.parse().let { (s, mat) -> mat.simulate(s).second.size }
+    fun part2(input: List<String>): Int = input.parse().let { (s, mat) -> mat.simulate(s).second.drop(1).count { mat.simulate(s, it).first } }
 
     val input = readLines("Day06")
     val inputTest = readLines("Day06-Test")

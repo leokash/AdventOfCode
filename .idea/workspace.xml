@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b93834da-fc5f-4410-b533-4ccd41700e99" name="Changes" comment="AOC 2024: Day 06">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vscode/tasks.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2023/src/main/kotlin/Day21.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2023/src/main/kotlin/Day22.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2023/src/main/kotlin/Day23.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day21-Test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day21.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day22-Test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day22.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day23-Test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day23.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.fleet/run.json" beforeDir="false" afterPath="$PROJECT_DIR$/.fleet/run.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2015/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/2015/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2021/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/2021/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/2022/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2023/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/2023/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2024/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/2024/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2024/src/main/kotlin/Day06.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day06.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Build.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Build.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Configurations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Configurations.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Deps.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Deps.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Versions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Versions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/build.gradle.kts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="AdventOfCode" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+        <option value="Kotlin Object" />
+        <option value="Kotlin File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;leokash&quot;
+  }
+}</component>
+  <component name="GitHubPullRequestState">{
+  &quot;prStates&quot;: []
+}</component>
+  <component name="GitLabMergeRequestsSettings">{}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/leokash/AdventOfCode.git&quot;,
+    &quot;accountId&quot;: &quot;dc199785-fff6-4df5-8d97-cdbf33e0c3d7&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2YvsLh6LmEoDnsMNflCYDkMCyjU" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Gradle.Build AdventOfCode.executor": "Run",
+    "Kotlin.Day01Kt.executor": "Run",
+    "Kotlin.Day02Kt.executor": "Run",
+    "Kotlin.Day03Kt.executor": "Run",
+    "Kotlin.Day04Kt.executor": "Run",
+    "Kotlin.Day05Kt.executor": "Run",
+    "Kotlin.Day06Kt.executor": "Run",
+    "Kotlin.Day10Kt.executor": "Run",
+    "Kotlin.Day11Kt.executor": "Run",
+    "Kotlin.Day12Kt.executor": "Run",
+    "Kotlin.Day13Kt.executor": "Run",
+    "Kotlin.Day14Kt.executor": "Run",
+    "Kotlin.Day15Kt.executor": "Run",
+    "Kotlin.Day16Kt.executor": "Run",
+    "Kotlin.Day17Kt.executor": "Run",
+    "Kotlin.Day18Kt.executor": "Run",
+    "Kotlin.Day19Kt.executor": "Run",
+    "Kotlin.Day20Kt.executor": "Run",
+    "Kotlin.Day21Kt.executor": "Run",
+    "Kotlin.Day22Kt.executor": "Run",
+    "Kotlin.Day23Kt.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/leokash/workspace/computing/jvm/kotlin/AdventOfCode",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  }
+}]]></component>
+  <component name="RunManager" selected="Kotlin.Day06Kt">
+    <configuration name="Day02Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Day02Kt" />
+      <module name="AdventOfCode.2024.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Day03Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Day03Kt" />
+      <module name="AdventOfCode.2024.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Day04Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Day04Kt" />
+      <module name="AdventOfCode.2024.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Day05Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Day05Kt" />
+      <module name="AdventOfCode.2024.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Day06Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Day06Kt" />
+      <module name="AdventOfCode.2024.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Kotlin.Day04Kt" />
+      <item itemvalue="Kotlin.Day05Kt" />
+      <item itemvalue="Kotlin.Day06Kt" />
+      <item itemvalue="Kotlin.Day03Kt" />
+      <item itemvalue="Kotlin.Day02Kt" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.Day06Kt" />
+        <item itemvalue="Kotlin.Day04Kt" />
+        <item itemvalue="Kotlin.Day05Kt" />
+        <item itemvalue="Kotlin.Day03Kt" />
+        <item itemvalue="Kotlin.Day02Kt" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b93834da-fc5f-4410-b533-4ccd41700e99" name="Changes" comment="" />
+      <created>1701417333124</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701417333124</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Update Day 09 to use `Sequence`">
+      <option name="closed" value="true" />
+      <created>1702299058508</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702299058508</updated>
+    </task>
+    <task id="LOCAL-00002" summary="AOC 2023: Day 10">
+      <option name="closed" value="true" />
+      <created>1702299151521</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1702299151521</updated>
+    </task>
+    <task id="LOCAL-00003" summary="AOC 2023: Day 10 - Clean up of previous days logging and adding missed `rotate` function for `Direction`">
+      <option name="closed" value="true" />
+      <created>1702299213249</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1702299213249</updated>
+    </task>
+    <task id="LOCAL-00004" summary="AOC 2023: Day 10 - adding missed functions on `CircularCounter`">
+      <option name="closed" value="true" />
+      <created>1702299270151</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1702299270151</updated>
+    </task>
+    <task id="LOCAL-00005" summary="AOC 2023: Day 11">
+      <option name="closed" value="true" />
+      <created>1702299281394</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1702299281394</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Clean up of AOC 2023 Day 11, fix of stackoverflow due to failing casting and removal of unused functions">
+      <option name="closed" value="true" />
+      <created>1702502366903</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1702502366903</updated>
+    </task>
+    <task id="LOCAL-00007" summary="AOC 2023: Day 12">
+      <option name="closed" value="true" />
+      <created>1702502397834</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1702502397835</updated>
+    </task>
+    <task id="LOCAL-00008" summary="AOC 2023: Day 13">
+      <option name="closed" value="true" />
+      <created>1702502408653</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1702502408653</updated>
+    </task>
+    <task id="LOCAL-00009" summary="AOC 2024: Day 01">
+      <option name="closed" value="true" />
+      <created>1733043506587</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733043506587</updated>
+    </task>
+    <task id="LOCAL-00010" summary="AOC 2024: Day 02">
+      <option name="closed" value="true" />
+      <created>1733143941777</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1733143941777</updated>
+    </task>
+    <task id="LOCAL-00011" summary="AOC 2024: Day 03">
+      <option name="closed" value="true" />
+      <created>1733229418924</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1733229418924</updated>
+    </task>
+    <task id="LOCAL-00012" summary="AOC 2024: Day 03 - clean up">
+      <option name="closed" value="true" />
+      <created>1733258855245</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1733258855245</updated>
+    </task>
+    <task id="LOCAL-00013" summary="AOC 2024: Day 04">
+      <option name="closed" value="true" />
+      <created>1733347382782</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1733347382782</updated>
+    </task>
+    <task id="LOCAL-00014" summary="AOC 2024: Day 05">
+      <option name="closed" value="true" />
+      <created>1733437232090</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1733437232090</updated>
+    </task>
+    <task id="LOCAL-00015" summary="AOC 2024: Day 06">
+      <option name="closed" value="true" />
+      <created>1733506060625</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1733506060625</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Update Day 09 to use `Sequence`" />
+    <MESSAGE value="AOC 2023: Day 10" />
+    <MESSAGE value="AOC 2023: Day 10 - Clean up of previous days logging and adding missed `rotate` function for `Direction`" />
+    <MESSAGE value="AOC 2023: Day 10 - adding missed functions on `CircularCounter`" />
+    <MESSAGE value="AOC 2023: Day 11" />
+    <MESSAGE value="Clean up of AOC 2023 Day 11, fix of stackoverflow due to failing casting and removal of unused functions" />
+    <MESSAGE value="AOC 2023: Day 12" />
+    <MESSAGE value="AOC 2023: Day 13" />
+    <MESSAGE value="AOC 2024: Day 01" />
+    <MESSAGE value="AOC 2024: Day 02" />
+    <MESSAGE value="AOC 2024: Day 03" />
+    <MESSAGE value="AOC 2024: Day 03 - clean up" />
+    <MESSAGE value="AOC 2024: Day 04" />
+    <MESSAGE value="AOC 2024: Day 05" />
+    <MESSAGE value="AOC 2024: Day 06" />
+    <option name="LAST_COMMIT_MESSAGE" value="AOC 2024: Day 06" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/2023/src/main/kotlin/Day21.kt</url>
+          <line>97</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/2023/src/main/kotlin/Day23.kt</url>
+          <line>47</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

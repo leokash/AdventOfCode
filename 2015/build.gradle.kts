@@ -3,8 +3,8 @@ plugins {
     kotlin("jvm")
 }
 
-group = Configurations.App.group + ".2015"
-version = Configurations.App.version
+group = Configurations.App.GROUP + ".2015"
+version = Configurations.App.VERSION
 
 tasks {
     sourceSets {

@@ -7,13 +7,13 @@ buildscript {
     }
 
     dependencies {
-        classpath(Build.Plugins.ClassPaths.kotlinGradle)
+        classpath(Build.Plugins.ClassPaths.KOTLIN_GRADLE)
     }
 }
 
 allprojects {
-    group = Configurations.App.group
-    version = Configurations.App.version
+    group = Configurations.App.GROUP
+    version = Configurations.App.VERSION
 
     repositories {
         google()
