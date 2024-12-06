@@ -5,7 +5,9 @@ import com.github.leokash.adventofcode.utils.*
 import com.github.leokash.adventofcode.utils.collections.CircularList
 import com.github.leokash.adventofcode.utils.math.geometry.*
 import com.github.leokash.adventofcode.utils.matrix.CharMatrix
+import com.github.leokash.adventofcode.utils.matrix.Matrix
 import com.github.leokash.adventofcode.utils.matrix.lastRowIndex
+import com.github.leokash.adventofcode.utils.matrix.ofChars
 import kotlin.math.min
 
 private const val FLOOR = 5000
@@ -50,7 +52,7 @@ fun main() {
 
     fun part1(input: String): Int {
         var xOff = FLOOR
-        val cave = CharMatrix(FLOOR + 1, 7)
+        val cave = Matrix.ofChars(FLOOR + 1, 7)
         val rocks = CircularList(list = rocks())
         val winds = CircularList(list = input.map { if (it == '<') -1 else 1 })
         repeat(2022) {
@@ -70,7 +72,7 @@ fun main() {
             return State(ri, wi, buildString { rows.onEach { append(cave.row(it).joinToString(separator = "")) } })
         }
 
-        val cave = CharMatrix(FLOOR + 1, 7, '.')
+        val cave = Matrix.ofChars(FLOOR + 1, 7, '.')
         val rocks = CircularList(list = rocks())
         val winds = CircularList(list = input.map { if (it == '<') -1 else 1 })
         val amount = 1_000_000_000_000

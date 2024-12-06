@@ -67,7 +67,7 @@ private class Cave (
     rocksList: Iterable<Point<Int>>
 ) {
     private val source: Point<Int> = sourcePoint
-    private val layout: CaveMatrix = CaveMatrix(rows, columns)
+    private val layout: CaveMatrix = CaveMatrix(rows, columns) { _, _ -> Tile.Air }
 
     private val down: Direction = Direction.SOUTH
     private val downLeft: Direction = Direction.SOUTH_WEST
@@ -155,14 +155,5 @@ private class Cave (
     }
 }
 
-private class CaveMatrix(
-    override val rows: Int,
-    override val columns: Int,
-    init: (Int, Int) -> Tile = { _, _ ->  Tile.Air }
-): Matrix<Tile>() {
-    override val store: Array<Array<Tile>> = Array(rows) { x ->
-        Array(columns) { y ->
-            init(x, y)
-        }
-    }
-}
+private typealias CaveMatrix = Matrix<Tile>
+

@@ -3,6 +3,8 @@ import com.github.leokash.adventofcode.utils.readLines
 import com.github.leokash.adventofcode.utils.matrix.fold
 import com.github.leokash.adventofcode.utils.matrix.IntMatrix
 import com.github.leokash.adventofcode.utils.math.geometry.*
+import com.github.leokash.adventofcode.utils.matrix.Matrix
+import com.github.leokash.adventofcode.utils.matrix.ofInts
 import kotlin.math.*
 
 private fun IntMatrix.add(vector: Vec4, diagonal: ((Vec4) -> List<Point<Int>>)? = null) {
@@ -47,13 +49,13 @@ fun main() {
 
     fun part1(input: List<Vec4>): Int {
         val (rows, columns) = size(input)
-        return IntMatrix(rows, columns).also {
+        return Matrix.ofInts(rows, columns).also {
             for (vec in input) { it.add(vec) }
         }.fold(0) { acc, n -> acc + if (n >= 2) 1 else 0 }
     }
     fun part2(input: List<Vec4>): Int {
         val (rows, columns) = size(input)
-        return IntMatrix(rows, columns).also {
+        return Matrix.ofInts(rows, columns).also {
             for (vec in input) { it.add(vec, diagonal) }
         }.fold(0) { acc, n -> acc + if (n >= 2) 1 else 0 }
     }

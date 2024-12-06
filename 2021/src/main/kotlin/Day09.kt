@@ -1,9 +1,8 @@
 
+import com.github.leokash.adventofcode.utils.collections.mapInts
 import com.github.leokash.adventofcode.utils.math.geometry.*
+import com.github.leokash.adventofcode.utils.matrix.*
 import com.github.leokash.adventofcode.utils.readLines
-import com.github.leokash.adventofcode.utils.matrix.IntMatrix
-import com.github.leokash.adventofcode.utils.matrix.neighbors
-import com.github.leokash.adventofcode.utils.matrix.foldIndexed
 
 private fun IntMatrix.basin(x: Int, y: Int, visited: MutableList<Point<Int>>): Int {
     visited.add(Point(x, y))
@@ -17,7 +16,8 @@ private fun IntMatrix.basin(x: Int, y: Int, visited: MutableList<Point<Int>>): I
 
 fun main() {
     fun part1(input: List<String>): Int {
-        val grid = IntMatrix(input.size, input[0].trim().length).also { mat ->
+        input.mapInts()
+        val grid = Matrix.ofInts(input.size, input[0].trim().length).also { mat ->
             for ((x, string) in input.withIndex()) {
                 string.trim().toList().forEachIndexed { y, c ->
                     mat[x, y] = c.digitToInt()
@@ -31,7 +31,7 @@ fun main() {
         }
     }
     fun part2(input: List<String>): Int {
-        val grid = IntMatrix(input.size, input[0].trim().length).also { mat ->
+        val grid = Matrix.ofInts(input.size, input[0].trim().length).also { mat ->
             for ((x, string) in input.withIndex()) {
                 string.trim().toList().forEachIndexed { y, c ->
                     mat[x, y] = c.digitToInt()

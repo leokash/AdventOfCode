@@ -8,7 +8,7 @@ private const val PART_ONE_EXPECTED = 18
 private const val PART_TWO_EXPECTED = 9
 
 private fun CharMatrix.searchXmases(start: IntPoint): Boolean {
-    return slice<Char>(start, 3, 3)?.let { slice ->
+    return slice(start, 3, 3)?.let { slice ->
         slice[1,1] == 'A' && (
             slice[0, 0] == 'M' && slice[0, 2] == 'M' && slice[2,0] == 'S' && slice[2,2] == 'S' ||
             slice[0, 0] == 'S' && slice[0, 2] == 'S' && slice[2,0] == 'M' && slice[2,2] == 'M' ||

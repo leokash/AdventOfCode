@@ -1,8 +1,5 @@
 
-import com.github.leokash.adventofcode.utils.matrix.IntMatrix
-import com.github.leokash.adventofcode.utils.matrix.fold
-import com.github.leokash.adventofcode.utils.matrix.foldIndexed
-import com.github.leokash.adventofcode.utils.matrix.neighbors
+import com.github.leokash.adventofcode.utils.matrix.*
 import com.github.leokash.adventofcode.utils.readLines
 
 private fun simulate1(mat: IntMatrix, steps: Int = 100): Int {
@@ -38,7 +35,7 @@ private fun IntMatrix.computeFlashes(x: Int, y: Int): Int {
 
 fun main() {
     fun parse(input: List<String>): IntMatrix {
-        return IntMatrix(10, 10).also {
+        return Matrix.ofInts(10, 10).also {
             for ((x, string) in input.withIndex()) {
                 string.trim().toList().forEachIndexed { y, c ->
                     it[x, y] = c.digitToInt()

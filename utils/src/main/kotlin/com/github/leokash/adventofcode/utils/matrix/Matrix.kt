@@ -3,74 +3,52 @@ package com.github.leokash.adventofcode.utils.matrix
 
 import com.github.leokash.adventofcode.utils.math.geometry.Point
 
-abstract class Matrix<T>: Iterable<T> {
-    abstract val rows: Int
-    abstract val columns: Int
-    protected abstract val store: Array<Array<T>>
+class Matrix<T>(val rows: Int, val columns: Int, init: (Int, Int) -> T): Iterable<Pair<Point<Int>, T>> {
+    private val store = mutableMapOf<Point<Int>, T>()
+
+    init {
+        for (x in rowIndices)
+            for (y in columnIndices)
+                store[Point(x, y)] = init(x, y)
+    }
 
     fun size(): Int = rows * columns
     fun forEach(f: (T) -> Unit) {
-        forEachIndexed { _, _, v -> f(v) }
+        for ((_, value) in this)
+            f(value)
     }
     fun forEachIndexed(f: (Int, Int, T) -> Unit) {
-        store.forEachIndexed { x, arr ->
-            arr.forEachIndexed { y, v ->
-                f(x, y, v)
-            }
-        }
+        for ((pos, value) in this)
+            f(pos.x, pos.y, value)
     }
 
     fun row(index: Int, range: IntRange? = null): List<T> {
         if (index < 0 || index >= rows)
             throw IllegalAccessException("Out of bounds! $index not in 0..$rows")
-        return store[index].slice(range ?: columnIndices)
+        return (range ?: columnIndices).let { (it.first..it.last).map { y -> get(index, y) } }
     }
     fun column(index: Int, range: IntRange? = null): List<T> {
         if (index < 0 || index >= columns)
             throw IllegalAccessException("Out of bounds! $index not in 0..$columns")
-        return store.map { it[index] }.slice(range ?: rowIndices)
+        return (range ?: rowIndices).let { (it.first..it.last).map { x -> get(x, index) } }
     }
 
-    inline fun <reified E> slice(p: Point<Int>, rows: Int, columns: Int): Matrix<E>? {
-        return slice(p.x, p.y, rows, columns)
+    fun slice(p: Point<Int>, rows: Int, columns: Int): Matrix<T>? {
+        if (p.x !in rowIndices || p.x + (rows - 1) >= this.rows) return null
+        if (p.y !in columnIndices || p.y + (columns - 1) >= this.columns) return null
+        return Matrix(rows, columns) { i, j -> get(p.x + i, p.y + j) }
     }
 
-    inline fun <reified E> slice(x: Int, y: Int, rows: Int, columns: Int): Matrix<E>? {
-        if (x !in rowIndices || x + (rows - 1) >= this.rows) return null
-        if (y !in columnIndices || y + (columns - 1) >= this.columns) return null
-        return SlicedMatrix.matrixOf(rows, columns) { i, j -> get(x + i, y + j) as E }
+    @Suppress("unused")
+    fun slice(x: Int, y: Int, rows: Int, columns: Int): Matrix<T>? {
+        return slice(Point(x, y), rows, columns)
     }
 
-    operator fun get(point: Point<Int>): T {
-        return get(point.x, point.y)
-    }
-    operator fun get(x: Int, y: Int): T {
-        return store[x][y]
-    }
-    operator fun set(point: Point<Int>, value: T) {
-        set(point.x, point.y, value)
-    }
-    operator fun set(x: Int, y: Int, value: T) {
-        store[x][y] = value
-    }
+    operator fun get(x: Int, y: Int): T = get(Point(x, y))
+    operator fun get(point: Point<Int>): T = store.getValue(point)
 
-    override fun iterator(): Iterator<T> {
-        return object: Iterator<T> {
-            var curX: Int = 0
-            var curY: Int = 0
-            override fun hasNext(): Boolean {
-                return curX in rowIndices
-            }
-
-            override fun next(): T {
-                return get(curX, curY).also {
-                    val tmp = curY + 1
-                    curY = if (tmp in columnIndices) tmp else 0.also { curX++ }
-                }
-            }
-
-        }
-    }
+    operator fun set(x: Int, y: Int, value: T) = set(Point(x, y), value)
+    operator fun set(point: Point<Int>, value: T) = store.also { it[point] = value }
 
     override fun hashCode(): Int {
         var result = 0
@@ -79,7 +57,6 @@ abstract class Matrix<T>: Iterable<T> {
                 result = 31 * result + this[x, y].hashCode()
         return result
     }
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is Matrix<*>) return false
@@ -93,24 +70,22 @@ abstract class Matrix<T>: Iterable<T> {
 
         return true
     }
-}
+    override fun iterator(): Iterator<Pair<Point<Int>, T>> {
+        return object: Iterator<Pair<Point<Int>, T>> {
+            var curX: Int = 0
+            var curY: Int = 0
+            override fun hasNext(): Boolean {
+                return curX in rowIndices
+            }
 
-class SlicedMatrix<T> (r: Int, c: Int) : Matrix<T>() {
-    override val rows: Int = r
-    override val columns: Int = c
-
-    lateinit var backingStore: Array<Array<T>>
-    override val store: Array<Array<T>> get() = backingStore
-
-    companion object {
-        inline fun <reified T> matrixOf(rows: Int, columns: Int, init: (Int, Int) -> T): Matrix<T> {
-            return SlicedMatrix<T>(rows, columns).apply {
-                backingStore = Array(rows) { x ->
-                    Array(columns) { y ->
-                        init(x, y)
-                    }
+            override fun next(): Pair<Point<Int>, T> {
+                return Point(curX, curY) to get(curX, curY).also {
+                    val tmp = curY + 1
+                    curY = if (tmp in columnIndices) tmp else 0.also { curX++ }
                 }
             }
         }
     }
+
+    companion object Factory
 }

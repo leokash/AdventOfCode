@@ -1,10 +1,14 @@
 
+import com.github.leokash.adventofcode.utils.collections.mapInts
 import com.github.leokash.adventofcode.utils.readLines
 import com.github.leokash.adventofcode.utils.matrix.fold
 import com.github.leokash.adventofcode.utils.matrix.Matrix
+import com.github.leokash.adventofcode.utils.matrix.asMatrix
 
 private val rgx = """\s+""".toRegex()
 private data class Square(val number: Int, var selected: Boolean = false)
+
+private typealias BingoBoard = Matrix<Square>
 
 private class Game(input: List<String>) {
     private val numbers = mutableListOf<Int>()
@@ -12,9 +16,8 @@ private class Game(input: List<String>) {
 
     init {
         input[0].trim().split(',').forEach { numbers += it.toInt() }
-        input.drop(1).asSequence().filter { it.isNotEmpty() }.chunked(5).forEach {
-            val values = it.map { s -> s.trim().split(rgx) }
-            bingoBoards += BingoBoard { x, y -> Square(values[x][y].trim().toInt()) }
+        input.drop(1).asSequence().filter { it.isNotEmpty() }.chunked(5).forEach { values ->
+            bingoBoards += values.mapInts(rgx).asMatrix { Square(it) }
         }
     }
 
@@ -57,33 +60,24 @@ private class Game(input: List<String>) {
         return 0
     }
 }
-private class BingoBoard(init: (Int, Int) -> Square): Matrix<Square>() {
 
-    override val rows: Int get() = 5
-    override val columns: Int get() = 5
-    override val store: Array<Array<Square>> = Array(rows) { x -> Array(columns) { y -> init(x, y) } }
+private val BingoBoard.hasWon: Boolean get() {
+    for (x in (0 until rows))
+        if (row(x).count { it.selected } == rows) return true
+    for (y in (0 until  columns))
+        if (column(y).count { it.selected } == columns) return true
+    return false
+}
 
-    val hasWon: Boolean get() {
-        for (x in (0 until rows))
-            if (row(x).count { it.selected } == rows) return true
-        for (y in (0 until  columns))
-            if (column(y).count { it.selected } == columns) return true
-        return false
+private fun BingoBoard.add(number: Int): Boolean {
+    for ((pos, square) in this) {
+        if (square.number != number)
+            continue
+        square.selected = true
+        return row(pos.x).count { it.selected } == rows || column(pos.y).count { it.selected } == columns
     }
 
-    fun add(number: Int): Boolean {
-        for (x in (0 until rows)) {
-            for (y in (0 until columns)) {
-                if (this[x, y].number != number)
-                    continue
-                this[x, y].selected = true
-                return row(x).count { it.selected } == rows ||
-                        column(y).count { it.selected } == columns
-            }
-        }
-
-        return false
-    }
+    return false
 }
 
 fun main() {

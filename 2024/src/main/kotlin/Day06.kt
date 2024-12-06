@@ -2,7 +2,6 @@
 import com.github.leokash.adventofcode.utils.*
 import com.github.leokash.adventofcode.utils.collections.toCharMatrix
 import com.github.leokash.adventofcode.utils.math.geometry.IntPoint
-import com.github.leokash.adventofcode.utils.math.geometry.Point
 import com.github.leokash.adventofcode.utils.math.geometry.next
 import com.github.leokash.adventofcode.utils.matrix.*
 
@@ -18,7 +17,7 @@ private fun CharMatrix.simulate(start: IntPoint, obstacle: IntPoint? = null): Pa
         point.next(dir).let { tmp ->
             tmp?.let { next ->
                 when (if (next == obstacle) '#' else getOrNull(next)) {
-                    '.' -> next to dir
+                    '.', '^' -> next to dir
                     '#' -> point to dir.rotate(90)
                     else -> null
                 }
@@ -28,16 +27,14 @@ private fun CharMatrix.simulate(start: IntPoint, obstacle: IntPoint? = null): Pa
         .onEach { inLoop = it in visited }
         .takeWhile { !inLoop }
         .onEach { visited.add(it) }
-        .map { (p, _) -> p }
+        .map { it.first }
         .toSet()
 
     return inLoop to guardPath
 }
 
 private fun List<String>.parse(): Pair<IntPoint, CharMatrix> {
-    var start = Point(0, 0)
-    val matrix = toCharMatrix { x, y, c -> if (c == '^') '.'.also { start = Point(x, y) } else c }
-    return start to matrix
+    return toCharMatrix().let { it.indexOfFirst { c -> c == '^' } to it }
 }
 
 fun main() {
