@@ -5,6 +5,8 @@ import com.github.leokash.adventofcode.utils.math.context.Context
 import com.github.leokash.adventofcode.utils.math.compareTo
 import java.util.Objects
 
+typealias IntPoint = Point<Int>
+
 data class Point<T>(var x: T, var y: T, val context: Context<T>) where T: Number, T: Comparable<T> {
     operator fun div(other: Point<T>): Point<T> = with(context) { Point(div(x, other.x), div(y, other.y), this) }
     operator fun plus(other: Point<T>): Point<T> = with(context) { Point(add(x, other.x), add(y, other.y), this) }

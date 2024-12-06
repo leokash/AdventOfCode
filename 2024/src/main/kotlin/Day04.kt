@@ -1,12 +1,11 @@
 
 import com.github.leokash.adventofcode.utils.*
+import com.github.leokash.adventofcode.utils.collections.toCharMatrix
 import com.github.leokash.adventofcode.utils.math.geometry.*
 import com.github.leokash.adventofcode.utils.matrix.*
 
 private const val PART_ONE_EXPECTED = 18
 private const val PART_TWO_EXPECTED = 9
-
-private typealias IntPoint = Point<Int>
 
 private fun CharMatrix.searchXmases(start: IntPoint): Boolean {
     return slice<Char>(start, 3, 3)?.let { slice ->
@@ -43,10 +42,7 @@ private fun CharMatrix.searchXmas(start: IntPoint, dir: Direction, cache: Mutabl
 
 fun main() {
     fun compute(input: List<String>, usingSlice: Boolean = false): Int {
-        val mat = CharMatrix(input.size, input[0].length) { x, y ->
-            input[x][y]
-        }
-
+        val mat = input.toCharMatrix()
         val cache = mutableSetOf<List<IntPoint>>()
         return mat.foldIndexed(0) { x, y, acc, char ->
             acc + when(usingSlice) {

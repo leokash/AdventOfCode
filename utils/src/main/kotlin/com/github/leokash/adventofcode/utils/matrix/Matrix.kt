@@ -3,7 +3,7 @@ package com.github.leokash.adventofcode.utils.matrix
 
 import com.github.leokash.adventofcode.utils.math.geometry.Point
 
-abstract class Matrix<T> {
+abstract class Matrix<T>: Iterable<T> {
     abstract val rows: Int
     abstract val columns: Int
     protected abstract val store: Array<Array<T>>
@@ -52,6 +52,24 @@ abstract class Matrix<T> {
     }
     operator fun set(x: Int, y: Int, value: T) {
         store[x][y] = value
+    }
+
+    override fun iterator(): Iterator<T> {
+        return object: Iterator<T> {
+            var curX: Int = 0
+            var curY: Int = 0
+            override fun hasNext(): Boolean {
+                return curX in rowIndices
+            }
+
+            override fun next(): T {
+                return get(curX, curY).also {
+                    val tmp = curY + 1
+                    curY = if (tmp in columnIndices) tmp else 0.also { curX++ }
+                }
+            }
+
+        }
     }
 
     override fun hashCode(): Int {
