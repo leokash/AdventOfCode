@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b93834da-fc5f-4410-b533-4ccd41700e99" name="Changes" comment="AOC 2024: Day 06">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="b93834da-fc5f-4410-b533-4ccd41700e99" name="Changes" comment="AOC - Cleanup">
       <change afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.vscode/tasks.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/kotlin/Day21.kt" afterDir="false" />
@@ -17,20 +16,16 @@
       <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day22.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day23-Test.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day23.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day07.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day07-Test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day07.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.fleet/run.json" beforeDir="false" afterPath="$PROJECT_DIR$/.fleet/run.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2015/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/2015/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2021/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/2021/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/2022/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2023/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/2023/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2021/src/main/kotlin/Day18.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2021/src/main/kotlin/Day18.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2024/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/2024/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2024/src/main/kotlin/Day06.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day06.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Build.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Build.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Configurations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Configurations.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Deps.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Deps.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Versions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Versions.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/collections/List+combinatorics.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,12 +97,18 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Gradle.Build AdventOfCode.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Kotlin.Day01Kt (1).executor": "Run",
+    "Kotlin.Day01Kt (2).executor": "Run",
     "Kotlin.Day01Kt.executor": "Run",
     "Kotlin.Day02Kt.executor": "Run",
     "Kotlin.Day03Kt.executor": "Run",
+    "Kotlin.Day04Kt (1).executor": "Run",
     "Kotlin.Day04Kt.executor": "Run",
     "Kotlin.Day05Kt.executor": "Run",
     "Kotlin.Day06Kt.executor": "Run",
+    "Kotlin.Day07Kt.executor": "Run",
+    "Kotlin.Day09Kt.executor": "Run",
     "Kotlin.Day10Kt.executor": "Run",
     "Kotlin.Day11Kt.executor": "Run",
     "Kotlin.Day12Kt.executor": "Run",
@@ -131,30 +132,9 @@
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
   }
 }]]></component>
-  <component name="RunManager" selected="Kotlin.Day06Kt">
-    <configuration name="Day02Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Day02Kt" />
-      <module name="AdventOfCode.2024.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Day03Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Day03Kt" />
-      <module name="AdventOfCode.2024.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Day04Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Day04Kt" />
-      <module name="AdventOfCode.2024.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Day05Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Day05Kt" />
+  <component name="RunManager" selected="Kotlin.Day18Kt">
+    <configuration name="Day01Kt (2)" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Day01Kt" />
       <module name="AdventOfCode.2024.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -167,20 +147,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Day07Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Day07Kt" />
+      <module name="AdventOfCode.2024.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Day17Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Day17Kt" />
+      <module name="AdventOfCode.2022.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Day18Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Day18Kt" />
+      <module name="AdventOfCode.2021.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Kotlin.Day04Kt" />
-      <item itemvalue="Kotlin.Day05Kt" />
+      <item itemvalue="Kotlin.Day01Kt (2)" />
       <item itemvalue="Kotlin.Day06Kt" />
-      <item itemvalue="Kotlin.Day03Kt" />
-      <item itemvalue="Kotlin.Day02Kt" />
+      <item itemvalue="Kotlin.Day07Kt" />
+      <item itemvalue="Kotlin.Day17Kt" />
+      <item itemvalue="Kotlin.Day18Kt" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.Day18Kt" />
+        <item itemvalue="Kotlin.Day07Kt" />
         <item itemvalue="Kotlin.Day06Kt" />
-        <item itemvalue="Kotlin.Day04Kt" />
-        <item itemvalue="Kotlin.Day05Kt" />
-        <item itemvalue="Kotlin.Day03Kt" />
-        <item itemvalue="Kotlin.Day02Kt" />
+        <item itemvalue="Kotlin.Day17Kt" />
+        <item itemvalue="Kotlin.Day01Kt (2)" />
       </list>
     </recent_temporary>
   </component>
@@ -313,7 +314,31 @@
       <option name="project" value="LOCAL" />
       <updated>1733506060625</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="AOC 2024: Day 06 - Update kotlin to `2.1.0`, fix Gradle settings">
+      <option name="closed" value="true" />
+      <created>1733520416638</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1733520416638</updated>
+    </task>
+    <task id="LOCAL-00017" summary="AOC - Update `Matrix` classes and helper functions">
+      <option name="closed" value="true" />
+      <created>1733527859742</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1733527859742</updated>
+    </task>
+    <task id="LOCAL-00018" summary="AOC - Cleanup">
+      <option name="closed" value="true" />
+      <created>1733571840716</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1733571840716</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -355,7 +380,10 @@
     <MESSAGE value="AOC 2024: Day 04" />
     <MESSAGE value="AOC 2024: Day 05" />
     <MESSAGE value="AOC 2024: Day 06" />
-    <option name="LAST_COMMIT_MESSAGE" value="AOC 2024: Day 06" />
+    <MESSAGE value="AOC 2024: Day 06 - Update kotlin to `2.1.0`, fix Gradle settings" />
+    <MESSAGE value="AOC - Update `Matrix` classes and helper functions" />
+    <MESSAGE value="AOC - Cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="AOC - Cleanup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

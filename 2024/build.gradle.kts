@@ -12,6 +12,7 @@ tasks {
             dependencies {
                 api(project(":utils"))
                 implementation(Deps.COROUTINES)
+                implementation(Deps.COMBINATORICS)
             }
         }
     }
