@@ -17,7 +17,7 @@ private fun CharMatrix.simulate(start: IntPoint, obstacle: IntPoint? = null): Pa
         point.next(dir).let { tmp ->
             tmp?.let { next ->
                 when (if (next == obstacle) '#' else getOrNull(next)) {
-                    '.', '^' -> next to dir
+                    '.' -> next to dir
                     '#' -> point to dir.rotate(90)
                     else -> null
                 }
@@ -34,7 +34,7 @@ private fun CharMatrix.simulate(start: IntPoint, obstacle: IntPoint? = null): Pa
 }
 
 private fun List<String>.parse(): Pair<IntPoint, CharMatrix> {
-    return toCharMatrix().let { it.indexOfFirst { c -> c == '^' } to it }
+    return toCharMatrix().let { it.indexOfFirst { c -> c == '^' }.also { idx -> it[idx] = '.' } to it }
 }
 
 fun main() {
