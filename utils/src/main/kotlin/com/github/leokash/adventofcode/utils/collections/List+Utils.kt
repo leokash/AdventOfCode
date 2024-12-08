@@ -16,10 +16,12 @@ operator fun List<CharSequence>.contains(p: Point<Int>): Boolean = if (p.x in in
 fun List<CharSequence>.getOrNull(p: Point<Int>): Char? = getOrNull(p.x, p.y)
 fun List<CharSequence>.getOrNull(x: Int, y: Int): Char? = if (x in indices) this[x].let { if (y in it.indices) it[y] else null } else null
 
-fun List<CharSequence>.indicesOf(char: Char): List<Point<Int>> = buildList {
+fun List<CharSequence>.indicesOf(char: Char): List<Point<Int>> = indicesOf { _, c: Char -> c == char }
+fun List<CharSequence>.indicesOf(predicate: (Char) -> Boolean): List<Point<Int>> = indicesOf { _, c -> predicate(c) }
+fun List<CharSequence>.indicesOf(predicate: (Point<Int>, Char) -> Boolean): List<Point<Int>> = buildList {
     for (x in this@indicesOf.indices)
         for (y in this@indicesOf[x].indices)
-            if (char == this@indicesOf[x][y]) add(Point(x, y))
+            with(Point(x, y)) { if (predicate(this, this@indicesOf[x][y])) add(this) }
 }
 
 fun List<CharSequence>.indexOf(char: Char): Point<Int>? {

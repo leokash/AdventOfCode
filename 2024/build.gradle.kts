@@ -17,3 +17,11 @@ tasks {
         }
     }
 }
+
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.add("-Xwhen-guards")
+        freeCompilerArgs.add("-Xnon-local-break-continue")
+        freeCompilerArgs.add("-Xmulti-dollar-interpolation")
+    }
+}

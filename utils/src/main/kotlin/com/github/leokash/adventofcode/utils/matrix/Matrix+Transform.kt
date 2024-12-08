@@ -47,11 +47,15 @@ fun <T> Matrix<T>.all(predicate: (Int, Int, T) -> Boolean): Boolean {
             if (!predicate(x, y, this[x, y])) return false
     return true
 }
+
 fun <T> Matrix<T>.filter(predicate: (Int, Int, T) -> Boolean): List<Pair<Point<Int>, T>> {
+    return filter { p, e -> predicate(p.x, p.y, e)}
+}
+
+fun <T> Matrix<T>.filter(predicate: (Point<Int>, T) -> Boolean): List<Pair<Point<Int>, T>> {
     return buildList {
-        this@filter.forEachIndexed { x, y, value ->
-            if (predicate(x, y, value))
-                add(Point(x, y) to value)
+        this@filter.forEach { (p, e) ->
+            if (predicate(p, e)) add(p to e)
         }
     }
 }

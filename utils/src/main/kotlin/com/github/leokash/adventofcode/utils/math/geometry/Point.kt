@@ -8,6 +8,11 @@ import java.util.Objects
 typealias IntPoint = Point<Int>
 
 data class Point<T>(var x: T, var y: T, val context: Context<T>) where T: Number, T: Comparable<T> {
+    operator fun div(num: T): Point<T> = with(context) { Point(div(x, num), div(y, num), this) }
+    operator fun plus(num: T): Point<T> = with(context) { Point(add(x, num), add(y, num), this) }
+    operator fun times(num: T): Point<T> = with(context) { Point(mul(x, num), mul(y, num), this) }
+    operator fun minus(num: T): Point<T> = with(context) { Point(sub(x, num), sub(y, num), this) }
+
     operator fun div(other: Point<T>): Point<T> = with(context) { Point(div(x, other.x), div(y, other.y), this) }
     operator fun plus(other: Point<T>): Point<T> = with(context) { Point(add(x, other.x), add(y, other.y), this) }
     operator fun times(other: Point<T>): Point<T> = with(context) { Point(mul(x, other.x), mul(y, other.y), this) }

@@ -29,6 +29,36 @@ fun <T> Matrix<T>.indexOfFirst(predicate: (T) -> Boolean): Point<Int> {
     error("Unable to find first index of an item in ${this::class.simpleName}")
 }
 
+fun <T> Matrix<T>.intersection(lhs: Point<Int>, rhs: Point<Int>): Point<Int>? {
+    return intersections(lhs, rhs, true).firstOrNull()
+}
+
+fun <T> Matrix<T>.intersections(lhs: Point<Int>, rhs: Point<Int>, returnFirst: Boolean = false): List<Point<Int>> {
+    return buildList {
+        if (lhs.x == rhs.x || lhs.y == rhs.y)
+            return@buildList
+        for (nx in rowIndices) {
+            val tmp = Point(nx, lhs.y)
+            for (ny in columnIndices) {
+                if (tmp == Point(rhs.x, ny)) {
+                    add(tmp)
+                    if (returnFirst) return@buildList
+                }
+            }
+        }
+
+        for (ny in columnIndices) {
+            val tmp = Point(lhs.x, ny)
+            for (nx in rowIndices) {
+                if (tmp == Point(nx, rhs.y)) {
+                    add(tmp)
+                    if (returnFirst) return@buildList
+                }
+            }
+        }
+    }
+}
+
 fun Matrix<*>.isEdge(p: Point<Int>): Boolean {
     return isEdge(p.x, p.y)
 }

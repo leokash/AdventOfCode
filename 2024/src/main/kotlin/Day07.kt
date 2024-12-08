@@ -1,42 +1,35 @@
 
 import com.github.leokash.adventofcode.utils.*
-import com.github.shiguruikai.combinatoricskt.permutationsWithRepetition
 
+private val numRgx = """\d+""".toRegex()
 private const val PART_ONE_EXPECTED = 3749L
 private const val PART_TWO_EXPECTED = 11387L
 
-data object Add: Op {
-    override fun invoke(lhs: Long, rhs: Long): Long = lhs + rhs
-}
-data object Mul: Op {
-    override fun invoke(lhs: Long, rhs: Long): Long = lhs * rhs
-}
-data object Con: Op {
-    override fun invoke(lhs: Long, rhs: Long): Long = "$lhs$rhs".toLong()
-}
-private sealed interface Op {
-    operator fun invoke(lhs: Long, rhs: Long): Long
-}
+private fun interface Op: (Long, Long) -> Long
 
-private val numRgx = """\d+""".toRegex()
-private val operations = listOf(Add, Mul)
+private val add = Op { lhs: Long, rhs: Long -> lhs + rhs }
+private val mul = Op { lhs: Long, rhs: Long -> lhs * rhs }
+private val concat = Op { lhs: Long, rhs: Long -> "$lhs$rhs".toLong() }
 
-private fun List<Long>.findRightCalibration(answer: Long, concat: Boolean): Boolean {
-    return operations
-        .let { if (concat) it + Con else it }
-        .permutationsWithRepetition(lastIndex)
-        .any { reduceIndexed { i, lhs, rhs ->  it[i - 1](lhs, rhs) } == answer }
+private fun List<Long>.validate(answer: Long, operations: List<Op>): Boolean {
+    fun validate(value: Long, values: List<Long>): Boolean {
+        if (value > answer) return false
+        if (values.isEmpty()) return value == answer
+        return operations.any { validate(it(value, values[0]), values.subList(1, values.size)) }
+    }
+
+    return validate(this[0], subList(1, size))
 }
 
 fun main() {
-    fun compute(input: List<String>, concat: Boolean = false): Long {
+    fun compute(input: List<String>, operations: List<Op>): Long {
         return input
             .map { it.findAll(numRgx).map(String::toLong) }
-            .sumOf { arr -> if(arr.drop(1).findRightCalibration(arr[0], concat)) arr[0] else 0 }
+            .sumOf { arr -> if(arr.drop(1).validate(arr[0], operations)) arr[0] else 0 }
     }
 
-    fun part1(input: List<String>): Long = compute(input)
-    fun part2(input: List<String>): Long = compute(input, true)
+    fun part1(input: List<String>): Long = compute(input, listOf(add, mul))
+    fun part2(input: List<String>): Long = compute(input, listOf(add, mul, concat))
 
     val input = readLines("Day07")
     val inputTest = readLines("Day07-Test")

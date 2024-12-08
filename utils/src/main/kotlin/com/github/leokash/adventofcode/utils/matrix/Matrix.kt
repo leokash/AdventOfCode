@@ -21,6 +21,10 @@ class Matrix<T>(val rows: Int, val columns: Int, init: (Int, Int) -> T): Iterabl
         for ((pos, value) in this)
             f(pos.x, pos.y, value)
     }
+    fun forEachIndexed(f: (Point<Int>, T) -> Unit) {
+        for ((pos, value ) in this)
+            f(pos, value)
+    }
 
     fun row(index: Int, range: IntRange? = null): List<T> {
         if (index < 0 || index >= rows)

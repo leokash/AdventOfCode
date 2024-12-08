@@ -14,6 +14,17 @@ enum class Direction(val point: Point<Int>) {
     WEST(Point(0, -1)),
     NORTH_WEST(Point(-1, -1));
 
+    override fun toString() = when (this) {
+        EAST -> "→"
+        WEST -> "←"
+        NORTH -> "↑"
+        SOUTH -> "↓"
+        NORTH_EAST -> "↗"
+        NORTH_WEST -> "↖"
+        SOUTH_EAST -> "↘"
+        SOUTH_WEST -> "↙"
+    }
+
     companion object {
         val all: List<Direction> = entries
         val cardinals: List<Direction> = listOf(NORTH, EAST, SOUTH, WEST)
@@ -21,9 +32,24 @@ enum class Direction(val point: Point<Int>) {
     }
 
     fun rotate(degrees: Int): Direction {
-        val count = CircularCounter(0, 7, this.ordinal)
+        if (degrees == 0 || degrees == 360)
+            return this
+
         val turns = abs(degrees) / 45
+        val count = CircularCounter(0, 7, this.ordinal)
         (if (degrees < 0) count::repeatDecrement else count::repeatIncrement)(turns)
+
         return entries[count.get()]
+    }
+
+    val opposite: List<Direction> get() = when(this) {
+        EAST -> listOf(WEST)
+        WEST -> listOf(EAST)
+        NORTH -> listOf(SOUTH)
+        SOUTH -> listOf(NORTH)
+        NORTH_EAST -> listOf(SOUTH, WEST)
+        NORTH_WEST -> listOf(SOUTH, EAST)
+        SOUTH_WEST -> listOf(NORTH, EAST)
+        SOUTH_EAST -> listOf(NORTH, WEST)
     }
 }

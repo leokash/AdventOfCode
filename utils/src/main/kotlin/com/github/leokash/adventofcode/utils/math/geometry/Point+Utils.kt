@@ -7,6 +7,7 @@ fun Int.toPoint(rows: Int, columns: Int): Point<Int> {
     return Point(this / rows, this % columns)
 }
 
+@Suppress("unused")
 fun Long.toPoint(rows: Int, columns: Int): Point<Long> {
     return Point(this / rows, this % columns)
 }
@@ -32,13 +33,18 @@ fun <T> Point<T>.directionTo(other: Point<T>): Direction? where T: Number, T: Co
     }
 }
 
-fun <T> Point<T>.move(steps: Int = 1, direction: Direction, bounds: Rect<T>? = null): Point<T> where T: Number, T: Comparable<T> {
+fun <T> Point<T>.move(steps: List<Pair<Direction, Int>>, bounds: Rect<T>? = null): Point<T> where T: Number, T: Comparable<T> {
     var initial = this
-    repeat(steps) {
-        initial = initial.next(direction, bounds) ?: return initial
-    }
+    for ((dir, count) in steps)
+        repeat(count) {
+            initial = initial.next(dir, bounds) ?: initial
+        }
 
     return initial
+}
+
+fun <T> Point<T>.move(steps: Int = 1, direction: Direction, bounds: Rect<T>? = null): Point<T> where T: Number, T: Comparable<T> {
+    return move(listOf(direction to steps), bounds)
 }
 
 fun <T> Point<T>.next(direction: Direction, bounds: Rect<T>? = null): Point<T>? where T: Number, T: Comparable<T> = with(context) {
