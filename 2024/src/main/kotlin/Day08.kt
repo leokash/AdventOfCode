@@ -25,10 +25,7 @@ private const val PART_TWO_EXPECTED = 34
 
 private fun CharMatrix.findAntinodes(char: Char, lhs: IntPoint, resonate: Boolean): List<IntPoint> {
     return this
-        .asSequence()
-        .filter { (rhs, c) ->
-            c == char && lhs != rhs && lhs.manhattanDistance(rhs) >= 2 && intersection(lhs, rhs) != null
-        }
+        .filter { (rhs, c) -> c == char && lhs != rhs && lhs.manhattanDistance(rhs) >= 2 }
         .flatMap { (rhs, _) ->
             val distLhs = lhs - rhs
             val distRhs = rhs - lhs
@@ -45,12 +42,9 @@ private fun CharMatrix.findAntinodes(char: Char, lhs: IntPoint, resonate: Boolea
                 }
             }
         }
-        .filter { it in this }
-        .toList()
 }
 
 fun main() {
-    Logger.debug = true
     fun compute(input: List<String>, resonate: Boolean = false): Int {
         val mat = input.toCharMatrix()
         return mat

@@ -5,6 +5,8 @@ import java.math.BigInteger
 import java.security.MessageDigest
 import kotlin.math.min
 
+fun String.isLong(): Boolean = this.toLongOrNull() != null
+
 operator fun String.component1(): Char = this[0]
 operator fun String.component2(): Char = this[1]
 operator fun String.component3(): Char = this[2]
