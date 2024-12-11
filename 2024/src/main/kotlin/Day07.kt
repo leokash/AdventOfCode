@@ -1,7 +1,6 @@
 
 import com.github.leokash.adventofcode.utils.*
 
-private val numRgx = """\d+""".toRegex()
 private const val PART_ONE_EXPECTED = 3749L
 private const val PART_TWO_EXPECTED = 11387L
 
@@ -24,7 +23,7 @@ private fun List<Long>.validate(answer: Long, operations: List<Op>): Boolean {
 fun main() {
     fun compute(input: List<String>, operations: List<Op>): Long {
         return input
-            .map { it.findAll(numRgx).map(String::toLong) }
+            .map { it.findAll(numberRegex).map(String::toLong) }
             .sumOf { arr -> if(arr.drop(1).validate(arr[0], operations)) arr[0] else 0 }
     }
 

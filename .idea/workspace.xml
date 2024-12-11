@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b93834da-fc5f-4410-b533-4ccd41700e99" name="Changes" comment="AOC 2024: Day 08">
+    <list default="true" id="b93834da-fc5f-4410-b533-4ccd41700e99" name="Changes" comment="AOC 2024: Day 09 - finally sorted part 2 runtime. `Map` to the rescue!! 🫡 🤜🏾🤛🏾">
       <change afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.vscode/tasks.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/kotlin/Day21.kt" afterDir="false" />
@@ -16,17 +16,11 @@
       <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day22.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day23-Test.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day23.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day09.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day10.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day09-Test.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day09.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day10-Test.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day10.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day11.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day11-Test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day11.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.fleet/run.json" beforeDir="false" afterPath="$PROJECT_DIR$/.fleet/run.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2024/src/main/kotlin/Day08.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day08.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Strings.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Strings.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/collections/Input+Mappings.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/collections/Input+Mappings.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,10 +128,10 @@
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/leokash/workspace/computing/jvm/kotlin/AdventOfCode",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+    "settings.editor.selected.configurable": "preferences.language.Kotlin"
   }
 }]]></component>
-  <component name="RunManager" selected="Kotlin.Day10Kt">
+  <component name="RunManager" selected="Kotlin.Day11Kt">
     <configuration name="Day07Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Day07Kt" />
       <module name="AdventOfCode.2024.main" />
@@ -166,9 +160,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Day18Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Day18Kt" />
-      <module name="AdventOfCode.2021.main" />
+    <configuration name="Day11Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Day11Kt" />
+      <module name="AdventOfCode.2024.main" />
+      <shortenClasspath name="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -178,15 +173,15 @@
       <item itemvalue="Kotlin.Day08Kt" />
       <item itemvalue="Kotlin.Day09Kt" />
       <item itemvalue="Kotlin.Day10Kt" />
-      <item itemvalue="Kotlin.Day18Kt" />
+      <item itemvalue="Kotlin.Day11Kt" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.Day10Kt" />
+        <item itemvalue="Kotlin.Day11Kt" />
         <item itemvalue="Kotlin.Day09Kt" />
         <item itemvalue="Kotlin.Day08Kt" />
+        <item itemvalue="Kotlin.Day10Kt" />
         <item itemvalue="Kotlin.Day07Kt" />
-        <item itemvalue="Kotlin.Day18Kt" />
       </list>
     </recent_temporary>
   </component>
@@ -359,7 +354,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733695036788</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="AOC 2024: Day 10">
+      <option name="closed" value="true" />
+      <created>1733824874149</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1733824874149</updated>
+    </task>
+    <task id="LOCAL-00022" summary="AOC 2024: Day 09 - finally sorted part 2 runtime. `Map` to the rescue!! 🫡 🤜🏾🤛🏾">
+      <option name="closed" value="true" />
+      <created>1733856875932</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1733856875932</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -406,7 +417,9 @@
     <MESSAGE value="AOC - Cleanup" />
     <MESSAGE value="AOC 2024: Day 07" />
     <MESSAGE value="AOC 2024: Day 08" />
-    <option name="LAST_COMMIT_MESSAGE" value="AOC 2024: Day 08" />
+    <MESSAGE value="AOC 2024: Day 10" />
+    <MESSAGE value="AOC 2024: Day 09 - finally sorted part 2 runtime. `Map` to the rescue!!  " />
+    <option name="LAST_COMMIT_MESSAGE" value="AOC 2024: Day 09 - finally sorted part 2 runtime. `Map` to the rescue!!  " />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -423,14 +436,6 @@
           <url>file://$PROJECT_DIR$/2023/src/main/kotlin/Day23.kt</url>
           <line>47</line>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/2024/src/main/kotlin/Day09.kt</url>
-          <line>110</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="93" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
