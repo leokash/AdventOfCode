@@ -4,14 +4,15 @@ package com.github.leokash.adventofcode.utils.math.geometry
 import com.github.leokash.adventofcode.utils.math.context.Context
 import com.github.leokash.adventofcode.utils.math.compareTo
 import java.util.Objects
+import kotlin.math.atan2
 
 typealias IntPoint = Point<Int>
 
 data class Point<T>(var x: T, var y: T, val context: Context<T>) where T: Number, T: Comparable<T> {
-    operator fun div(num: T): Point<T> = with(context) { Point(div(x, num), div(y, num), this) }
-    operator fun plus(num: T): Point<T> = with(context) { Point(add(x, num), add(y, num), this) }
-    operator fun times(num: T): Point<T> = with(context) { Point(mul(x, num), mul(y, num), this) }
-    operator fun minus(num: T): Point<T> = with(context) { Point(sub(x, num), sub(y, num), this) }
+    operator fun div(scalar: T): Point<T> = with(context) { Point(div(x, scalar), div(y, scalar), this) }
+    operator fun plus(scalar: T): Point<T> = with(context) { Point(add(x, scalar), add(y, scalar), this) }
+    operator fun times(scalar: T): Point<T> = with(context) { Point(mul(x, scalar), mul(y, scalar), this) }
+    operator fun minus(scalar: T): Point<T> = with(context) { Point(sub(x, scalar), sub(y, scalar), this) }
 
     operator fun div(other: Point<T>): Point<T> = with(context) { Point(div(x, other.x), div(y, other.y), this) }
     operator fun plus(other: Point<T>): Point<T> = with(context) { Point(add(x, other.x), add(y, other.y), this) }
@@ -24,6 +25,22 @@ data class Point<T>(var x: T, var y: T, val context: Context<T>) where T: Number
     
     operator fun unaryMinus() {
         with(context) { x = add(x, neg(one)); y = add(y, neg(one)) }
+    }
+
+    operator fun divAssign(scalar: T) {
+        with(context) { x = div(x, scalar); y = div(y, scalar) }
+    }
+
+    operator fun plusAssign(scalar: T) {
+        with(context) { x = add(x, scalar); y = add(y, scalar) }
+    }
+
+    operator fun minusAssign(scalar: T) {
+        with(context) { x = sub(x, scalar); y = sub(y, scalar) }
+    }
+
+    operator fun timesAssign(scalar: T) {
+        with(context) { x = mul(x, scalar); y = mul(y, scalar) }
     }
     
     operator fun divAssign(other: Point<T>) {

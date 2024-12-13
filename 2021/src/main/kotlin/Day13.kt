@@ -8,7 +8,7 @@ import com.github.leokash.adventofcode.utils.matrix.IntMatrix
 import com.github.leokash.adventofcode.utils.matrix.MatrixStringifier
 
 private fun IntMatrix.print() {
-    println(MatrixStringifier().stringify(this) { if (it > 0) "$SPRITE_ON" else "$SPRITE_OFF" })
+    println(MatrixStringifier.stringify(this) { if (it > 0) "$SPRITE_ON" else "$SPRITE_OFF" })
 }
 
 private fun IntMatrix.fold(cmd: Fold): IntMatrix {

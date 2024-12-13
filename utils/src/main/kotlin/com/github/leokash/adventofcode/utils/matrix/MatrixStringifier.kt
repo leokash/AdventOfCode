@@ -1,10 +1,11 @@
 
 package com.github.leokash.adventofcode.utils.matrix
 
+import com.github.leokash.adventofcode.utils.math.geometry.Point
 import kotlin.math.abs
 import kotlin.math.max
 
-class MatrixStringifier {
+class MatrixStringifier private constructor() {
     private class Spacer(var max: Int) {
         fun update(s: Int) {
             max = max(max, s)
@@ -19,18 +20,27 @@ class MatrixStringifier {
         }
     }
 
-    fun <T> stringify(array: Matrix<T>,
-                      indent: String = "",
-                      separator: String = "",
-                      transform: (T) -> String = { it.toString() }): String {
-        val spacers = mutableMapOf<Int, Spacer>()
-        val stringsArr = mutableListOf<List<Padded>>()
-        for (i in (0 until array.rows))
-            stringsArr += array.row(i)
-                .mapIndexed { j, t -> Padded(transform(t), spacers.getOrPut(j) { Spacer(0) }) }
+    companion object {
+        fun <T> stringify(mat: Matrix<T>,
+                          indent: String = "",
+                          separator: String = "",
+                          transform: (T) -> String = { it.toString() }): String {
+            return stringify(mat, indent, separator) {_, e -> transform(e) }
+        }
 
-        return stringsArr.joinToString (separator = "") { list ->
-            list.joinToString (prefix = "$indent|", postfix = "|\n", separator = separator) { it.toString() }
+        fun <T> stringify(mat: Matrix<T>,
+                          indent: String = "",
+                          separator: String = "",
+                          transform: (Point<Int>, T) -> String): String {
+            val spacers = mutableMapOf<Int, Spacer>()
+            val stringsArr = mutableListOf<List<Padded>>()
+            for (x in (0 until mat.rows))
+                stringsArr += mat.row(x)
+                    .mapIndexed { y, t -> Padded(transform(Point(x, y), t), spacers.getOrPut(y) { Spacer(0) }) }
+
+            return stringsArr.joinToString (separator = "") { list ->
+                list.joinToString (prefix = "$indent|", postfix = "|\n", separator = separator) { it.toString() }
+            }
         }
     }
 }

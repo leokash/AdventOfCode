@@ -80,8 +80,9 @@ private class Cave (
     }
 
     fun debug() {
-        log { MatrixStringifier().stringify(layout) }
+        log { MatrixStringifier.stringify(layout) }
     }
+
     fun simulate(): Boolean {
         var pos: Point<Int>? = source
         while (true) {
