@@ -4,9 +4,9 @@ package com.github.leokash.adventofcode.utils.math.geometry
 import com.github.leokash.adventofcode.utils.math.context.Context
 import com.github.leokash.adventofcode.utils.math.compareTo
 import java.util.Objects
-import kotlin.math.atan2
 
 typealias IntPoint = Point<Int>
+typealias LongPoint = Point<Long>
 
 data class Point<T>(var x: T, var y: T, val context: Context<T>) where T: Number, T: Comparable<T> {
     operator fun div(scalar: T): Point<T> = with(context) { Point(div(x, scalar), div(y, scalar), this) }

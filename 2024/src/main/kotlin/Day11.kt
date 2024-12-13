@@ -24,7 +24,9 @@ fun main() {
         val cache = mutableMapOf<Pair<Long, Int>, Long>()
         fun simulate(stone: Long, remBlinks: Int): Long {
             if (remBlinks == 0) return 1
-            return cache[stone to remBlinks] ?: blink(stone).sumOf { simulate(it, remBlinks - 1) }.also { cache[stone to remBlinks] = it }
+            return cache.getOrPut(stone to remBlinks) {
+                blink(stone).sumOf { simulate(it, remBlinks - 1) }
+            }
         }
 
         return input.mapLongs(spaceRegex).sumOf { simulate(it, blinks) }
