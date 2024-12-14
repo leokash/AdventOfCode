@@ -19,7 +19,6 @@ private fun blink(stone: Long): List<Long> {
 }
 
 fun main() {
-    Logger.debug = true
     fun compute(input: String, blinks: Int): Long {
         val cache = mutableMapOf<Pair<Long, Int>, Long>()
         fun simulate(stone: Long, remBlinks: Int): Long {

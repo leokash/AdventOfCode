@@ -1,6 +1,7 @@
 
 package com.github.leokash.adventofcode.utils.matrix
 
+import com.github.leokash.adventofcode.utils.Stopper
 import com.github.leokash.adventofcode.utils.math.geometry.Point
 
 class Matrix<T>(val rows: Int, val columns: Int, init: (Int, Int) -> T): Iterable<Pair<Point<Int>, T>> {
@@ -35,6 +36,19 @@ class Matrix<T>(val rows: Int, val columns: Int, init: (Int, Int) -> T): Iterabl
         if (index < 0 || index >= columns)
             throw IllegalAccessException("Out of bounds! $index not in 0..$columns")
         return (range ?: rowIndices).let { (it.first..it.last).map { x -> get(x, index) } }
+    }
+
+    fun scan(rows: Int, columns: Int, window: (Point<Int>, Stopper, List<List<T>>) -> Unit) {
+        val s = Stopper()
+        for ((p, _) in this) {
+            if (s.flag) break
+            if (p.x + rows >= this.rows) continue
+            if (p.y + columns >= this.columns) continue
+            window(p, s, buildList {
+                for (x in p.x..<(p.x + rows))
+                    add(row(x, p.y..<(p.y + columns)))
+            })
+        }
     }
 
     fun slice(p: Point<Int>, rows: Int, columns: Int): Matrix<T>? {

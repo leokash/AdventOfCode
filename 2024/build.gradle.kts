@@ -11,8 +11,8 @@ tasks {
         val main by getting {
             dependencies {
                 api(project(":utils"))
-                implementation(Deps.COROUTINES)
-                implementation(Deps.COMBINATORICS)
+                implementation(Dependencies.COROUTINES)
+                implementation(Dependencies.COMBINATORICS)
             }
         }
     }

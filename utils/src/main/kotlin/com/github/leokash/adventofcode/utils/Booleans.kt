@@ -8,3 +8,5 @@ operator fun Boolean.plus(otherBooleans: List<Boolean>): List<Boolean> {
         addAll(otherBooleans)
     }
 }
+
+data class Stopper(var flag: Boolean = false)

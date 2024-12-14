@@ -38,7 +38,6 @@ private fun List<String>.parse(): Pair<IntPoint, CharMatrix> {
 }
 
 fun main() {
-    Logger.debug = true
     fun part1(input: List<String>): Int = input.parse().let { (s, mat) -> mat.simulate(s).second.size }
     fun part2(input: List<String>): Int = input.parse().let { (s, mat) -> mat.simulate(s).second.drop(1).count { mat.simulate(s, it).first } }
 

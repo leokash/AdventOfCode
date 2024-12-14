@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b93834da-fc5f-4410-b533-4ccd41700e99" name="Changes" comment="AOC 2024: Day 12">
+    <list default="true" id="b93834da-fc5f-4410-b533-4ccd41700e99" name="Changes" comment="AOC 2024: Day 13">
       <change afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.vscode/tasks.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/kotlin/Day21.kt" afterDir="false" />
@@ -16,14 +16,25 @@
       <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day22.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day23-Test.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day23.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day13.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day13-Test.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day13.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day14.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day14-Test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day14.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Memoization.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.fleet/run.json" beforeDir="false" afterPath="$PROJECT_DIR$/.fleet/run.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2024/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/2024/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2024/src/main/kotlin/Day06.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day06.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2024/src/main/kotlin/Day10.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day10.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2024/src/main/kotlin/Day11.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day11.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2024/src/main/kotlin/Day12.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day12.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/math/geometry/Point.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/math/geometry/Point.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2024/src/main/kotlin/Day13.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day13.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Deps.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Dependencies.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Versions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Versions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/utils/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Booleans.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Booleans.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Logger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Logger.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Regex+Utils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Regex+Utils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/matrix/Matrix.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/matrix/Matrix.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,6 +127,7 @@
     "Kotlin.Day12Kt.executor": "Run",
     "Kotlin.Day13Kt (1).executor": "Run",
     "Kotlin.Day13Kt.executor": "Run",
+    "Kotlin.Day14Kt (1).executor": "Run",
     "Kotlin.Day14Kt.executor": "Run",
     "Kotlin.Day15Kt.executor": "Run",
     "Kotlin.Day16Kt.executor": "Run",
@@ -140,7 +152,7 @@
       <recent name="$PROJECT_DIR$/2024/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.Day13Kt (1)">
+  <component name="RunManager" selected="Kotlin.Day14Kt (1)">
     <configuration name="Day11Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Day11Kt" />
       <module name="AdventOfCode.2024.main" />
@@ -163,9 +175,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Day13Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Day13Kt" />
-      <module name="AdventOfCode.2021.main" />
+    <configuration name="Day14Kt (1)" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Day14Kt" />
+      <module name="AdventOfCode.2024.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -179,18 +191,18 @@
     </configuration>
     <list>
       <item itemvalue="Kotlin.Day13Kt (1)" />
+      <item itemvalue="Kotlin.Day14Kt (1)" />
       <item itemvalue="Kotlin.Day12Kt" />
-      <item itemvalue="Kotlin.Day13Kt" />
       <item itemvalue="Kotlin.Day14Kt" />
       <item itemvalue="Kotlin.Day11Kt" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.Day14Kt (1)" />
         <item itemvalue="Kotlin.Day13Kt (1)" />
         <item itemvalue="Kotlin.Day11Kt" />
         <item itemvalue="Kotlin.Day12Kt" />
         <item itemvalue="Kotlin.Day14Kt" />
-        <item itemvalue="Kotlin.Day13Kt" />
       </list>
     </recent_temporary>
   </component>
@@ -395,7 +407,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734109404685</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="AOC 2024: Day 13">
+      <option name="closed" value="true" />
+      <created>1734131395631</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1734131395631</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -446,7 +466,8 @@
     <MESSAGE value="AOC 2024: Day 09 - finally sorted part 2 runtime. `Map` to the rescue!!  " />
     <MESSAGE value="AOC 2024: Day 11" />
     <MESSAGE value="AOC 2024: Day 12" />
-    <option name="LAST_COMMIT_MESSAGE" value="AOC 2024: Day 12" />
+    <MESSAGE value="AOC 2024: Day 13" />
+    <option name="LAST_COMMIT_MESSAGE" value="AOC 2024: Day 13" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

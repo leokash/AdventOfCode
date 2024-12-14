@@ -10,7 +10,6 @@ private const val PART_ONE_EXPECTED = 36
 private const val PART_TWO_EXPECTED = 81
 
 fun main() {
-    Logger.debug = true
     fun compute(input: List<String>, countDistinct: Boolean = false): Int {
         fun walkTrail(loc: Int, p: IntPoint, mat: IntMatrix, visited: MutableSet<IntPoint> = mutableSetOf()): Int {
             var score = 0

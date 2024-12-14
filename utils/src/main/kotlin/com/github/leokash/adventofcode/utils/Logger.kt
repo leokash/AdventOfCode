@@ -1,22 +1,52 @@
 
+@file:Suppress("unused")
+
 package com.github.leokash.adventofcode.utils
 
-class Logger private constructor() {
-    companion object {
-        var debug: Boolean = false
+import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.format.char
+import kotlinx.datetime.toLocalDateTime
+import java.io.File
 
-        fun log(message: () -> String) {
-            if (!debug) return
-            println(message())
+fun interface Logger {
+    fun log(message: String)
+
+    companion object Config {
+        var enabled: Boolean = false
+        val default: Logger = Logger {
+            if (enabled)
+                println(it)
         }
     }
 }
 
-fun log(message: () -> String) {
-    Logger.log(message)
+fun Logger.withThreadName() = Logger {
+    log("${Thread.currentThread().name} - $it")
 }
 
-fun <T> T.log(message: T.() -> String): T {
-    Logger.log { message() }
+fun Logger.withFileLogging(filename: String? = null) = Logger {
+    if (!Logger.enabled)
+        return@Logger
+
+    val format = LocalDateTime.Format {
+        dayOfMonth()
+        char('-')
+        monthNumber()
+        char('-')
+        year()
+    }
+
+    log(it)
+    File(filename ?: "${format.format(Clock.System.now().toLocalDateTime(TimeZone.of("GMT")))}.log").appendText(it)
+}
+
+fun log(logger: Logger = Logger.default, message: () -> String) {
+    logger.log(message())
+}
+
+fun <T> T.log(logger: Logger = Logger.default, message: T.() -> String): T {
+    logger.log(message())
     return this
 }

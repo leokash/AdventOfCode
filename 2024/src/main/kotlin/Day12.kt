@@ -51,7 +51,6 @@ private fun List<Pair<IntPoint, Char>>.getPlots(): List<Plot> {
 }
 
 fun main() {
-    Logger.debug = true
     fun compute(input: List<String>, usingSides: Boolean = false): Int {
         val perimeter = if (usingSides) Plot::sides else Plot::perimeter
 

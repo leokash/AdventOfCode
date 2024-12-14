@@ -9,13 +9,15 @@ private val buttonRegex = """Button ([A,B]): X\+(\d+), Y\+(\d+)""".toRegex()
 
 private data class ClawMachine(val buttons: List<Button>, private val target: LongPoint) {
     fun cost(): Long {
-        val delta0 = target.y * buttons[0].offset.x - target.x * buttons[0].offset.y
-        val delta1 = buttons[0].offset.x * buttons[1].offset.y - buttons[0].offset.y * buttons[1].offset.x
+        val b0 = buttons[0]
+        val b1 = buttons[1]
+        val delta0 = target.y * b0.offset.x - target.x * b0.offset.y
+        val delta1 = b0.offset.x * b1.offset.y - b0.offset.y * b1.offset.x
 
-        val button1Move = if (delta0 % delta1 == 0L) delta0 / delta1 else return 0
-        return with(target.x - button1Move * buttons[1].offset.x) {
-            val button0Move = if (this % buttons[0].offset.x == 0L) this / buttons[0].offset.x else return 0
-            button0Move * 3 + button1Move
+        val move1 = if (delta0 % delta1 == 0L) delta0 / delta1 else return 0
+        return with(target.x - move1 * b1.offset.x) {
+            val move0 = if (this % b0.offset.x == 0L) this / b0.offset.x else return 0
+            move0 * b0.price + move1 * b1.price
         }
     }
 
@@ -25,8 +27,8 @@ private data class ClawMachine(val buttons: List<Button>, private val target: Lo
                 data
                     .take(2)
                     .map { it.matchingGroups(buttonRegex) }
-                    .map { Button((if (it[0] == "A") 3 else 1).toInt(), LongPoint(it[1].toLong(), it[2].toLong())) } ,
-                data[2].findAll(numberRegex).let { LongPoint(it[0].toInt() + prizeCorrection, it[1].toInt() + prizeCorrection) }
+                    .map { Button(if (it[0] == "A") 3 else 1, LongPoint(it[1].toLong(), it[2].toLong())) } ,
+                data[2].findAll(numberRegex).let { LongPoint(it[0].toLong() + prizeCorrection, it[1].toLong() + prizeCorrection) }
             )
         }
     }
@@ -34,7 +36,6 @@ private data class ClawMachine(val buttons: List<Button>, private val target: Lo
 private data class Button(val price: Int, val offset: LongPoint)
 
 fun main() {
-    Logger.debug = true
     fun compute(input: List<String>, correctPrize: Boolean = false): Long {
         return input
             .chunkedBy { it.isBlank() }
