@@ -5,7 +5,7 @@ private const val PART_ONE_EXPECTED = 0
 private const val PART_TWO_EXPECTED = 0
 
 fun main() {
-    Logger.debug = true
+    Logger.enabled = true
     fun compute(input: List<String>, partOne: Boolean = true): Int = TODO()
 
     fun part1(input: List<String>): Int = compute(input)

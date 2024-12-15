@@ -1,8 +1,7 @@
 
 import com.github.leokash.adventofcode.utils.*
 import com.github.leokash.adventofcode.utils.math.geometry.IntPoint
-import com.github.leokash.adventofcode.utils.matrix.CharMatrix
-import com.github.leokash.adventofcode.utils.matrix.IntMatrix
+import com.github.leokash.adventofcode.utils.matrix.*
 
 private const val PART_ONE_EXPECTED = 12
 
@@ -69,13 +68,15 @@ fun main() {
         var time = 0
         val (maxX, maxY, robots) = parse(input)
         val cache = mutableMapOf<State, IntPoint>()
+        val matrix = Matrix.ofChars(maxX + 1, maxY + 1)
 
         do {
             time++
             var foundTree = false
             simulate(1, robots, cache)
-            val groups = robots.groupBy { it.position }
-            val matrix = CharMatrix(maxX + 1, maxY + 1) { x, y -> if (groups[IntPoint(x , y)] != null) '*' else ' ' }
+            val points = robots.map { it.position }.toSet()
+            for ((p, _) in matrix)
+                matrix[p] = if (p in points) '*' else ' '
 
             matrix.scan(3, 5) { p, stop, list ->
                 if (list == xmas_tree_top) {
@@ -83,9 +84,9 @@ fun main() {
                     stop.flag = true
                 }
             }
-        } while (!foundTree)
+        } while (!foundTree && time < 10_000)
 
-        return time.log(Logger.default.withThreadName()) { "found tree in $this secs" }
+        return time
     }
 
     val input = readLines("Day14")

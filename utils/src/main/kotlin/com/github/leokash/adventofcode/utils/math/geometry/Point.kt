@@ -8,7 +8,7 @@ import java.util.Objects
 typealias IntPoint = Point<Int>
 typealias LongPoint = Point<Long>
 
-data class Point<T>(var x: T, var y: T, val context: Context<T>) where T: Number, T: Comparable<T> {
+data class Point<T>(var x: T, var y: T, val context: Context<T>): Comparable<Point<T>> where T: Number, T: Comparable<T> {
     operator fun div(scalar: T): Point<T> = with(context) { Point(div(x, scalar), div(y, scalar), this) }
     operator fun plus(scalar: T): Point<T> = with(context) { Point(add(x, scalar), add(y, scalar), this) }
     operator fun times(scalar: T): Point<T> = with(context) { Point(mul(x, scalar), mul(y, scalar), this) }
@@ -68,7 +68,7 @@ data class Point<T>(var x: T, var y: T, val context: Context<T>) where T: Number
         return x == other.x && y == other.y
     }
     
-    operator fun compareTo(other: Point<T>): Int = when(val result = x.compareTo(other.x)) {
+    override operator fun compareTo(other: Point<T>): Int = when(val result = x.compareTo(other.x)) {
         0 -> y.compareTo(other.y)
         else -> result
     }

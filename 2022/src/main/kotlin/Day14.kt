@@ -15,7 +15,7 @@ private const val PART_ONE_EXPECTED = 24
 private const val PART_TWO_EXPECTED = 93
 
 fun main() {
-    Logger.debug = false
+    Logger.enabled = false
     fun compute(input: List<String>, blockSource: Boolean = false): Int {
         var sand = 0
         val cave = Cave.from(input, blockSource)

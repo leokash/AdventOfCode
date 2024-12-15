@@ -42,7 +42,19 @@ enum class Direction(val point: Point<Int>) {
         return entries[count.get()]
     }
 
-    val opposite: List<Direction> get() = when(this) {
+    val opposite: Direction get() = when(this) {
+        EAST -> WEST
+        WEST -> EAST
+        NORTH -> SOUTH
+        SOUTH -> NORTH
+        NORTH_EAST -> SOUTH_WEST
+        NORTH_WEST -> SOUTH_EAST
+        SOUTH_WEST -> NORTH_EAST
+        SOUTH_EAST -> NORTH_WEST
+    }
+    val isVertical: Boolean get() = this == NORTH || this == SOUTH
+    val isHorizontal: Boolean get() = this == EAST || this == WEST
+    val oppositeAsList: List<Direction> get() = when(this) {
         EAST -> listOf(WEST)
         WEST -> listOf(EAST)
         NORTH -> listOf(SOUTH)

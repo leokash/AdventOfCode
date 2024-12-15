@@ -38,7 +38,7 @@ fun String.matchingGroups(regex: Regex): List<String> {
 
 fun String.removeAll(vararg list: String): String {
     var res = this
-    list.forEach { value ->  res = res.replace(value, "") }
+    list.forEach { value -> res = res.replace(value, "") }
     return res
 }
 

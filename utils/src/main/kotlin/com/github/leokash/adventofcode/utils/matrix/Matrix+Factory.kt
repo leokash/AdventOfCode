@@ -1,5 +1,9 @@
 
+@file:Suppress("unused")
+
 package com.github.leokash.adventofcode.utils.matrix
+
+import com.github.leokash.adventofcode.utils.math.geometry.Point
 
 typealias IntMatrix = Matrix<Int>
 typealias CharMatrix = Matrix<Char>
@@ -18,3 +22,8 @@ fun Matrix.Factory.ofChars(rows: Int, cols: Int, defaultChar: Char = ' ', init: 
 }
 
 fun <T, R> List<List<T>>.asMatrix(map: (T) -> R): Matrix<R> = Matrix(this.size, this[0].size) { x, y -> map(this[x][y]) }
+
+fun <R> List<String>.stringsToMatrix(map: (Char) -> R): Matrix<R> = stringsToMatrix { _, c -> map(c) }
+fun <R> List<String>.stringsToMatrix(map: (Point<Int>, Char) -> R): Matrix<R> = Matrix(this.size, this[0].length) { x, y ->
+    map(Point(x, y), this[x][y])
+}

@@ -45,8 +45,11 @@ class Matrix<T>(val rows: Int, val columns: Int, init: (Int, Int) -> T): Iterabl
             if (p.x + rows >= this.rows) continue
             if (p.y + columns >= this.columns) continue
             window(p, s, buildList {
-                for (x in p.x..<(p.x + rows))
-                    add(row(x, p.y..<(p.y + columns)))
+                for (xOffset in 0..<rows)
+                    add(buildList {
+                        for (y in p.y..<(p.y + columns))
+                            add(store.getValue(Point(p.x + xOffset, y)))
+                    })
             })
         }
     }
