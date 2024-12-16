@@ -38,48 +38,46 @@ class PathFinding {
         ): Mode<T>()
     }
 
-    data class VisitedNode<T>(val score: Int, val previous: T? = null)
-    private data class ScoredNode<T>(val element: T, val score: Int, val heuristic: Int) {
-        val computedScore: Int get() { return score + heuristic }
-    }
-
-    class Result<T>(val start: T, private val finish: T, private val result: Map<T, VisitedNode<T>>) {
-        fun getScore(node: T = finish) = result[node]?.score ?: error("Result for $node not found")
-
-        tailrec fun getPath(node: T = finish, path: List<T> = emptyList()): List<T> {
-            val previous = result[node]?.previous
-            return if (previous == null) listOf(node) + path else getPath(previous, listOf(node) + path)
-        }
-    }
+    data class Result<T>(val cost: Int, val path: List<T>)
 
     companion object {
         fun <T> findShortestPath(start: T, finish: T, mode: Mode<T>): Result<T>? {
-            return findShortestPath(start, mode) { it == finish }
+            return findPaths(start, true, mode) { it == finish }.firstOrNull()
         }
+
         fun <T> findShortestPath(start: T, mode: Mode<T>, predicate: (T) -> Boolean): Result<T>? {
-            var finish: T? = null
-            val queue = PriorityQueue<ScoredNode<T>>(compareBy { n -> n.computedScore })
-            val visited = mutableMapOf<T, VisitedNode<T>>(start to VisitedNode(0, null))
+            return findPaths(start, true, mode, predicate = predicate).firstOrNull()
+        }
 
-            queue.add(ScoredNode(start, 0, 0))
+        fun <T> findPaths(start: T, finish: T, mode: Mode<T>, maxCost: Int = Int.MAX_VALUE): List<Result<T>> {
+            return findPaths(start, false, mode, maxCost) { it == finish }
+        }
 
-            while (queue.isNotEmpty()) {
-                val tmp = queue.remove()
-                if (tmp == null || predicate(tmp.element)) {
-                    tmp?.also { n -> finish = n.element }
-                    break
+        fun <T> findPaths(start: T, mode: Mode<T>, maxCost: Int = Int.MAX_VALUE, predicate: (T) -> Boolean): List<Result<T>> {
+            return findPaths(start, false, mode, maxCost, predicate)
+        }
+
+        private fun <T> findPaths(start: T, firstOnly: Boolean, mode: Mode<T>, maxCost: Int = Int.MAX_VALUE, predicate: (T) -> Boolean): List<Result<T>> {
+            return buildList {
+                val seen = mutableSetOf<T>()
+                val queue = PriorityQueue<Triple<T, Int, List<T>>>(compareBy { it.second }).apply {
+                    add(Triple(start, 0, emptyList()))
                 }
 
-                val (node, score) = tmp
-                val neighbors = mode.neighbors(node)
-                    .filter { it !in visited }
-                    .map { next -> ScoredNode(next, score + mode.cost(node, next), mode.heuristic(next)) }
+                while (queue.isNotEmpty()) {
+                    val (obj, cost, path) = queue.remove() ?: break
 
-                queue.addAll(neighbors)
-                visited.putAll(neighbors.associate { it.element to VisitedNode(it.score, node) })
+                    seen += obj
+                    if (predicate(obj) && cost <= maxCost) {
+                        add(Result(cost, path + obj))
+                        if (firstOnly) break
+                    }
+
+                    queue += mode.neighbors(obj)
+                        .filter { it !in seen }
+                        .map { Triple(it, cost + mode.cost(obj, it) + mode.heuristic(it), path + obj) }
+                }
             }
-
-            return finish?.let { f -> Result(start, f, visited) }
         }
     }
 }

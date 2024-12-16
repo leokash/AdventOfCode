@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b93834da-fc5f-4410-b533-4ccd41700e99" name="Changes" comment="AOC 2024: Day 14">
+    <list default="true" id="b93834da-fc5f-4410-b533-4ccd41700e99" name="Changes" comment="AOC 2024: Day 15">
       <change afterPath="$PROJECT_DIR$/2023/src/main/kotlin/Day21.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/kotlin/Day22.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/kotlin/Day23.kt" afterDir="false" />
@@ -14,22 +14,13 @@
       <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day22.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day23-Test.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day23.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day15.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day15-Test-A.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day15-Test-B.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day15-Test-C.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day15.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day16.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day16-Test-A.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day16-Test-B.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day16.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.fleet/run.json" beforeDir="false" afterPath="$PROJECT_DIR$/.fleet/run.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022/src/main/kotlin/Day14.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2022/src/main/kotlin/Day14.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2024/src/main/kotlin/Day14.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day14.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AOCTemplate" beforeDir="false" afterPath="$PROJECT_DIR$/AOCTemplate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Chars.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Chars.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Direction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Direction.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/String+Utils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/String+Utils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/math/geometry/Point.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/math/geometry/Point.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/matrix/Matrix+Factory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/matrix/Matrix+Factory.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/matrix/Matrix.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/matrix/Matrix.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/graphs/PathFinding.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/graphs/PathFinding.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,65 +91,58 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Gradle.Build AdventOfCode.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day01Kt (1).executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day01Kt (2).executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day01Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day02Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day03Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day04Kt (1).executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day04Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day05Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day06Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day07Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day08Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day09Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day10Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day11Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day12Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day13Kt (1).executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day13Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day14Kt (1).executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day14Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day15Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day16Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day17Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day18Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day19Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day20Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day21Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day22Kt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Day23Kt.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/leokash/workspace/computing/jvm/kotlin/AdventOfCode/2024/src/main/resources&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.language.Kotlin&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Gradle.Build AdventOfCode.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Kotlin.Day01Kt (1).executor": "Run",
+    "Kotlin.Day01Kt (2).executor": "Run",
+    "Kotlin.Day01Kt.executor": "Run",
+    "Kotlin.Day02Kt.executor": "Run",
+    "Kotlin.Day03Kt.executor": "Run",
+    "Kotlin.Day04Kt (1).executor": "Run",
+    "Kotlin.Day04Kt.executor": "Run",
+    "Kotlin.Day05Kt.executor": "Run",
+    "Kotlin.Day06Kt.executor": "Run",
+    "Kotlin.Day07Kt.executor": "Run",
+    "Kotlin.Day08Kt.executor": "Run",
+    "Kotlin.Day09Kt.executor": "Run",
+    "Kotlin.Day10Kt.executor": "Run",
+    "Kotlin.Day11Kt.executor": "Run",
+    "Kotlin.Day12Kt.executor": "Run",
+    "Kotlin.Day13Kt (1).executor": "Run",
+    "Kotlin.Day13Kt.executor": "Run",
+    "Kotlin.Day14Kt (1).executor": "Run",
+    "Kotlin.Day14Kt.executor": "Run",
+    "Kotlin.Day15Kt.executor": "Run",
+    "Kotlin.Day16Kt.executor": "Run",
+    "Kotlin.Day17Kt.executor": "Run",
+    "Kotlin.Day18Kt.executor": "Run",
+    "Kotlin.Day19Kt.executor": "Run",
+    "Kotlin.Day20Kt.executor": "Run",
+    "Kotlin.Day21Kt.executor": "Run",
+    "Kotlin.Day22Kt.executor": "Run",
+    "Kotlin.Day23Kt.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/leokash/workspace/computing/jvm/kotlin/AdventOfCode/2024/src/main/resources",
+    "settings.editor.selected.configurable": "preferences.language.Kotlin"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/2024/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.Day15Kt">
+  <component name="RunManager" selected="Kotlin.Day16Kt">
     <configuration name="Day11Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Day11Kt" />
       <module name="AdventOfCode.2024.main" />
       <shortenClasspath name="NONE" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Day12Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Day12Kt" />
-      <module name="AdventOfCode.2024.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -184,20 +168,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Day16Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Day16Kt" />
+      <module name="AdventOfCode.2024.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Kotlin.Day15Kt" />
+      <item itemvalue="Kotlin.Day16Kt" />
       <item itemvalue="Kotlin.Day11Kt" />
-      <item itemvalue="Kotlin.Day12Kt" />
       <item itemvalue="Kotlin.Day13Kt (1)" />
       <item itemvalue="Kotlin.Day14Kt (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.Day16Kt" />
         <item itemvalue="Kotlin.Day15Kt" />
         <item itemvalue="Kotlin.Day14Kt (1)" />
         <item itemvalue="Kotlin.Day13Kt (1)" />
         <item itemvalue="Kotlin.Day11Kt" />
-        <item itemvalue="Kotlin.Day12Kt" />
       </list>
     </recent_temporary>
   </component>
@@ -418,7 +409,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734198890394</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="AOC 2024: Day 15">
+      <option name="closed" value="true" />
+      <created>1734288756284</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1734288756284</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -445,7 +444,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="AOC 2023: Day 10" />
     <MESSAGE value="AOC 2023: Day 10 - Clean up of previous days logging and adding missed `rotate` function for `Direction`" />
     <MESSAGE value="AOC 2023: Day 10 - adding missed functions on `CircularCounter`" />
     <MESSAGE value="AOC 2023: Day 11" />
@@ -470,7 +468,8 @@
     <MESSAGE value="AOC 2024: Day 12" />
     <MESSAGE value="AOC 2024: Day 13" />
     <MESSAGE value="AOC 2024: Day 14" />
-    <option name="LAST_COMMIT_MESSAGE" value="AOC 2024: Day 14" />
+    <MESSAGE value="AOC 2024: Day 15" />
+    <option name="LAST_COMMIT_MESSAGE" value="AOC 2024: Day 15" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
