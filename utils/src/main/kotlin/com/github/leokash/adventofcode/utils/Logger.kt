@@ -39,7 +39,7 @@ fun Logger.withFileLogging(filename: String? = null) = Logger {
     }
 
     log(it)
-    File(filename ?: "${format.format(Clock.System.now().toLocalDateTime(TimeZone.of("GMT")))}.log").appendText(it)
+    File(filename ?: "${format.format(Clock.System.now().toLocalDateTime(TimeZone.of("GMT")))}.log").appendText(it + "\n")
 }
 
 fun log(logger: Logger = Logger.default, message: () -> String) {
