@@ -23,7 +23,7 @@ private val sampleTestCase = buildMap<String, Long> {
 }
 
 fun main() {
-    Logger.debug = false
+    Logger.enabled = false
     val input = readLines("Day25")
     val sample = readLines("Day25-Test")
 

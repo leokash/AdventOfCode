@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b93834da-fc5f-4410-b533-4ccd41700e99" name="Changes" comment="AOC 2024: Day 16">
+    <list default="true" id="b93834da-fc5f-4410-b533-4ccd41700e99" name="Changes" comment="AOC 2024: Day 17 - Part 1">
       <change afterPath="$PROJECT_DIR$/2023/src/main/kotlin/Day21.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/kotlin/Day22.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/kotlin/Day23.kt" afterDir="false" />
@@ -14,13 +14,10 @@
       <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day22.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day23-Test.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/2023/src/main/resources/Day23.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day17.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day17-Test-A.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day17-Test-B.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024/src/main/resources/Day17.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2022/src/main/kotlin/Day25.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2022/src/main/kotlin/Day25.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Logger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Logger.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2024/src/main/kotlin/Day17.kt" beforeDir="false" afterPath="$PROJECT_DIR$/2024/src/main/kotlin/Day17.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Regex+Utils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/src/main/kotlin/com/github/leokash/adventofcode/utils/Regex+Utils.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +75,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -424,7 +421,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734373451635</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="AOC 2024: Day 17 - Part 1">
+      <option name="closed" value="true" />
+      <created>1734479576513</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1734479576513</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -451,7 +456,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="AOC 2023: Day 10 - adding missed functions on `CircularCounter`" />
     <MESSAGE value="AOC 2023: Day 11" />
     <MESSAGE value="Clean up of AOC 2023 Day 11, fix of stackoverflow due to failing casting and removal of unused functions" />
     <MESSAGE value="AOC 2023: Day 12" />
@@ -476,7 +480,8 @@
     <MESSAGE value="AOC 2024: Day 14" />
     <MESSAGE value="AOC 2024: Day 15" />
     <MESSAGE value="AOC 2024: Day 16" />
-    <option name="LAST_COMMIT_MESSAGE" value="AOC 2024: Day 16" />
+    <MESSAGE value="AOC 2024: Day 17 - Part 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="AOC 2024: Day 17 - Part 1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

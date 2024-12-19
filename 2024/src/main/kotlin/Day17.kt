@@ -1,5 +1,6 @@
 
 import com.github.leokash.adventofcode.utils.*
+import com.github.leokash.adventofcode.utils.math.mapLongs
 import kotlin.Long
 import kotlin.math.pow
 
@@ -12,12 +13,12 @@ private val bxl: (Long, Long) -> Long = { a, b -> a xor b }
 private val jnz: (Long, Long) -> Int? = { a, b -> if (a == 0L) null else b.toInt() }
 
 data class Computer(var ip: Int = 0, var rA: Long = 0, var rB: Long = 0, var rC: Long = 0) {
-    fun run(program: List<Long>): String {
+    fun run(program: List<Long>, probe: (Long) -> Unit = { }): String {
         return buildList {
             while (ip < program.size) {
                 val op = program[ip]
                 when (op) {
-                    0L -> rA = adv(rA, pow(fetch(program[ip + 1]))).also { ip += 2 }
+                    0L -> rA = adv(rA, pow(fetch(program[ip + 1]))).also { ip += 2; probe(rA) }
                     1L -> rB = bxl(rB, program[ip + 1]).also { ip += 2 }
                     2L -> rB = bst(fetch(program[ip + 1])).also { ip += 2 }
                     3L -> ip = jnz(rA, program[ip + 1]) ?: (ip + 2)
@@ -56,7 +57,27 @@ fun main() {
         return computer.run(input[4].findAll(numberRegex).map { it.toLong() })
     }
     fun part2(input: List<String>): Long {
-        return 0
+        val cmptr = Computer()
+        val program = input[4].findAll(numberRegex).map(String::toLong)
+
+        val stack = mutableListOf(0L to program.lastIndex)
+        while (stack.isNotEmpty()) {
+            val (tmp, size) = stack.removeFirst()
+            for (i in 0..7) {
+                val a = tmp * 8L + i
+                val result = cmptr
+                    .apply { ip = 0; rA = a }
+                    .run(program)
+                    .mapLongs(commaRegex)
+
+                if (result == program) return a
+                if (result == program.subList(size, program.size)) {
+                    stack += (a to size - 1)
+                }
+            }
+        }
+
+        return -1L
     }
 
     val input = readLines("Day17")
