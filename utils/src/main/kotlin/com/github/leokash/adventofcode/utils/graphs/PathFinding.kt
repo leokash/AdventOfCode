@@ -75,6 +75,7 @@ class PathFinding {
 
                     queue += mode.neighbors(obj)
                         .filter { it !in seen }
+                        .onEach { if (firstOnly) seen += it }
                         .map { Triple(it, cost + mode.cost(obj, it) + mode.heuristic(it), path + obj) }
                 }
             }
