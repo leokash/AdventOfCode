@@ -28,12 +28,12 @@ class Matrix<T>(val rows: Int, val columns: Int, init: (Int, Int) -> T): Iterabl
     }
 
     fun row(index: Int, range: IntRange? = null): List<T> {
-        if (index < 0 || index >= rows)
+        if (index !in 0..< rows)
             throw IllegalAccessException("Out of bounds! $index not in 0..$rows")
         return (range ?: columnIndices).let { (it.first..it.last).map { y -> get(index, y) } }
     }
     fun column(index: Int, range: IntRange? = null): List<T> {
-        if (index < 0 || index >= columns)
+        if (index !in 0..< columns)
             throw IllegalAccessException("Out of bounds! $index not in 0..$columns")
         return (range ?: rowIndices).let { (it.first..it.last).map { x -> get(x, index) } }
     }

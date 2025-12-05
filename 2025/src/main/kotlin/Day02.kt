@@ -29,7 +29,7 @@ private fun Long.isInvalidId(partOne: Boolean): Boolean {
 fun main() {
     fun compute(input: List<String>, partOne: Boolean = true): Long {
         return input
-            .flatMap { it.split("-").let { parts -> ((parts.first().toLong())..(parts.last().toLong())).toList() } }
+            .flatMap { it.split("-").let { parts -> parts.first().toLong() .. parts.last().toLong() } }
             .filter { it.isInvalidId(partOne) }
             .sum()
     }

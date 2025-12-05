@@ -1,4 +1,5 @@
 
+import com.github.leokash.adventofcode.utils.log
 import com.github.leokash.adventofcode.utils.Logger
 import com.github.leokash.adventofcode.utils.readLines
 
